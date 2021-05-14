@@ -208,7 +208,7 @@ Power_Data_4.loc[foo,'Irradiation 2'] = Power_Data_4['Irradiation 2'][foo-1]
 Power_Data_4.loc[foo,'PV Temperature 2'] = Power_Data_4['PV Temperature 2'][foo-1]
 Power_Data_4.loc[foo,'PV Power'] = Power_Data_4['PV Power'][foo-1]
 
-Power_Data_4.to_csv('Base_Scenario.csv')
+Power_Data_4.to_csv('Base_Scenario.csv') # this is before doing all the calculations
 
 Hourly_Data = pd.DataFrame()
 
