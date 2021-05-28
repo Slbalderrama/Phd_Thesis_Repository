@@ -31,7 +31,7 @@ y_1 = lm.predict(Partial_load_1.reshape(-1, 1))
 
 plt.scatter(Partial_load, fuel_comsuption)
 plt.plot(Partial_load_1, y_1)
-
+plt.show()
 
 #%%
 
@@ -46,7 +46,7 @@ Total_Fuel_Cost_2 = lm2.predict(Partial_load_1.reshape(-1, 1))
 
 plt.scatter(Partial_load, Total_Fuel_Cost)
 plt.plot(Partial_load_1, Total_Fuel_Cost_2)
-
+plt.show()
 #lm2.intercept_
 #lm2.coef_
 
@@ -131,7 +131,7 @@ plt.plot(Genset_Manufacter_Data['Power'],Genset_Manufacter_Data['Efficiency'])
 
 plt.plot(Genset_Manufacter_Data['Power'], Genset_Manufacter_Data['Fuel'])
 plt.scatter(Montly_Diesel_Data['Power'], Montly_Diesel_Data['Diesel per hour'])
-
+plt.show()
 
 X = np.array(Montly_Diesel_Data['Power'][1:]/1000)
 X = X.reshape(-1, 1)
@@ -147,7 +147,7 @@ Total_Fuel_3 = lm3.predict(Partial_load_1.reshape(-1, 1))
 plt.scatter(Montly_Diesel_Data['Power'][1:]/1000, Montly_Diesel_Data['Diesel per hour'][1:])
 plt.plot(Partial_load_1 ,Total_Fuel_3)
 plt.plot(Genset_Manufacter_Data['Power']/1000, Genset_Manufacter_Data['Fuel'])
-
+plt.show
 X_4 = X
 y_4 = y
 
@@ -173,6 +173,7 @@ plt.plot(Partial_load_1 ,Total_Fuel_3)
 plt.plot(Partial_load_1 ,Total_Fuel_5)
 plt.plot(Genset_Manufacter_Data['Power']/1000, Genset_Manufacter_Data['Fuel'])
 plt.scatter(Montly_Diesel_Data['Power'][1:]/1000, Montly_Diesel_Data['Diesel per hour'][1:])
+plt.show()
 
 Diesel_Comsuption_Peak_Load = np.array(58)
 Diesel_Comsuption_Peak = lm5.predict(Diesel_Comsuption_Peak_Load.reshape(1, -1))
