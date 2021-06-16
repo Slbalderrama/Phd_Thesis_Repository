@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('Data_Espino_Thesis.csv', header=0,index_col=0)
+data = pd.read_csv('Data_Espino_Thesis_2.csv', header=0,index_col=0)
 
 
 
@@ -114,7 +114,7 @@ soc_test_50_2 = soc_test.loc[soc_test['Bat Soc 2'] < 50]
 soc_test_50_3 = soc_test.loc[soc_test['Bat Soc 3'] < 50]
 
 (len(soc_test_50_3)/len(data))*100
-(len(soc_test_50_1)/len(data))*100
+(len(soc_test_50_2)/len(data))*100
 (len(soc_test_50_1)/len(data))*100
 
 # more than 98 % of the values are above 50 % 
@@ -178,7 +178,13 @@ soc_test_dif_10_1 = soc_test.loc[soc_test['1 to 2'] < 10]
 soc_test_dif_10_2 = soc_test.loc[soc_test['2 to 3'] < 10]
 soc_test_dif_10_3 = soc_test.loc[soc_test['1 to 3'] < 10]
 
+soc_test_dif_10_1_mayor = soc_test.loc[soc_test['1 to 2'] > 10]
+soc_test_dif_10_2_mayor = soc_test.loc[soc_test['2 to 3'] > 10]
+soc_test_dif_10_3_mayor = soc_test.loc[soc_test['1 to 3'] > 10]
 
+soc_test_dif_5_1_mayor = soc_test.loc[soc_test['1 to 2'] > 5]
+soc_test_dif_5_2_mayor = soc_test.loc[soc_test['2 to 3'] > 5]
+soc_test_dif_5_3_mayor = soc_test.loc[soc_test['1 to 3'] > 5]
 
 # the state of charge is relatively uniform between batteries
 

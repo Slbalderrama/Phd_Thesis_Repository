@@ -21,7 +21,7 @@ import matplotlib.lines as mlines
 
 # load data
 
-data = pd.read_csv('Data_Espino_Thesis_Fill.csv', header=0,index_col=0)
+data = pd.read_csv('Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
 index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
 
@@ -243,10 +243,12 @@ plt.show()
 
 # Transforming the time step from 5 min to 1 hour
 #%%
+data['Bat Power'] = data['Bat Power out'] - data['Bat Power in'] 
 data['hour'] = data.index.hour
 data['day'] = data.index.dayofyear
+data['day of the month'] = data.index.day
 data['year'] = data.index.year
-data['Bat Power'] = data['Bat Power out'] - data['Bat Power in'] 
+data['month'] = data.index.month
 data_hourly = data.groupby(['hour']).mean()
 
 
@@ -256,6 +258,25 @@ index_hourly = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=13872,
                                    freq=('1H'))
 
 Power_Data_Hourly.index = index_hourly
+
+#%%
+# Reviewing data in some point
+
+month = 4
+year  = 2017
+day = 2
+Montly_monitoring_Data = data.loc[data['year']==year]
+Montly_monitoring_Data = Montly_monitoring_Data.loc[Montly_monitoring_Data['month']==month]
+Daily_monitoring_Data = Montly_monitoring_Data.loc[Montly_monitoring_Data['day of the month']==day]
+
+
+Montly_monitoring_Data_Sum  = Montly_monitoring_Data.groupby(['day of the month']).sum()
+Montly_monitoring_Data_Sum  = Montly_monitoring_Data_Sum.transpose()
+
+
+
+
+
 
 
 #%%
@@ -332,7 +353,14 @@ data['hour'] = data.index.hour
 data['day'] = data.index.dayofyear
 data['year'] = data.index.year
 data['Bat Power'] = data['Bat Power out'] - data['Bat Power in'] 
-data_hourly = data.groupby(['hour']).mean()
+
+start = '2016-01-01 00:00:00' # '2017-01-01 00:00:00' '2016-01-01 00:00:00' 
+end   = '2017-07-31 23:55:00' # '2017-07-31 23:55:00' '2016-12-31 23:55:00' 
+data_hourly = data[start:end] 
+data_hourly = data_hourly.groupby(['hour']).mean()
+
+
+
 data_hourly = round(data_hourly,1)
 #%%
 Diesel_Comsuption = pd.read_excel('Diesel Comsuption.xls',index_col=0)
@@ -481,8 +509,8 @@ label_size = 25
 ax.plot(data_hourly.index, data_hourly['PV Power'], c = 'b')
 ax.set_xlim([0,23])
 ax.set_ylim([0, 25])
-ax.set_xlabel("Percentage (%)",size=label_size)
-ax.set_ylabel("SOC (%)",size=label_size)
+ax.set_xlabel("Hours",size=label_size)
+ax.set_ylabel("Power (kW)",size=label_size)
 ax.tick_params(axis='y', which='major', labelsize = tick_size )
 ax.tick_params(axis='x', which='major', labelsize = tick_size )
 
@@ -492,9 +520,8 @@ ax2.plot(data_hourly.index,  data_hourly['Solar Irradiation'], c = 'y')
 ax2.set_xlim([0,23])
 ax2.set_ylim([0,800])
 ax2.yaxis.tick_right()
-ax2.set_xlabel('hours',size=label_size) 
-ax2.set_ylabel('Power (kW)',size=label_size) 
-ax2.xaxis.set_label_position('top') 
+ax2.set_ylabel('Radiation (Wh)',size=label_size) 
+#ax2.xaxis.set_label_position('top') 
 ax2.yaxis.set_label_position('right') 
 
 demand = mlines.Line2D([], [], color='b',
@@ -523,7 +550,41 @@ PV_Production_Time = round((len(PV_data)/len(data))*100, 1)
 
 print('The PV array mean power output is ' + str(PV_Power_Average) + ' kW' )
 print('The PV array max power output is ' + str(PV_Power_max) + ' kW' )
-print('The PV array energy production is ' + str(PV_Production_Time ) + ' % of the time' )
+print('The PV array produce energy the ' + str(PV_Production_Time ) + ' % of the time' )
+
+
+#%%
+
+Area = 1.61*0.946*240  # 1.61*0.946*240 # 1.65*0.99*240
+
+PV_Energy =  Power_Data_Hourly.loc[Power_Data_Hourly['PV Power']> 0]
+PV_Efficiency = (PV_Energy ['PV Power'].sum()*1000)/(PV_Energy['Solar Irradiation'].sum()*Area)
+PV_Efficiency = round(PV_Efficiency*100, 1)
+
+print('The efficiency of the PV array is ' +str(PV_Efficiency) + ' %')
+
+#%%
+
+# Curtailment problem
+
+PV_curtailment = data.copy()
+PV_curtailment = PV_curtailment.loc[PV_curtailment['PV Power']> 0]
+PV_curtailment = PV_curtailment.loc[PV_curtailment['Solar Irradiation']> 0]
+PV_curtailment['Efficiency'] = (PV_curtailment['PV Power']*1000)/(PV_curtailment['Solar Irradiation']*Area)
+fig=plt.figure(figsize=size)
+ax4=fig.add_subplot(111)
+ax4.scatter(PV_curtailment['Solar Irradiation'], PV_curtailment['Efficiency'], c = 'b')
+ax4.set_ylim([0,1])
+#%%
+
+
+
+
+
+
+
+
+
 
 
 

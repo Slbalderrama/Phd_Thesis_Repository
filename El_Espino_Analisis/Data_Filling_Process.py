@@ -5,11 +5,11 @@ Created on Mon May 17 15:53:25 2021
 @author: Dell
 """
 
-
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv('Data_Espino_Thesis.csv', header=0,index_col=0)
+data = pd.read_csv('Data_Espino_Thesis_2.csv', header=0,index_col=0)
 
 
 Power_Data = pd.DataFrame()
@@ -195,13 +195,82 @@ Power_Data_2.columns = ['PV Power', 'GenSet Power', 'SOC', 'Ambient temperature'
        'Solar Irradiation', 'PV Temperature 2', 'Bat Power in',  'Bat Power out']
 
 
-Power_Data_2.to_csv('Data_Espino_Thesis_Fill.csv')
+Power_Data_2.to_csv('Data_Espino_Thesis_Fill_2.csv')
 
 
 #%%
 
 
-Power_Data_Describe_2  = Power_Data.describe() 
+Power_Data_Describe_2  = Power_Data_2.describe() 
+
+Power_Data_old  = pd.read_csv('Data_Espino_Thesis_Fill.csv', header=0,
+                               index_col=0)
+Power_Data_old.index = index
+Power_Data_old_Describe  = Power_Data_old.describe() 
+#%%
+
+data_slice_new =  Power_Data_2['2017-01-05 00:00:00':'2017-01-05 23:55:00']
+    
+data_slice_old =  Power_Data_old['2017-01-05 00:00:00':'2017-01-05 23:55:00']    
+    
+data_slice_new_describe = data_slice_new.describe()    
+data_slice_old_describe = data_slice_old.describe()
+
+
+data_slice_new['Demand'].plot(c='b')
+data_slice_old['Demand'].plot(c='y')
+plt.show()
+
+#%%
+
+data_slice_new_2 =  Power_Data_2['2017-01-01 00:00:00':'2017-01-31 23:55:00']
+    
+data_slice_old_2 =  Power_Data_old['2017-01-01 00:00:00':'2017-01-31 23:55:00']    
+    
+data_slice_new_describe_2 = data_slice_new.describe()    
+data_slice_old_describe_2 = data_slice_old.describe()
+
+
+demand_2 = pd.DataFrame()
+
+demand_2['Demand new'] = data_slice_new_2['Demand']
+demand_2['Demand old'] = data_slice_old_2['Demand'] 
+demand_2['hour'] = demand_2.index.hour
+demand_2_Daily = demand_2.groupby(['hour']).mean()   
+
+demand_2_Daily['Demand new'].plot(c='b')
+demand_2_Daily['Demand old'].plot(c='y')
+plt.show()
+
+demand_2_Daily['diff'] = demand_2_Daily['Demand new'] - demand_2_Daily['Demand old']
+
+demand_2_Daily['Percentage'] = ((demand_2_Daily['Demand new'] - demand_2_Daily['Demand old'])/demand_2_Daily['Demand new'])*100
+
+#%%
+New_LDR = data_slice_new_2.sort_values('Demand', ascending=False)
+Old_LDR = data_slice_old_2.sort_values('Demand', ascending=False)
+
+
+index_LDR = []
+for i in range(len(Old_LDR )):
+        index_LDR.append((i+1)/float(len(Old_LDR ))*100)
+        
+Old_LDR.index = index_LDR
+New_LDR.index = index_LDR
+
+New_LDR['Demand'].plot(c='b')
+Old_LDR['Demand'].plot(c='y')
+
+
+plt.show()
+
+
+
+
+
+
+
+
 
 
 

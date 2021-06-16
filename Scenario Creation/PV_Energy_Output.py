@@ -217,6 +217,7 @@ for i in Hourly_Data.index:
         if Hourly_Data.loc[i,'PV Corrected']>0:
              Hourly_Data.loc[i,'PV Corrected']=0
 
+
 # applying the linear model to Gutierrez data    
 for i in Gut_Data.index:
        

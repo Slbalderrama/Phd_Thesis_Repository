@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('Data_Espino_Thesis.csv', header=0,index_col=0)
+data = pd.read_csv('Data_Espino_Thesis_2.csv', header=0,index_col=0)
 
 
 pv_test = pd.DataFrame()
