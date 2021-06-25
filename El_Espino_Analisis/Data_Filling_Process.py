@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv('Data_Espino_Thesis_2.csv', header=0,index_col=0)
+data = pd.read_csv('Data/Data_Espino_Thesis_2.csv', header=0,index_col=0)
 
 
 Power_Data = pd.DataFrame()
@@ -195,7 +195,13 @@ Power_Data_2.columns = ['PV Power', 'GenSet Power', 'SOC', 'Ambient temperature'
        'Solar Irradiation', 'PV Temperature 2', 'Bat Power in',  'Bat Power out']
 
 
-Power_Data_2.to_csv('Data_Espino_Thesis_Fill_2.csv')
+for i in Power_Data_2.index:
+    a = i.hour
+    if a==4:
+        if Power_Data_2.loc[i,'Solar Irradiation']>0:
+             Power_Data_2.loc[i,'Solar Irradiation']=0
+
+Power_Data_2.to_csv('Data/Data_Espino_Thesis_Fill_2.csv')
 
 
 #%%
@@ -203,7 +209,7 @@ Power_Data_2.to_csv('Data_Espino_Thesis_Fill_2.csv')
 
 Power_Data_Describe_2  = Power_Data_2.describe() 
 
-Power_Data_old  = pd.read_csv('Data_Espino_Thesis_Fill.csv', header=0,
+Power_Data_old  = pd.read_csv('Data/Data_Espino_Thesis_Fill.csv', header=0,
                                index_col=0)
 Power_Data_old.index = index
 Power_Data_old_Describe  = Power_Data_old.describe() 

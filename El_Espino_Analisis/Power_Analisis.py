@@ -21,7 +21,7 @@ import matplotlib.lines as mlines
 
 # load data
 
-data = pd.read_csv('Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
+data = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
 index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
 
@@ -363,7 +363,7 @@ data_hourly = data_hourly.groupby(['hour']).mean()
 
 data_hourly = round(data_hourly,1)
 #%%
-Diesel_Comsuption = pd.read_excel('Diesel Comsuption.xls',index_col=0)
+Diesel_Comsuption = pd.read_excel('Data/Diesel Comsuption.xls',index_col=0)
 Diesel_Comsuption = Diesel_Comsuption.fillna(0)
 Diesel_Comsuption = Diesel_Comsuption[:-1]
 Diesel_Comsuption.index =  pd.to_datetime(Diesel_Comsuption.index)
@@ -562,47 +562,4 @@ PV_Efficiency = (PV_Energy ['PV Power'].sum()*1000)/(PV_Energy['Solar Irradiatio
 PV_Efficiency = round(PV_Efficiency*100, 1)
 
 print('The efficiency of the PV array is ' +str(PV_Efficiency) + ' %')
-
-#%%
-
-# Curtailment problem
-
-PV_curtailment = data.copy()
-PV_curtailment = PV_curtailment.loc[PV_curtailment['PV Power']> 0]
-PV_curtailment = PV_curtailment.loc[PV_curtailment['Solar Irradiation']> 0]
-PV_curtailment['Efficiency'] = (PV_curtailment['PV Power']*1000)/(PV_curtailment['Solar Irradiation']*Area)
-fig=plt.figure(figsize=size)
-ax4=fig.add_subplot(111)
-ax4.scatter(PV_curtailment['Solar Irradiation'], PV_curtailment['Efficiency'], c = 'b')
-ax4.set_ylim([0,1])
-#%%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

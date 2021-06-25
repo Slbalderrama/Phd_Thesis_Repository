@@ -32,22 +32,21 @@ from sklearn.model_selection import GridSearchCV
 data = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
 index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
-Area =1.65*0.99*240 # 1.61*0.946*240 # 1.65*0.99*240
+Area = 1.61*0.946*240 # 1.61*0.946*240 # 1.65*0.99*240
 
 data_1 = data.loc[data['PV Power']>0]
 data_1.loc[:,'Efficiency'] = (data['PV Power']*1000)/(data['Solar Irradiation']*Area)
-
 
 #%%
 
 # Limit creation
 
 a = np.array([200,1600])
-b = np.array([0.187,0.09])
+b = np.array([0.2,0.1])
 c = np.array([0,200])
-d = np.array([0.16,0.187])
+d = np.array([0.16,0.2])
 
-Delta = 0.045
+Delta = 0.05
 
 foo = float(d[1]) - Delta 
 
@@ -61,9 +60,9 @@ b = b.reshape((2,1))
 b_1 = b_1.reshape((2,1))
 
 lm = linear_model.LinearRegression(fit_intercept=True)
-model = lm.fit(a,b)
+lm.fit(a,b)
 lm_1 = linear_model.LinearRegression(fit_intercept=True)
-model = lm_1.fit(a, b_1)
+lm_1.fit(a, b_1)
 
 
 
@@ -73,9 +72,9 @@ f = f.reshape((2,1))
 
 
 lm_2 = linear_model.LinearRegression(fit_intercept=True)
-model = lm_2.fit(c,d)
+lm_2.fit(c,d)
 lm_3 = linear_model.LinearRegression(fit_intercept=True)
-model = lm_3.fit(c, f)
+lm_3.fit(c, f)
 
 
 
@@ -151,7 +150,7 @@ regression = 'Forest'
 if regression == 'Linear':
         
     lm_4 = linear_model.LinearRegression(fit_intercept=True)
-    model = lm_4.fit(X_3,y_3)
+    lm_4.fit(X_3,y_3)
     
      
 
@@ -161,43 +160,17 @@ elif regression == 'Gaussian':
     lm_4 = GaussianProcessRegressor(kernel=kernel,n_restarts_optimizer=3000,
                                   optimizer = 'fmin_l_bfgs_b')
     
-    lm_4 = lm_4.fit(round(X_3,2),y_3)
+    lm_4.fit(round(X_3,2),y_3)
     
     
 
 elif regression == 'Forest': 
     
-    n_estimators = [100, 300, 500]
-    max_depth = [ 15, 25, 30]
-    #min_samples_split = [2, 5, 10, 15, 100]
-    #min_samples_leaf = [ 5, 10,15] 
-    #max_features = [0.2,0.3,0.4]
-
-    hyperF = dict(n_estimators = n_estimators, 
-              max_depth = max_depth,  
-              #              min_samples_split = min_samples_split, 
-              #             min_samples_leaf = min_samples_leaf,
-              #            max_features =max_feature
-                  )
-
-    forest = RandomForestRegressor(random_state=10)
-    gridF = GridSearchCV(forest, hyperF, cv = 10, verbose = 1, 
-                      n_jobs = -1,scoring='neg_mean_absolute_error')
-    
+    forest = RandomForestRegressor(random_state=10, n_estimators =1000)
     
     y_f = np.array(y_3)
     y_f = y_f.ravel() 
     
-    bestF = gridF.fit(X_3, y_f)
-    Best_Par = bestF.best_params_
-    Best_index = bestF.best_index_
-    Best_Score = bestF.best_score_
-    Results = bestF.cv_results_
-    
-    print(Best_Par)
-    print(Best_index)
-    print(Best_Score)
-
     lm_4 = forest.fit(X_3, y_f)
 
 
@@ -230,6 +203,10 @@ print('Extra energy in optimal conditions ' + str(Lost_Percentage) + ' %')
 
 Optimal_Power_Espino = pd.DataFrame()
 Optimal_Power_Espino['Optimal PV Power'] = data['Optimal PV Power']
+
+
+
+
 
 Optimal_Power_Espino.to_csv('Results/Renewable_Energy_Optimal_Espino.csv')
 
@@ -273,7 +250,6 @@ for i in Gut_Data.index:
     if any([a==0,a==1,a==2,a==3,a==4,a==5,a==20,a==21,a==22,a==23]):
         if Gut_Data.loc[i,'Radiation'] > 0:
             Gut_Data.loc[i,'Radiation'] = 0
-
 
 
 Gut_Data_describe = Gut_Data.describe() 
@@ -396,8 +372,25 @@ plt.legend(handles=[Espino_regression, Espino_measurement, Radiation],
            ,fontsize = 30)
 
 
+# Paper data
 
+# Total energy with curtailment is 59.5 MWh
+# Total energy without curtailment is 84.6 MWh
+# Extra energy in optimal conditions 29.7 %
 
+# Thesis data
+
+# Total energy with curtailment is 59.6 MWh
+# Total energy without curtailment is 84.6 MWh
+# Extra energy in optimal conditions 29.6 %
+
+# Thesis data/thesis surface
+
+# Total energy with curtailment is 59.6 MWh
+# Total energy without curtailment is 83.9 MWh
+# Extra energy in optimal conditions 29.0 %
+
+# Thesis data/thesis surface/random forest
 
 
 
