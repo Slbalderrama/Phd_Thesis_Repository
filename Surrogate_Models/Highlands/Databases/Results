@@ -1,0 +1,13 @@
+\begin{tabular}{lrrrr}
+\toprule
+{} &           Mean &         Max &       Min &            Std \\
+\midrule
+NPC (thousands USD)              &  489872.590976 &  1690560.47 &  39436.05 &  302873.917828 \\
+LCOE (USD/kWh)                   &       0.435812 &        1.18 &      0.10 &       0.156248 \\
+PV nominal capacity (kW)         &      59.920606 &      256.24 &      0.00 &      56.694903 \\
+Battery nominal capacity (kWh)   &     186.067630 &     1123.06 &      7.68 &     229.227793 \\
+Renewable energy penetration (\%) &      54.061818 &       99.00 &      0.00 &      35.436049 \\
+Battery usage (\%)                &      27.468509 &       65.00 &      3.51 &      25.974502 \\
+Energy curtail (\%)               &       8.845206 &       36.73 &      0.00 &       8.250826 \\
+\bottomrule
+\end{tabular}

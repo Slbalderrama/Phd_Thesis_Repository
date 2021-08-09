@@ -18,8 +18,8 @@ formulation = 'LP'
 #datapath='Example/Dispatch/'
 # Renewable energy penetrarion
 
-Renewable_Penetration  =  0.7 # a number from 0 to 1
-Battery_Independency   =  1    # number of days of battery independency
+Renewable_Penetration  =  0 # a number from 0 to 1
+Battery_Independency   =  0    # number of days of battery independency
 Lost_Load_Probability  =  0  # Allowed percentage of unmed demand in the system
 Curtailment_Unitary_Cost =  0 # probando curtailment cost 0
 

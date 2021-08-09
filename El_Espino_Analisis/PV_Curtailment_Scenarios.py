@@ -328,7 +328,7 @@ Data_Optimization[10] = Data_Optimization[2]
 Data_Optimization.to_excel('Results/Renewable_Energy_Multy_Scenarios.xls')
 
 
-
+# data_hourly_2
 
 
 #%%
@@ -372,25 +372,35 @@ plt.legend(handles=[Espino_regression, Espino_measurement, Radiation],
            ,fontsize = 30)
 
 
-# Paper data
+#%%
 
-# Total energy with curtailment is 59.5 MWh
-# Total energy without curtailment is 84.6 MWh
-# Extra energy in optimal conditions 29.7 %
+# Demand and renewable energy for the dispatch model
 
-# Thesis data
+start = '2017-01-01 00:00:00' # '2017-01-01 00:00:00' '2016-01-01 00:00:00' 
+end   = '2017-06-30 23:55:00' # '2017-07-31 23:55:00' '2016-12-31 23:55:00' 
 
-# Total energy with curtailment is 59.6 MWh
-# Total energy without curtailment is 84.6 MWh
-# Extra energy in optimal conditions 29.6 %
+data_hourly_2 = data[start:end] 
+data_hourly_2 = data_hourly_2.groupby(['year','day', 'hour']).mean()
 
-# Thesis data/thesis surface
 
-# Total energy with curtailment is 59.6 MWh
-# Total energy without curtailment is 83.9 MWh
-# Extra energy in optimal conditions 29.0 %
+Demand_Dispatch = pd.DataFrame()
+Demand_Dispatch[1] = data_hourly_2['Demand']*1000
+Demand_Dispatch.index = range(1,len(Demand_Dispatch)+1)
+Demand_Dispatch.to_excel('Results/Demand_Dispatch.xls')
 
-# Thesis data/thesis surface/random forest
+PV_Power = pd.DataFrame()
+PV_Power[1] = data_hourly_2['Optimal PV Power']*1000
+PV_Power.index = range(1,len(PV_Power)+1)
+PV_Power.to_excel('Results/Renewable_Energy_Dispatch.xls')
+
+
+SOC_Initial = data_hourly['SOC']['2016-12-31 23:00:00']
+
+
+
+
+
+
 
 
 
