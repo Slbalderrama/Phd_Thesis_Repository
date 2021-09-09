@@ -1,0 +1,4 @@
+Scenario_1 = El Espino, low income
+Scenario_2 = El Espino, high income
+Scenario_3 = Toconao, low income
+Scenario_4 = Toconao, high income
