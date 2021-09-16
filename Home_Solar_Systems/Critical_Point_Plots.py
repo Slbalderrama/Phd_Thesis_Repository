@@ -197,12 +197,14 @@ plt.plot(BSAx,BSAy, marker='o', markersize=5, color="red", label='critical point
 #escala real
 
 
+
 plt.ylabel('LCOE [USD/KWh]')
 plt.xlabel('LLP')
 plt.axis('scaled')
 plt.legend()
 #plt.savefig('critical point1.png',dpi=600,bbox_inches="tight")
 #plt.show()
+plt.savefig('Breaking_Point.png')
 plt.show()
 
 

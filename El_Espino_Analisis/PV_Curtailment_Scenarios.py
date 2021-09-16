@@ -303,8 +303,8 @@ PV_Energy_1 = PV_Energy.groupby(['hour']).mean()
 
 
 Data_Optimization = pd.DataFrame()
-Data_Optimization['PV Power Without Curtailment'] = list(PV_Energy['PV Power Without Curtailment']/240)
-Data_Optimization['PV Power Gutierrez'] = list(PV_Energy['PV Power Gutierrez']/240)
+Data_Optimization['PV Power Without Curtailment'] = list((PV_Energy['PV Power Without Curtailment']/240)*1000)
+Data_Optimization['PV Power Gutierrez'] = list((PV_Energy['PV Power Gutierrez']/240)*1000)
 
 
 
