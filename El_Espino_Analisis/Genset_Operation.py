@@ -36,7 +36,7 @@ plt.show()
 
 #%%
 
-Fuel_Cost = 0.68
+Fuel_Cost = 0.7
 Total_Fuel_Cost = np.array([5*Fuel_Cost, 8*Fuel_Cost, 
                                               12*Fuel_Cost,15*Fuel_Cost])
 
@@ -70,12 +70,17 @@ print('Penalization is ' +  str(penalization*100) + ' %' )
 
 #%%
 
-
+diesel_cost_subsidize = 0.18
 Diesel_Comsuption = pd.read_excel('Data/Diesel_Comsuption.xls',index_col=0)
 Diesel_Comsuption = Diesel_Comsuption.fillna(0)
 Diesel_Comsuption = Diesel_Comsuption[:-1]
 Diesel_Comsuption.index =  pd.to_datetime(Diesel_Comsuption.index)
 
+Total_Diesel_Subsidize_Cost = Diesel_Comsuption['Diesel'].sum()*diesel_cost_subsidize
+Total_Diesel_Cost = Diesel_Comsuption['Diesel'].sum()*Fuel_Cost
+
+print('The cost of diesel subsidize is ' + str(Total_Diesel_Subsidize_Cost) + ' USD')
+print('The cost of diesel without subsidize is ' + str(Total_Diesel_Cost) + ' USD')
 
 Power_Data_2 = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv',index_col=0)
 Power_Data_2.index = pd.to_datetime(Power_Data_2.index)
