@@ -102,6 +102,6 @@ plt.scatter(X_new, y_New)
 
 plt.xlabel('HouseHolds')
 plt.ylabel('Peak to base ratio')
-filename = 'Results_Regressions/Peak_to_Base.joblib'
+filename = 'Results_Regressions/Peak_to_Base_Lowlands.joblib'
 dump(gp, filename) 
 

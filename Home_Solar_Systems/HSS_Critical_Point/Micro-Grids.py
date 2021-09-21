@@ -82,12 +82,29 @@ print('The optimization took ' + str(round(end - start,0)) + ' seconds')
 
 # energy_check(instance)
 
-#Renewable 1 nominal capacity is 20.3 kW
-#Generator 1 nominal capacity is 30.0 kW
-#Generator 2 nominal capacity is 0.0 kW
-#Battery nominal capacity is 39.6 kWh
-#NPC is 242.0 Thousand USD
-#The LCOE is 0.311 USD/kWh
-#26.4 % Renewable Penetration
-#0.2 % of energy curtail
-#5.8 % Battery usage
+
+Investment = Data_Renewable['Source 1']['Invesment (USD)'] + Battery_Data['Battery']['Invesment Cost (USD)']
+Investment = round(Investment,0)
+print('Total Invesment is ' + str(Investment) + ' USD')
+
+import pandas as pd
+
+demand = pd.Series()
+for i in range(1,17):
+    name = 'Energy Demand ' + str(i) + ' (kWh)' 
+    demand.loc[i] = Scenarios[name].sum()
+
+
+expected_demand = demand.mean()
+
+expected_demand=round(expected_demand, 0)
+print('The expected yearly demand is ' + str(expected_demand) + ' kWh')
+    
+#The expected yearly demand is 603.0 kWh    
+    
+    
+    
+    
+    
+    
+    
