@@ -2055,7 +2055,7 @@ class SettlementProcessor:
         
         self.set_sa_communities(technologies, year, time_step,start_year)
     
-    def peak_load_creation(self, demand_constraints, technologies, year):
+    def peak_load_creation(self, demand_constraints, technologies, year, specs_data):
         
         peak_load_ratio_final = pd.DataFrame(index=self.df.index, columns=['Peak load'])
         for i in demand_constraints:
@@ -2083,17 +2083,19 @@ class SettlementProcessor:
                 peak_load_ratio_final.loc[self.df['Demand_Name' + str(year)]==i['name'],'Peak load'] = peak_load_ratio_1[0]
                 
                 
-                
-                
+        peak_load_ratio_final['Peak load'] = peak_load_ratio_final['Peak load'].replace(0,specs_data.iloc[0]['BaseToPeak'])  
+        peak_load_ratio_final['Peak load'] = peak_load_ratio_final['Peak load'].fillna(specs_data.iloc[0]['BaseToPeak'])
+        
         for j in technologies:
             
-            if type(j.base_to_peak_load_ratio_type) == type(9) or type(j.base_to_peak_load_ratio_type) == type(0.1): 
+            if type(j.base_to_peak_load_ratio_type) == type(9) or type(j.base_to_peak_load_ratio_type) == type(0.1):
                 
                 j.base_to_peak_load_ratio =j.base_to_peak_load_ratio_type
+
             else: 
                 j.base_to_peak_load_ratio = peak_load_ratio_final['Peak load'].apply(pd.to_numeric)
-            
-                j.base_to_peak_load_ratio.to_csv('peak.csv')
+                
+                j.base_to_peak_load_ratio.to_csv('Bolivia/peak_' +str(j.name) + '.csv')
                 #j.base_to_peak_load_ratio.nan_to_num(0)    
                 #j.base_to_peak_load_ratio.to_csv('peak1.csv')
     
@@ -2126,7 +2128,7 @@ class SettlementProcessor:
                 else:
                 
                     X[variable_name] = variable_value
-        X.to_csv('Bolivia/Independent_Variables_'+str(year)+'.csv')        
+        X.to_csv('Bolivia/Independent_Variables_'+ technology.name +'_'+ str(year)+'.csv')        
         return X
                 
 

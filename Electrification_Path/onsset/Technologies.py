@@ -6,10 +6,10 @@ Created on Mon Apr 27 16:22:12 2020
 @author: balderrama
 """
 from onsset import Technology
-
+import pandas as pd
 
 def technology_creation(start_year, end_year, grid_price, specs_data, diesel_price, pv_capital_cost_adjust):
-    
+    Base_To_Peak_Grid  = pd.read_csv('Bolivia/Base_to_Peak_Grid.csv', index_col=0)  
     technologies = []
 
     Technology.set_default_values(base_year=start_year,
@@ -18,9 +18,9 @@ def technology_creation(start_year, end_year, grid_price, specs_data, diesel_pri
                                       discount_rate=0.12)
      
     grid_calc = Technology(om_of_td_lines=0.02,
-                               distribution_losses=float(specs_data.iloc[0]['GridLosses']),
+                               distribution_losses=  float(specs_data.iloc[0]['GridLosses']),
                                connection_cost_per_hh=125,
-                               base_to_peak_load_ratio_type = float(specs_data.iloc[0]['BaseToPeak']),
+                               base_to_peak_load_ratio_type = 'surrogate',
                                capacity_factor=1,
                                tech_life=30,
                                grid_capacity_investment=float(specs_data.iloc[0]['GridCapacityInvestmentCost']),
@@ -31,88 +31,94 @@ def technology_creation(start_year, end_year, grid_price, specs_data, diesel_pri
     
     technologies.append(grid_calc)
     
-
+    Renewable_Invesment_Cost = 1500
+    Battery_Unitary_Investment_Cost = 550
+    Deep_of_Discharge = 0.2
+    Battery_cycles = 5500
+    GenSet_Unitary_Investment_Cost = 1480
+    Generator_Efficiecy = 0.33
+    LHV = 9.9
     
     surrogate_model_1 = {'name': 'MG_Hybrid_LowLands',
-                         'path_LCOE': 'Bolivia/Surrogate_Models/LowLands/LCOE_LowLands.joblib' ,
-                         'path_NPC': 'Bolivia/Surrogate_Models/LowLands/NPC_Lowlands.joblib', 
-                         'path_Investment' : 'Bolivia/Surrogate_Models/LowLands/Investment_Lowlands.joblib',
-                         'path_PV_Capacity': 'Bolivia/Surrogate_Models/LowLands/PV_Lowlands.joblib' ,
-                         'path_Genset_Capacity': 'Bolivia/Surrogate_Models/LowLands/Genset_Lowlands.joblib' ,
-                         'path_Battery_Capacity': 'Bolivia/Surrogate_Models/LowLands/Battery_Lowlands.joblib',
-                         'Variables' : 10,
-                         'var_1' : 'Renewable Invesment Cost',
-                         'value_1': 1500,
-                         'var_2' : 'Battery Unitary Invesment Cost',
-                         'value_2': 550,
-                         'var_3' : 'Deep of Discharge',
-                         'value_3': 0.22,
-                         'var_4' : 'Battery Cycles',
-                         'value_4': 5500,
-                         'var_5':'GenSet Unitary Invesment Cost',
-                         'value_5': 1480,
-                         'var_6' : 'Generator Efficiency',
-                         'value_6': 0.33,
-                         'var_7' : 'Low Heating Value',
-                         'value_7': 9.9,
-                         'var_8' : 'Fuel Cost',
-                         'var_9' : 'HouseHolds',
-                         'var_10' : 'Renewable Energy Unit Total',
-                         'value_10': 'PV total output'}                                   
+                          'path_LCOE': 'Bolivia/Surrogate_Models/LowLands/LCOE_LowLands.joblib' ,
+                          'path_NPC': 'Bolivia/Surrogate_Models/LowLands/NPC_Lowlands.joblib', 
+                          'path_Investment' : 'Bolivia/Surrogate_Models/LowLands/Investment_Lowlands.joblib',
+                          'path_PV_Capacity': 'Bolivia/Surrogate_Models/LowLands/PV_Lowlands.joblib' ,
+                          'path_Genset_Capacity': 'Bolivia/Surrogate_Models/LowLands/Genset_Lowlands.joblib' ,
+                          'path_Battery_Capacity': 'Bolivia/Surrogate_Models/LowLands/Battery_Lowlands.joblib',
+                          'Variables' : 10,
+                          'var_1' : 'Renewable Invesment Cost',
+                          'value_1': Renewable_Invesment_Cost,
+                          'var_2' : 'Battery Unitary Invesment Cost',
+                          'value_2': Battery_Unitary_Investment_Cost,
+                          'var_3' : 'Deep of Discharge',
+                          'value_3': Deep_of_Discharge,
+                          'var_4' : 'Battery Cycles',
+                          'value_4': Battery_cycles,
+                          'var_5':'GenSet Unitary Invesment Cost',
+                          'value_5': GenSet_Unitary_Investment_Cost,
+                          'var_6' : 'Generator Efficiency',
+                          'value_6': Generator_Efficiecy,
+                          'var_7' : 'Low Heating Value',
+                          'value_7': LHV,
+                          'var_8' : 'Fuel Cost',
+                          'var_9' : 'HouseHolds',
+                          'var_10' : 'Renewable Energy Unit Total',
+                          'value_10': 'PV total output'}                                   
     
     
     mg_LowLands_calc = Technology(om_of_td_lines=0.02,
-                                 distribution_losses=0.00,
-                                 connection_cost_per_hh=125,
-                                 base_to_peak_load_ratio_type = 'surrogate',
-                                 tech_life=20,
-                                 mini_grid=True,
-                                 name = 'MG_Hybrid_LowLands',
-                                 code = 8,
-                                 surrogate_model = True,
-                                 surrogate_model_data = surrogate_model_1,
-                                 tech_life_surrogate = 20)
+                                  distribution_losses=0.00,
+                                  connection_cost_per_hh=125,
+                                  base_to_peak_load_ratio_type = 'surrogate',
+                                  tech_life=20,
+                                  mini_grid=True,
+                                  name = 'MG_Hybrid_LowLands',
+                                  code = 8,
+                                  surrogate_model = True,
+                                  surrogate_model_data = surrogate_model_1,
+                                  tech_life_surrogate = 20)
     technologies.append(mg_LowLands_calc)
     
     surrogate_model_2 = {'name': 'MG_Hybrid_HighLands',
-                         'path_LCOE': 'Bolivia/Surrogate_Models/HighLands/LCOE_HighLands.joblib' ,
-                         'path_NPC': 'Bolivia/Surrogate_Models/HighLands/NPC_Highlands.joblib', 
-                         'path_Investment' : 'Bolivia/Surrogate_Models/HighLands/Investment_Highlands.joblib',
-                         'path_PV_Capacity': 'Bolivia/Surrogate_Models/HighLands/PV_Highlands.joblib' ,
-                         'path_Genset_Capacity': 'Bolivia/Surrogate_Models/HighLands/Genset_Highlands.joblib' ,
-                         'path_Battery_Capacity': 'Bolivia/Surrogate_Models/HighLands/Battery_Highlands.joblib',
-                         'Variables' : 10,
-                         'var_1' : 'Renewable Invesment Cost',
-                         'value_1': 1500,
-                         'var_2' : 'Battery Unitary Invesment Cost',
-                         'value_2': 550,
-                         'var_3' : 'Deep of Discharge',
-                         'value_3': 0.22,
-                         'var_4' : 'Battery Cycles',
-                         'value_4': 5500,
-                         'var_5':'GenSet Unitary Invesment Cost',
-                         'value_5': 1480,
-                         'var_6' : 'Generator Efficiency',
-                         'value_6': 0.33,
-                         'var_7' : 'Low Heating Value',
-                         'value_7': 9.9,
-                         'var_8' : 'Fuel Cost',
-                         'var_9' : 'HouseHolds',
-                         'var_10' : 'Renewable Energy Unit Total',
-                         'value_10': 'PV total output'}                                   
+                          'path_LCOE': 'Bolivia/Surrogate_Models/HighLands/LCOE_HighLands.joblib' ,
+                          'path_NPC': 'Bolivia/Surrogate_Models/HighLands/NPC_Highlands.joblib', 
+                          'path_Investment' : 'Bolivia/Surrogate_Models/HighLands/Investment_Highlands.joblib',
+                          'path_PV_Capacity': 'Bolivia/Surrogate_Models/HighLands/PV_Highlands.joblib' ,
+                          'path_Genset_Capacity': 'Bolivia/Surrogate_Models/HighLands/Genset_Highlands.joblib' ,
+                          'path_Battery_Capacity': 'Bolivia/Surrogate_Models/HighLands/Battery_Highlands.joblib',
+                          'Variables' : 10,
+                          'var_1' : 'Renewable Invesment Cost',
+                          'value_1': Renewable_Invesment_Cost,
+                          'var_2' : 'Battery Unitary Invesment Cost',
+                          'value_2': Battery_Unitary_Investment_Cost,
+                          'var_3' : 'Deep of Discharge',
+                          'value_3': Deep_of_Discharge,
+                          'var_4' : 'Battery Cycles',
+                          'value_4': Battery_cycles,
+                          'var_5':'GenSet Unitary Invesment Cost',
+                          'value_5': GenSet_Unitary_Investment_Cost,
+                          'var_6' : 'Generator Efficiency',
+                          'value_6': Generator_Efficiecy,
+                          'var_7' : 'Low Heating Value',
+                          'value_7': LHV,
+                          'var_8' : 'Fuel Cost',
+                          'var_9' : 'HouseHolds',
+                          'var_10' : 'Renewable Energy Unit Total',
+                          'value_10': 'PV total output'}                                   
     
     
     mg_HighLands_calc = Technology(om_of_td_lines=0.02,
-                                 distribution_losses=0,
-                                 connection_cost_per_hh=125,
-                                 base_to_peak_load_ratio_type = 'surrogate',
-                                 tech_life=20,
-                                 mini_grid=True,
-                                 name = 'MG_Hybrid_HighLands',
-                                 code = 8,
-                                 surrogate_model = True,
-                                 surrogate_model_data = surrogate_model_2,
-                                 tech_life_surrogate = 20)
+                                  distribution_losses=0,
+                                  connection_cost_per_hh=125,
+                                  base_to_peak_load_ratio_type = 'surrogate',
+                                  tech_life=20,
+                                  mini_grid=True,
+                                  name = 'MG_Hybrid_HighLands',
+                                  code = 8,
+                                  surrogate_model = True,
+                                  surrogate_model_data = surrogate_model_2,
+                                  tech_life_surrogate = 20)
     
     
         
@@ -127,9 +133,8 @@ def technology_creation(start_year, end_year, grid_price, specs_data, diesel_pri
                           'path_PV_Capacity': 'Bolivia/Surrogate_Models/SHS/PV_SHS.joblib' ,
                           'path_Genset_Capacity': 'Bolivia/Surrogate_Models/SHS/Genset_SHS.joblib' ,
                           'path_Battery_Capacity': 'Bolivia/Surrogate_Models/SHS/Battery_SHS.joblib',
-                          'Variables' : 2,
-                          'var_1' : 'Fuel Cost',
-                          'var_2' : 'HouseHolds'}                                   
+                          'Variables' : 1,
+                          'var_1' : 'HouseHolds'}                                   
     
     
     SHS_calc = Technology(mini_grid=True,

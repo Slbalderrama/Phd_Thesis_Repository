@@ -11,21 +11,21 @@ from joblib import dump
 from sklearn import linear_model
 
 #%%
-y = pd.DataFrame(index=range(10))
+X =  pd.DataFrame()
+X['HouseHolds'] =  list(range(1,51,1))
+
+y = pd.DataFrame(index=range(50))
+
+
 y['LCOE'] = 0.35
-y['NPC'] = 1591
-y['Battery'] = 1.1
-y['PV'] = 0.4
-y['Investment'] = 1293
+y['NPC'] = 1591*X['HouseHolds']
+y['Battery'] = 1.1*X['HouseHolds']
+y['PV'] = 0.4*X['HouseHolds']
+y['Investment'] = 1293*X['HouseHolds']
 y['Genset'] = 0
 
-X =  pd.DataFrame(index=range(10))
-X['Fuel Cost'] = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
-X['HouseHolds'] =  list(range(50,505,50))
 
 #%%
-
-
 lm_lcoe = linear_model.LinearRegression(fit_intercept=True)
 lm_lcoe.fit(X, y['LCOE'])
 
@@ -35,6 +35,10 @@ dump(lm_lcoe, filename_lcoe)
 
 
 #%%
+
+
+
+
 
 
 lm_NPC = linear_model.LinearRegression(fit_intercept=True)
@@ -104,13 +108,10 @@ dump(lm_demand, filename_demand)
 
 #%%
 
-X2 = pd.DataFrame()
-X2[1] = range(1,50)
-
 y2 = 0*X1
 
 lm_demand = linear_model.LinearRegression(fit_intercept=True) 
-lm_demand.fit(X2,y2) 
+lm_demand.fit(X1,y2) 
 
 filename_demand = 'Bolivia/Surrogate_Models/SHS/Base_to_Peak_SHS.joblib'
 dump(lm_demand, filename_demand) 

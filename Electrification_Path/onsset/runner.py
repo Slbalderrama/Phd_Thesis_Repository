@@ -179,6 +179,13 @@ def scenario(specs_path, calibrated_csv_path, results_folder, summary_folder):
         technologies, transportation_cost, tech_constraints, demand_constraints = technology_creation(start_year, end_year, 
                                                                 grid_price, specs_data, diesel_price, 
                                                                 pv_capital_cost_adjust)
+        
+        surrogate_model_info =  technologies[1].surrogate_model_data
+        print('The diesel price is ' + str(diesel_price) + ' USD/l')
+        print('The PV investment cost is ' +str(surrogate_model_info['value_1']) + ' USD/kW')
+        print('The renewable investment cost is ' +str(surrogate_model_info['value_2']) + ' USD/kWh')
+        print('The Diesel generator investment cost is ' +str(surrogate_model_info['value_5']) + ' USD/kW')
+        
 
         # RUN_PARAM: One shall define here the years of analysis (excluding start year),
         # together with access targets per interval and timestep duration
@@ -213,7 +220,7 @@ def scenario(specs_path, calibrated_csv_path, results_folder, summary_folder):
                                             start_year, urban_tier, rural_tier, end_year_pop, productive_demand, 
                                             technologies,demand_constraints )
             
-            onsseter.peak_load_creation(demand_constraints, technologies, year)
+            onsseter.peak_load_creation(demand_constraints, technologies, year, specs_data)
 
             onsseter.fuel_cost_columns(transportation_cost, year)
 
