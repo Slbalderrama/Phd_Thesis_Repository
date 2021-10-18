@@ -39,6 +39,8 @@ df['NPC2025'] = data['NPC2025']
 df['InvestmentCapita2025'] = data['InvestmentCapita2025']
 df['InvestmentCost2025'] = data['InvestmentCost2025']
 df['MinGridDist2025'] = data['MinGridDist2025']
+df['X_deg'] = data['X_deg']
+df['Y_deg'] = data['Y_deg']
 #%%
 
 df_2012 = df.loc[df['FinalElecCode2012'] !='Grid2012']
@@ -169,3 +171,45 @@ print('The average investment per household for new connected  people is ' +str(
 Results.to_csv('Bolivia/OnSSET_Results.csv')
 
 microgrids_solution.to_csv('Bolivia/Microgrids_results.csv')
+SHS_solution.to_csv('Bolivia/SHS_Results.csv')
+
+
+
+check_1 = pd.DataFrame()
+
+for i in microgrids_solution.index:
+    
+    check_1.loc[i,'boolean'] = df_2012.index.contains(i)
+    
+print(check_1['boolean'].all())    
+
+
+check_2 = pd.DataFrame()
+
+for i in SHS_solution.index:
+    
+    check_2.loc[i,'boolean'] = df_2012.index.contains(i)
+    
+print(check_2['boolean'].all())    
+
+Grid_Unconnected_solution = df_2012.loc[df_2012['MinimumOverall2025'] == 'Grid2025']
+
+microgrids_solution.to_csv('Bolivia/Microgrids_results.csv')
+SHS_solution.to_csv('Bolivia/SHS_Results.csv')
+Grid_Unconnected_solution.to_csv('Bolivia/grid_Solution_No_Electricity.csv')
+
+test = microgrids_solution.index
+test = test.append(SHS_solution.index)
+test = test.append(Grid_Unconnected_solution.index)
+test = pd.DataFrame(test)
+
+test = test[0].sort_values()
+
+test1 = test == df_2012.index
+
+test1 = pd.DataFrame(test1)
+
+print(test1[0].all())
+
+
+

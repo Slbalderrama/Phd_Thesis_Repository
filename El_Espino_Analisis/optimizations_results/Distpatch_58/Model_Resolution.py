@@ -185,10 +185,11 @@ def Model_Resolution_Dispatch(model,datapath="Example/data_Dispatch.dat"):
 
     
     instance = model.create_instance("Example/data_dispatch.dat") # load parameters       
-    opt = SolverFactory('gurobi') # Solver use during the optimization    
+    opt = SolverFactory('gurobi') # Solver use during the optimization   
+    opt.options['timelimit'] = 46000
 #    opt.options['emphasis_memory'] = 'y'
 #    opt.options['node_select'] = 3
-    results = opt.solve(instance, tee=True,options_string="mipgap=0.002") # Solving a model instance 
+    results = opt.solve(instance, tee=True,options_string="mipgap=0.0015") # Solving a model instance 
 
     #    instance.write(io_options={'emphasis_memory':True})
     #options_string="mipgap=0.03", timelimit=1200
