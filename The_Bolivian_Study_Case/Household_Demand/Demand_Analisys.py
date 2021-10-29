@@ -50,19 +50,19 @@ for i in range (1,5):
 
 
 Highlands_HI_legend = mlines.Line2D([], [], color='b',
-                                  label='Highlands HI', 
+                                  label='Highlands HC', 
                                   linestyle='-')
 
 Highlands_LI_legend = mlines.Line2D([], [], color='r',
-                                  label='Highlands LI', 
+                                  label='Highlands LC', 
                                   linestyle='-')
 
 Lowlands_HI_legend = mlines.Line2D([], [], color='k',
-                                  label='Lowlands HI', 
+                                  label='Lowlands HC', 
                                   linestyle='-')
 
 Lowlands_LI_legend = mlines.Line2D([], [], color='c',
-                                  label='Lowlands LI', 
+                                  label='Lowlands LC', 
                                   linestyle='-')
 
 fontsize = '40'
