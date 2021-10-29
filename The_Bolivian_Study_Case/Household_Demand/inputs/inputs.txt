@@ -1,4 +1,0 @@
-input_file_1_EE = Low Income Lowlands
-input_file_2_EE = High Income Lowlands
-input_file_3_T = Low Income Highlands
-input_file_4_T = High Income Highlands

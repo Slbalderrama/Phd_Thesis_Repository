@@ -33,14 +33,16 @@ for i in Village_Population:
         Power_Data_1 = pd.read_csv(path_1,index_col=0)
         Power_Data_1.columns = [0] 
         Power_Data_1[0] = pd.to_numeric(Power_Data_1[0])
-        mean = Power_Data_1.mean()
-        mean = mean[0]
-        data.loc[j] = mean
+        Total_Energy = Power_Data_1.sum()
+        Total_Energy = Total_Energy[0]
+        data.loc[j] = Total_Energy
     
-    data_1[i] = data     
-    Demand.loc[i] = data.mean() 
-        
+    data_1[i] = data/1000000     
+  
+poverty_level =  ['90 %', '80 %', '70 %', '60 %', '50 %']
+     
 data_2 = data_1.transpose()
+data_2.columns = poverty_level
 data_2.plot(linestyle='--', marker='o')        
         
         

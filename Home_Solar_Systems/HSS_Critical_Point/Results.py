@@ -1159,7 +1159,7 @@ def Plot_Energy_Total(instance, Time_Series, plot, Plot_Date, PlotTime):
 
         Fill = Fill.append(New)
         Fill.sort_index(inplace=True)
-
+        Fill = round(Fill,4)
         size = [20,10]  
         plt.figure(figsize=size)
 #        Fill[b] = ( Fill[g] + Plot_Data[b])
@@ -1231,7 +1231,7 @@ def Plot_Energy_Total(instance, Time_Series, plot, Plot_Date, PlotTime):
         ax7.fill_between(Fill.index, Fill[c2].values , Fill[c].values, 
                          alpha=alpha_cu, color=C_Cur,edgecolor= C_Cur, 
                          hatch =hatch_cu,
-                         where=Fill[c].values>Fill[d]) 
+                         where=Fill[c].values<Fill[d]) 
         # Lost load
         
         if instance.Lost_Load_Probability > 0:
@@ -1241,7 +1241,8 @@ def Plot_Energy_Total(instance, Time_Series, plot, Plot_Date, PlotTime):
             C_LL = 'crimson'
             ax4.fill_between(Fill.index, Fill[b].values, Fill[d].values, 
                              alpha=alpha_LL, color=C_LL,edgecolor=  C_LL, 
-                             hatch =hatch_LL) 
+                             hatch =hatch_LL,
+                         where=Fill[b].values<=Fill[d]) 
         
         
         # Define name  and units of the axis
@@ -1546,7 +1547,8 @@ def energy_check(instance):
     Renewablwe_Source_Number = int(Data_Scenarios[0]['Types of renewable sources'])
     
     
-    for j in range(1, Number_Scenarios+1):   
+    for j in range(1, Number_Scenarios+1):
+        print('scenario ' + str(j))
         re = 'Renewable Energy '+str(j) + ' (kWh)'
         bat_out ='Battery Flow Out '+str(j) + ' (kWh)' 
         bat_in = 'Battery Flow in '+str(j) + ' (kWh)'
@@ -1563,7 +1565,7 @@ def energy_check(instance):
             ll= 'Lost Load '+str(j) + ' (kWh)'
             generation += Energy_Demand[ll]
             
-        comparation = round(Energy_Demand[e],3) == round(generation,3)
+        comparation = round(Energy_Demand[e],4) == round(generation,4)
         comparation = pd.Series(comparation).all()
         
         comparation_2 = round(Energy_Demand[e].sum(),3) == round(generation.sum(),3)
@@ -1625,9 +1627,9 @@ def energy_check(instance):
             name = 'Renewable ' + str(j) + ' ' + str(r) + ' (kWh)'
             Renewable_Total_Energy[0] +=   re_ene[name]
                 
-        comparation_7 = round(Energy_Demand[re],3) == round(Renewable_Total_Energy[0],3)
+        comparation_7 = round(Energy_Demand[re],4) == round(Renewable_Total_Energy[0],4)
         comparation_7 = pd.Series(comparation_7).all()
-        comparation_8 = round(Energy_Demand[re].sum(),3) == round(Renewable_Total_Energy[0].sum(),3)
+        comparation_8 = round(Energy_Demand[re].sum(),4) == round(Renewable_Total_Energy[0].sum(),4)
         print(comparation_7)
         print(comparation_8)    
     

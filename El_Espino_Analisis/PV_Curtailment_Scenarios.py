@@ -224,7 +224,7 @@ data_hourly = data_hourly.groupby(['year','day', 'hour']).mean()
 data_hourly_describe = data_hourly.describe()
 
 #%%
-Data_2 = pd.read_excel('Data/Data_Gutierrez.xls',index_col=0)            
+Data_2 = pd.read_csv('Results/Gutierrez_Data.csv', index_col=0)            
 
 index2 = pd.DatetimeIndex(start='2013-01-01 01:00:00', periods=8760, 
                                    freq=('H'))
@@ -248,8 +248,8 @@ Gut_Data.index = index_3
 for i in Gut_Data.index:
     a = i.hour
     if any([a==0,a==1,a==2,a==3,a==4,a==5,a==20,a==21,a==22,a==23]):
-        if Gut_Data.loc[i,'Radiation'] > 0:
-            Gut_Data.loc[i,'Radiation'] = 0
+        if Gut_Data.loc[i,'Radiation tilt isotropic'] > 0:
+            Gut_Data.loc[i,'Radiation tilt isotropic'] = 0
 
 
 Gut_Data_describe = Gut_Data.describe() 
@@ -258,19 +258,18 @@ Gut_Data_describe = Gut_Data.describe()
 Noct = 44.8
 a = (Noct-20)/800
 
-Gut_Data['PV Temperature'] = a*Gut_Data['Radiation'] + Gut_Data['Temperature']
+Gut_Data['PV Temperature'] = a*Gut_Data['Radiation tilt isotropic'] + Gut_Data['Temperature']
 
 
 
 X_5 = pd.DataFrame()
-X_5['Solar Irradiation'] = Gut_Data['Radiation']
+X_5['Solar Irradiation'] = Gut_Data['Radiation tilt isotropic']
 X_5['PV Temperature']  = Gut_Data['PV Temperature']
 efficiency_1 = pd.DataFrame(lm_4.predict(X_5), index=Gut_Data.index)
 
 Gut_Data['Optimal Efficiency'] = efficiency_1[0]
-Gut_Data['Optimal PV Power'] = (Gut_Data['Optimal Efficiency']*Gut_Data['Radiation']*Area)/1000
+Gut_Data['Optimal PV Power'] = (Gut_Data['Optimal Efficiency']*Gut_Data['Radiation tilt isotropic']*Area)/1000
 
-Gut_Data['Optimal PV Power'] = np.where(Gut_Data['Optimal PV Power'] >51, 51, Gut_Data['Optimal PV Power'])
 
 
 
@@ -294,7 +293,7 @@ PV_Energy = pd.DataFrame(index=index_3)
 PV_Energy['PV Power Without Curtailment'] = data_hourly['Optimal PV Power']
 PV_Energy['PV Power Gutierrez']           = Gut_Data['Optimal PV Power']
 PV_Energy['PV Power With Curtailment']    = data_hourly['PV Power']
-PV_Energy['Irradiation Gutierrez']        = Gut_Data['Radiation']
+PV_Energy['Irradiation Gutierrez']        = Gut_Data['Radiation tilt isotropic']
 PV_Energy['Irradiation Espino']           = data_hourly['Solar Irradiation']
 PV_Energy['hour'] = PV_Energy.index.hour 
 

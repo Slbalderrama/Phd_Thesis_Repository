@@ -81,14 +81,14 @@ mpl.rcParams['ytick.labelsize'] = tick_size
 
 # Hihglands
 ax1.plot(range(start,end), Highlands_HI[1][start:end], c = 'b')
-# ax1.plot(range(start,end), Highlands_HI[2][start:end], c = 'b')
-# ax1.plot(range(start,end), Highlands_HI[3][start:end], c = 'b')
-# ax1.plot(range(start,end), Highlands_HI[4][start:end], c = 'b')
+ax1.plot(range(start,end), Highlands_HI[2][start:end], c = 'b')
+#ax1.plot(range(start,end), Highlands_HI[3][start:end], c = 'b')
+#ax1.plot(range(start,end), Highlands_HI[4][start:end], c = 'b')
 
-# ax1.plot(range(start,end), Highlands_LI[1][start:end], c = 'r')
-# ax1.plot(range(start,end), Highlands_LI[2][start:end], c = 'r')
-# ax1.plot(range(start,end), Highlands_LI[3][start:end], c = 'r')
-# ax1.plot(range(start,end), Highlands_LI[4][start:end], c = 'r')
+ax1.plot(range(start,end), Highlands_LI[1][start:end], c = 'r')
+ax1.plot(range(start,end), Highlands_LI[2][start:end], c = 'r')
+#ax1.plot(range(start,end), Highlands_LI[3][start:end], c = 'r')
+#ax1.plot(range(start,end), Highlands_LI[4][start:end], c = 'r')
 
 
 ax1.set_xlim([start,end-1]) # ax1.set_xlim([start,end-1]) 
@@ -102,14 +102,14 @@ plt.legend(handles=[Highlands_HI_legend, Highlands_LI_legend],
 # Lowlands
 ax2 = fig.add_subplot(212)
 ax2.plot(range(start,end), Lowlands_HI[1][start:end], c = 'k')
-# ax2.plot(range(start,end), Lowlands_HI[2][start:end], c = 'k')
-# ax2.plot(range(start,end), Lowlands_HI[3][start:end], c = 'k')
-# ax2.plot(range(start,end), Lowlands_HI[4][start:end], c = 'k')
+ax2.plot(range(start,end), Lowlands_HI[2][start:end], c = 'k')
+#ax2.plot(range(start,end), Lowlands_HI[3][start:end], c = 'k')
+#ax2.plot(range(start,end), Lowlands_HI[4][start:end], c = 'k')
 
-# ax2.plot(range(start,end), Lowlands_LI[1][start:end], c = 'c')
-# ax2.plot(range(start,end), Lowlands_LI[2][start:end], c = 'c')
-# ax2.plot(range(start,end), Lowlands_LI[3][start:end], c = 'c')
-# ax2.plot(range(start,end), Lowlands_LI[4][start:end], c = 'c')
+ax2.plot(range(start,end), Lowlands_LI[1][start:end], c = 'c')
+ax2.plot(range(start,end), Lowlands_LI[2][start:end], c = 'c')
+#ax2.plot(range(start,end), Lowlands_LI[3][start:end], c = 'c')
+#ax2.plot(range(start,end), Lowlands_LI[4][start:end], c = 'c')
 ax2.set_xlim([start,end-1])
 ax2.set_ylim([0, 300])
 
@@ -129,15 +129,15 @@ plt.show()
 
 Table = pd.DataFrame()
 
-Table['Highlands HI'] = Highlands_HI[1]
-Table['Highlands LI'] = Highlands_LI[1]
-Table['Lowlands HI'] = Lowlands_HI[1]
-Table['Lowlands LI'] = Lowlands_LI[1]
+Table['Highlands HC'] = Highlands_HI[1]
+Table['Highlands LC'] = Highlands_LI[1]
+Table['Lowlands HC'] = Lowlands_HI[1]
+Table['Lowlands LC'] = Lowlands_LI[1]
 Table_Final = Table.describe()
 
 for i in Table_Final.columns:
     
-    Table_Final.loc['Total Energy (kWh)',i] = Table[i].sum()/(12*1000)
+    Table_Final.loc['Monthly Total Energy (kWh)',i] = Table[i].sum()/(12*1000)
 
 Table_Final = round(Table_Final, 1)
 print(Table_Final)

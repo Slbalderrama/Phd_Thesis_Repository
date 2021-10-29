@@ -25,7 +25,7 @@ Curtailment_Unitary_Cost =  0 # probando curtailment cost 0
 
 S = 1 # Plot scenario
 Plot_Date = '31/05/2016 00:00:00' # Day-Month-Year
-PlotTime = 5# Days of the plot
+PlotTime = 3# Days of the plot
 plot = 'No Average' # 'No Average' or 'Average'
 
 model = AbstractModel() # define type of optimization problem
@@ -80,7 +80,7 @@ elif formulation =='Dispatch':
 end = time.time()
 print('The optimization took ' + str(round(end - start,0)) + ' seconds')
 
-# energy_check(instance)
+energy_check(instance)
 
 
 Investment = Data_Renewable['Source 1']['Invesment (USD)'] + Battery_Data['Battery']['Invesment Cost (USD)']
