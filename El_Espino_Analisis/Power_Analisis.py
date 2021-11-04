@@ -363,7 +363,7 @@ data_hourly = data_hourly.groupby(['hour']).mean()
 
 data_hourly = round(data_hourly,1)
 #%%
-Diesel_Comsuption = pd.read_excel('Data/Diesel Comsuption.xls',index_col=0)
+Diesel_Comsuption = pd.read_excel('Data/Diesel_Comsuption.xls',index_col=0)
 Diesel_Comsuption = Diesel_Comsuption.fillna(0)
 Diesel_Comsuption = Diesel_Comsuption[:-1]
 Diesel_Comsuption.index =  pd.to_datetime(Diesel_Comsuption.index)

@@ -28,8 +28,8 @@ index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464,
 
 Power_Data_4.index = index
 
-start = '2016-03-21 00:05:00'
-end = '2017-03-21 00:00:00'
+start = '2016-03-21 00:00:00'
+end = '2017-03-20 23:55:00'
 
 index2 = pd.DatetimeIndex(start='2016-03-21 00:00:00', periods=365, 
                                    freq=('1D'))
@@ -115,36 +115,31 @@ ax = LDC_Scenarios.plot()
 ax.legend(bbox_to_anchor=(1.42, 1.05))    
 ax.set_ylabel('Power (kW)')
 ax.set_xlabel('hours')
+
+#%%
+
+
+Daily = Scenarios.groupby(Scenarios.index.hour).mean()/1000
+
+Daily.plot()
+
+
+
+
+
+
+
 #%%
 ############################### Transfor scenarios to hourly data ############
 Hourly_Data = pd.DataFrame()
 
 
-Scenarios['Day'] = 0
+Scenarios['year'] = Scenarios.index.year
+Scenarios['day']  = Scenarios.index.dayofyear
+Scenarios['hour'] = Scenarios.index.hour
 
-foo = 0
-iterations = int(len(Scenarios)/288)
 
-a = len(Scenarios.columns)-1
-
-for i in range(iterations):
-    for j in range(288):
-        index = Scenarios.index[foo]
-        Scenarios.loc[index,'Day'] = i
-        foo += 1
- 
-Scenarios['hour'] = 0
-
-foo = 0
-
-for i in range(iterations):
-    for j in range(int(288/12)):
-        for s in range(12):
-            index = Scenarios.index[foo]
-            Scenarios.loc[index,'hour'] = j
-            foo += 1
-
-Hourly_Data = Scenarios.groupby(['Day','hour']).mean()
+Hourly_Data = Scenarios.groupby(['year','day', 'hour']).mean()
 
 index_hourly = pd.DatetimeIndex(start='2016-03-21 01:00:00', periods=8760, 
                                    freq=('1H'))
@@ -305,129 +300,4 @@ print('Power Standar Deviation ' +
       str(round(Demand_LDR['Demand'].std(),1)) + ' w')
 print('Max Power '  + str(round(Demand_LDR['Demand'].max(),1)) + ' w')
 print(Start +' to ' + End) 
-
-#%%
-################################# Daily average curve
-
-Demand = pd.DataFrame()
-
-Start = '2016-03-21 01:00:00'
-End =   '2017-03-21 00:00:00'
-Demand["Demand"] = Demand_Hourly['Base Scenario'][Start:End]/1000
-
-foo = 0
-iterations = int(len(Demand)/24)
-
-for i in range(iterations):
-    for j in range(1,25):
-        date = Demand.index[foo]
-        Demand.loc[date,'hour'] = j
-        foo += 1                     
-
-
-Daily_Curve = Demand.groupby(['hour']).mean()
-
-size = [20,15]
-fig=plt.figure(figsize=size)
-tick_size = 25    
-mpl.rcParams['xtick.labelsize'] = tick_size 
-mpl.rcParams['ytick.labelsize'] = tick_size 
-
-
-ax=fig.add_subplot(111, label="1")
-ax2=fig.add_subplot(111, label="2", frame_on=False)
-
-label_size = 25
-ax.plot(Demand_LDR.index,Demand_LDR['Demand'])
-ax.set_xlim([0,100])
-ax.set_xlabel("Percentage (%)",size=label_size)
-ax.set_ylabel("Power (kW)",size=label_size)
-ax.tick_params(axis='y', which='major', labelsize = tick_size )
-ax.tick_params(axis='x', which='major', labelsize = tick_size )
-
-ax.xaxis.set_ticks_position('bottom')
-ax.yaxis.set_ticks_position('left')
-ax2.plot( Daily_Curve.index,Daily_Curve['Demand'],c = 'k',
-          linestyle='dashed')
-
-col_labels=['Value']
-row_labels=['Average Power (kW)','Standard Deviation (kW)'
-            ,'Max Power demand (kW)']
-table_vals=[[10],[3.5],[22.6]]
-
-the_table = plt.table(cellText=table_vals,
-                  colWidths = [0.1]*3,  
-                  rowLabels=row_labels,
-                  colLabels=col_labels,
-                  loc='upper center')
-the_table.set_fontsize(25)
-the_table.scale(1, 4)
-
-ax2.set_xlim([1,24])
-ax2.xaxis.tick_top()
-ax2.yaxis.tick_right()
-ax2.set_xlabel('hours',size=label_size) 
-ax2.set_ylabel('Power (kW)',size=label_size) 
-ax2.xaxis.set_label_position('top') 
-ax2.yaxis.set_label_position('right') 
-
-demand = mlines.Line2D([], [], color='k',
-                                  label='Demand', 
-                                  linestyle='--')
-ldr = mlines.Line2D([], [], color='b',
-                                  label='LDC', 
-                                  linestyle='-')
-
-plt.legend(handles=[ demand, ldr],
-           bbox_to_anchor=(0.67,-0.05),
-    frameon=False, ncol=2,fontsize = 30)
-
-
-#%%
-################################### Log plot error #####################################
-
-index_LDC_error = []
-for i in range(len(log_error)):
-    index_LDC_error.append((i+1)/float(len(log_error))*100)
-
-
-log_error_sort = list(log_error.sort_values(ascending=False))
-
-size = [20,15]
-fig=plt.figure(figsize=size)
-ax=fig.add_subplot(111, label="1")
-ax2=fig.add_subplot(111, label="2", frame_on=False)
-
-ax.plot(range(1,105121),list(log_error))
-ax.set_xlabel("Time Step",size=30)
-
-tick_size = 25   
-#mpl.rcParams['xtick.labelsize'] = tick_size     
-ax.tick_params(axis='x', which='major', labelsize = tick_size )
-ax.tick_params(axis='y', which='major', labelsize = tick_size )
-
-ax.xaxis.set_ticks_position('bottom')
-ax.yaxis.set_ticks_position('left')
-ax.set_xlim([0,105121])
-
-ax2.plot(index_LDC_error,log_error_sort,c = 'r',
-          linestyle='dashed', linewidth=4)
-ax2.xaxis.tick_top()
-ax2.yaxis.tick_right()
-ax2.xaxis.set_label_position('top') 
-ax2.yaxis.set_label_position('right') 
-ax2.xaxis.set_major_locator(plt.NullLocator())
-ax2.yaxis.set_major_locator(plt.NullLocator())
-
-demand = mlines.Line2D([], [], color='r',
-                                  label='Load duration curve', 
-                                  linestyle='--')
-ldr = mlines.Line2D([], [], color='b',
-                                  label='Logarithmic noise values', 
-                                  linestyle='-')
-
-plt.legend(handles=[ demand, ldr],
-           bbox_to_anchor=(0.9,-0.05),
-    frameon=False, ncol=2,fontsize = 30)
-
 
