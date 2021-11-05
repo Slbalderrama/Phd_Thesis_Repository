@@ -62,7 +62,7 @@ mean.index = load.index
 error = load - mean
 
 log_error = np.log(load) - np.log(mean)
-z = 0 # 0.3
+z = 0.3 # 0.3
 log_error = np.maximum(-z,log_error)
 
 for i in log_error.index:
@@ -79,7 +79,7 @@ Scenarios = pd.DataFrame()
 
 Scenarios['Base Scenario'] = load
 
-scenarios = 5 # number of scenarios cretated
+scenarios = 20 # number of scenarios cretated
 
 for i in range(1, scenarios+1): 
     curve_ldc = el.gen_load_from_LDC(LDC_curve, N=len(LDC_curve[0]))
@@ -149,16 +149,20 @@ hourly_scenarios.index = index_hourly
 size = [20,15]
 fig=plt.figure(figsize=size)
 ax=fig.add_subplot(111, label="1")
-alpha= 0.01
+alpha= 0.1
 
 start = 24*50
 end = 24*60
-ax.plot(hourly_scenarios.index[start:end], hourly_scenarios['Base Scenario'][start:end]/1000, c='k')
+ax.plot(hourly_scenarios.index[start:end], 
+        hourly_scenarios['Base Scenario'][start:end]/1000, 
+        c='k')
 
 for i in range(1, scenarios+1): 
     
     name= 'Scenario ' + str(i)
-    ax.plot(hourly_scenarios.index[start:end], hourly_scenarios[name][start:end]/1000, c='b', alpha=alpha)
+    ax.plot(hourly_scenarios.index[start:end], 
+            hourly_scenarios[name][start:end]/1000, c='b', 
+            alpha=alpha)
 
 date_form = DateFormatter("%H:%M")
 ax.xaxis.set_major_formatter(date_form)
@@ -182,3 +186,13 @@ plt.legend(handles=[handle2, handle1], bbox_to_anchor=(0.85, -0.05),
         
 #plt.savefig('Top_Down_Demand_Modeling.png')
 plt.show()        
+
+
+#%%
+
+
+
+
+
+
+
