@@ -11,19 +11,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
-import matplotlib.ticker as mtick
-import matplotlib.pylab as pylab
 import enlopy as el
-import matplotlib as mpl
-from datetime import datetime
-import os
 from matplotlib.dates import DateFormatter
 #%%
 ############################# Load Method ###################################
 
 
 Power_Data_4 = pd.read_csv('Data_Espino_Thesis.csv',index_col=0)
-index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, 
+index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, 
                                    freq=('5min'))
 
 Power_Data_4.index = index
@@ -31,7 +26,7 @@ Power_Data_4.index = index
 start = '2016-03-21 00:00:00'
 end = '2017-03-20 23:55:00'
 
-index2 = pd.DatetimeIndex(start='2016-03-21 00:00:00', periods=365, 
+index2 = pd.date_range(start='2016-03-21 00:00:00', periods=365, 
                                    freq=('1D'))
 #index3 = pd.DatetimeIndex(start='2016-01-01 00:05:00', periods=3456, 
 #                                   freq=('5min'))
