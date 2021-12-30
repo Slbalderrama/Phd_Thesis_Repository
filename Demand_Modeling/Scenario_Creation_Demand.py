@@ -130,7 +130,7 @@ handle2 = mlines.Line2D([], [], color='k',
 plt.legend(handles=[handle2, handle1], bbox_to_anchor=(0.85, -0.05), 
            fontsize = 30, frameon=False,  ncol=2)        
         
-plt.savefig('Top_Down_Demand_Modeling.png')
+#plt.savefig('Top_Down_Demand_Modeling.png')
 plt.show()        
 
 
@@ -178,13 +178,13 @@ ax.tick_params(axis='y', which='major', labelsize = tick_size )
 handle1 = mlines.Line2D([], [], color='b',
                                   label='Stochastic Scenarios')
 handle2 = mlines.Line2D([], [], color='k',
-                                  label='Base scenarios')
+                                  label='Base scenario')
 
 
 plt.legend(handles=[handle2, handle1], bbox_to_anchor=(0.85, -0.05), 
            fontsize = 30, frameon=False,  ncol=2)        
         
-#plt.savefig('Top_Down_Demand_Modeling.png')
+plt.savefig('Top_Down_Demand_Modeling.png')
 plt.show()        
 
 

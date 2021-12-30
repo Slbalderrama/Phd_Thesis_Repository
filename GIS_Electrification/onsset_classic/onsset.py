@@ -361,32 +361,31 @@ class Technology:
             lcoe = pd.DataFrame(lcoe[:, np.newaxis])
             investment_cost = pd.DataFrame(investment_cost[:, np.newaxis])
             
-            name = 'Bolivia/NPC_' + self.name + '.csv' 
+            information_thesis = pd.DataFrame()
             
-            NPC_Total = np.sum(discounted_costs, axis=1)
-            NPC_Total = pd.DataFrame(NPC_Total)
-            NPC_Total.to_csv(name)
             
-            name1 = 'Bolivia/Costs_' + self.name + '.csv' 
             
-            Discounted = pd.DataFrame(discounted_costs)
-            Discounted.to_csv(name1)
+            information_thesis['NPC'] = np.sum(discounted_costs, axis=1)
+            information_thesis['Disconunted energy'] = np.sum(discounted_generation, axis=1)
+            information_thesis['Disconunted grid capacity invesment'] = td_investment_cost
+            information_thesis['Disconunted tech capacity invesment'] = capital_investment
             
-            name2 = 'Bolivia/Invesments_' + self.name + '.csv' 
-            Investments = pd.DataFrame(investments)
-            Investments.to_csv(name2)
+            discounted_investments2 = investments/discount_factor
+            information_thesis['Disconunted invesment'] =  np.sum( discounted_investments2, axis=1)
             
-            name3 = 'Bolivia/Operation_' + self.name + '.csv' 
-            Operation_and_maintenance = pd.DataFrame(operation_and_maintenance)
-            Operation_and_maintenance.to_csv(name3)
+            discounted_om = operation_and_maintenance/discount_factor
+            information_thesis['Disconunted oym'] =  np.sum(discounted_om, axis=1)
             
-            name4 = 'Bolivia/Fuel_' + self.name + '.csv' 
-            Fuel = pd.DataFrame(fuel)
-            Fuel.to_csv(name4)
+            discounted_fuel = fuel/discount_factor
+            information_thesis['Disconunted fuel'] =  np.sum(discounted_fuel, axis=1)
             
-            name5 = 'Bolivia/Salvage_' + self.name + '.csv' 
-            Salvage = pd.DataFrame(salvage)
-            Salvage.to_csv(name5)            
+            discounted_salvage = salvage/discount_factor
+            information_thesis['Disconunted salvage'] =  np.sum(discounted_salvage, axis=1)
+            
+            information_thesis['lcoe'] =  lcoe
+            name = 'Bolivia/information_' + self.name + '.csv' 
+            
+            information_thesis.to_csv(name)
             
             if get_investment_cost:
                 return investment_cost
