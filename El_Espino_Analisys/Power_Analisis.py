@@ -556,7 +556,12 @@ print('The PV array produce energy the ' + str(PV_Production_Time ) + ' % of the
 
 #%%
 
-Area = 1.61*0.946*240  # 1.61*0.946*240 # 1.65*0.99*240
+import pvlib
+
+cec_modules = pvlib.pvsystem.retrieve_sam('cecmod')
+cecmodule = cec_modules.Yingli_Energy__China__YL250P_29b
+
+Area = cecmodule['Length']*cecmodule['Width']*240  # 1.61*0.946*240 # 1.65*0.99*240
 
 PV_Energy =  Power_Data_Hourly.loc[Power_Data_Hourly['PV Power']> 0]
 PV_Efficiency = (PV_Energy ['PV Power'].sum()*1000)/(PV_Energy['Solar Irradiation'].sum()*Area)

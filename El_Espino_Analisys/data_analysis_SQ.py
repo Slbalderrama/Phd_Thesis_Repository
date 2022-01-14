@@ -8,7 +8,7 @@ Data analysis of the PV data from El Espino
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-
+from mpl_toolkits.mplot3d import Axes3D
 def plot3D(x,y,z,type='scatter',title='Title',x_label='X',y_label='Y',z_label='Z',marker='+'):
     '''
     Function that generates 3D scatter plot of z vs x,y
