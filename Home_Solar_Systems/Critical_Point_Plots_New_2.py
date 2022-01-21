@@ -334,7 +334,7 @@ print(round(results_table['PV Capacity (kW)'],2))
     
 #%%
 
-
+# 3d plot
 s = 100
 
 size = [20,20]

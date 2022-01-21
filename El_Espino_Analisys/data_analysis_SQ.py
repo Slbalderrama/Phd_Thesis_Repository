@@ -49,7 +49,7 @@ def plot3D(x,y,z,type='scatter',title='Title',x_label='X',y_label='Y',z_label='Z
 
 #%%  load data
 
-data_raw = pd.read_csv('Data/Data_Espino_Thesis_Fill.csv', header=0,index_col=0)
+data_raw = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
 index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data_raw.index = index
 Area = 1.65*0.99*240 # 1.61*0.946*240 # 1.65*0.99*240
@@ -73,6 +73,7 @@ covariance_matrix = df.cov()
 
 pd.plotting.scatter_matrix(df, alpha=0.2)
 
+plt.savefig('Plots/scatter_plot_matrices.png')
 
 # #%%  PCA
 # n_components = 3

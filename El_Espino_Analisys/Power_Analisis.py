@@ -16,6 +16,13 @@ from datetime import datetime
 import os
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
+from mpl_toolkits.mplot3d import Axes3D
+
+
+'''Data Analsys of El Espino microgrid '''
+
+
+
 
 #%%
 
@@ -542,7 +549,7 @@ plt.show()
 
 
 #%%
-
+# PV analysis
 PV_data = data.loc[data['PV Power']> 0]
 
 PV_Power_Average = round(PV_data['PV Power'].mean(), 1)
@@ -555,17 +562,53 @@ print('The PV array produce energy the ' + str(PV_Production_Time ) + ' % of the
 
 
 #%%
+#efficiency plot
 
-import pvlib
+Area = 1.65*0.99*240 # 1.61*0.946*240 # 1.65*0.99*240
 
-cec_modules = pvlib.pvsystem.retrieve_sam('cecmod')
-cecmodule = cec_modules.Yingli_Energy__China__YL250P_29b
+pv_efficiency = pd.DataFrame()
+pv_efficiency = data.loc[data['PV Power']>0]
+pv_efficiency.loc[:,'Efficiency'] = (pv_efficiency['PV Power']*1000)/(pv_efficiency['Solar Irradiation']*Area)
 
-Area = cecmodule['Length']*cecmodule['Width']*240  # 1.61*0.946*240 # 1.65*0.99*240
+pv_efficiency.loc[:,'Hour'] = pv_efficiency.index.hour
 
-PV_Energy =  Power_Data_Hourly.loc[Power_Data_Hourly['PV Power']> 0]
-PV_Efficiency = (PV_Energy ['PV Power'].sum()*1000)/(PV_Energy['Solar Irradiation'].sum()*Area)
-PV_Efficiency = round(PV_Efficiency*100, 1)
+# filtering
+pv_efficiency = pv_efficiency[pv_efficiency['Efficiency']<0.161]
+pv_efficiency = pv_efficiency[pv_efficiency['SOC']<100]
+pv_efficiency = pv_efficiency[pv_efficiency['Solar Irradiation']>250]
+marker='+'
+z= pv_efficiency['Efficiency']
 
-print('The efficiency of the PV array is ' +str(PV_Efficiency) + ' %')
+#x = data['Solar Irradiation']
+x = pv_efficiency['SOC']
+#x = pca_df['PC0']
 
+#y = data['Hour']
+#y = data['SOC']
+y = pv_efficiency['Ambient temperature']
+#y = data['PV Temperature 2']
+#y = pca_df['PC1']
+
+x_label='SOC [-]'
+y_label='Ambient Temperature [°C]'
+z_label='Efficiency'
+label_size = 30
+size = [20,15]
+fig = plt.figure(figsize=size)
+tick_size = 15    
+mpl.rcParams['xtick.labelsize'] = tick_size 
+mpl.rcParams['ytick.labelsize'] = tick_size 
+pylab.rcParams['ytick.major.pad']='80'
+ax = fig.add_subplot(111, projection='3d')
+ax.view_init(30,-110)
+ax.scatter(x, y, z, marker=marker)
+
+ax.set_xlabel(x_label,size=label_size, labelpad =22)
+ax.xaxis.label.set_fontsize(16)
+ax.set_ylabel(y_label,size=label_size, labelpad =22)
+ax.yaxis.label.set_fontsize(16)
+ax.set_zlabel(z_label,size=label_size, labelpad =22)
+ax.zaxis.label.set_fontsize(16)
+#plt.title(title,fontsize=16)
+plt.savefig('Plots/Efficiency_3D.png')
+plt.show()

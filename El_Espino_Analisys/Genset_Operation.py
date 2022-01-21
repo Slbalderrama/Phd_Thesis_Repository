@@ -10,7 +10,7 @@ from sklearn import linear_model
 import numpy as np
 import pandas as pd
 
-
+# data from manufacture
 Nominal_Capacity = 58
 
 fuel_comsuption = np.array([5,8,12,15])
@@ -69,7 +69,7 @@ print('Penalization is ' +  str(penalization*100) + ' %' )
 
 
 #%%
-
+# Analisis
 diesel_cost_subsidize = 0.18
 Diesel_Comsuption = pd.read_excel('Data/Diesel_Comsuption.xls',index_col=0)
 Diesel_Comsuption = Diesel_Comsuption.fillna(0)
@@ -121,7 +121,8 @@ for i in range(1,7):
 
 Montly_Diesel_Data['Diesel per hour'] = Montly_Diesel_Data['Diesel Comsuption']/Montly_Diesel_Data['Hours']
  
-
+#%%
+# Efficiency diesel
 Genset_Manufacter_Data = pd.DataFrame()
 
 Genset_Manufacter_Data['Fuel'] = fuel_comsuption
@@ -136,12 +137,18 @@ print('The real efficiency of the genset is ' + str(Real_efficiency_2)+ ' %')
 plt.scatter(Montly_Diesel_Data['Power'], Montly_Diesel_Data['Efficiency'])
 plt.plot(Genset_Manufacter_Data['Power'],Genset_Manufacter_Data['Efficiency'])
 plt.show()
-
-
+# 14-19 no puede
+# 21 y 22
+# Haiti
+# toma
+#%%
+# Diesel comsuption
 plt.plot(Genset_Manufacter_Data['Power'], Genset_Manufacter_Data['Fuel'])
 plt.scatter(Montly_Diesel_Data['Power'], Montly_Diesel_Data['Diesel per hour'])
 plt.show()
 
+
+#%%
 X = np.array(Montly_Diesel_Data['Power'][1:])
 X = X.reshape(-1, 1)
 y = np.array(Montly_Diesel_Data['Diesel per hour'][1:])
@@ -168,6 +175,9 @@ y_4 = y_4.reshape(-1, 1)
 lm4 = linear_model.LinearRegression(fit_intercept=True)
 lm4.fit(X_4, y_4)
 
+#%%
+
+# mean diesel 
 X_5 = np.array([0, Montly_Diesel_Data['Power'][1:].mean()])
 X_5 = X_5.reshape(-1, 1)
 y_5 = np.array([lm.intercept_, Montly_Diesel_Data['Diesel per hour'][1:].mean()])
@@ -178,10 +188,12 @@ lm5.fit(X_5, y_5)
 Total_Fuel_5 = lm5.predict(Partial_load_1.reshape(-1, 1))
 
 
-plt.plot(Partial_load_1 ,Total_Fuel_3)
-plt.plot(Partial_load_1 ,Total_Fuel_5)
-plt.plot(Genset_Manufacter_Data['Power'], Genset_Manufacter_Data['Fuel'])
-plt.scatter(Montly_Diesel_Data['Power'][1:], Montly_Diesel_Data['Diesel per hour'][1:])
+plt.plot(Partial_load_1 ,y_1, c= 'b' ,label='Manufacture') # line of the manufacture
+plt.plot(Partial_load_1 ,Total_Fuel_5, c='r', label='Propose') # propose line
+plt.scatter(Genset_Manufacter_Data['Power'], Genset_Manufacter_Data['Fuel'],
+            c='b') # data manufacture
+plt.scatter(Montly_Diesel_Data['Power'][1:], Montly_Diesel_Data['Diesel per hour'][1:],
+            c='r') # measure data
 plt.show()
 
 Diesel_Comsuption_Peak_Load = np.array(58)
