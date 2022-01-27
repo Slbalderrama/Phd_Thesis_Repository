@@ -166,7 +166,8 @@ a = broken_demand_1.index
 b = a+1
 c = a-1
 
-Power_Data.loc[a,'Demand 2'] = (Power_Data['Demand 2'][b] + Power_Data['Demand 2'][c])/2
+Power_Data.loc[a,'Demand 2'] = (float(Power_Data.loc[b,'Demand 2']) 
+                                + float(Power_Data.loc[c,'Demand 2']))/2
 
 #%%
 
@@ -197,12 +198,27 @@ Power_Data_2 = Power_Data.drop(['Demand', 'Solar Irradiation' ,
 Power_Data_2.columns = ['PV Power', 'GenSet Power', 'SOC', 'Ambient temperature', 'Demand',
        'Solar Irradiation', 'PV Temperature 2', 'Bat Power in',  'Bat Power out']
 
-
+# Fixing solar irradiation in the night
 for i in Power_Data_2.index:
     a = i.hour
     if a==4:
         if Power_Data_2.loc[i,'Solar Irradiation']>0:
+            print(Power_Data_2.loc[i,'Solar Irradiation'])
+            Power_Data_2.loc[i,'Solar Irradiation']=0
+    
+    if a==3:
+        if Power_Data_2.loc[i,'Solar Irradiation']>0:
+            print(Power_Data_2.loc[i,'Solar Irradiation'])
+            Power_Data_2.loc[i,'Solar Irradiation']=0
+    
+    if a==23:
+        if Power_Data_2.loc[i,'Solar Irradiation']>0:
+             print(Power_Data_2.loc[i,'Solar Irradiation'])
              Power_Data_2.loc[i,'Solar Irradiation']=0
+
+# Checking if any value is null, it should be False
+             
+print(Power_Data_2.isnull().any().any())
 
 Power_Data_2.to_csv('Data/Data_Espino_Thesis_Fill_2.csv')
 

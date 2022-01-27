@@ -592,23 +592,29 @@ y = pv_efficiency['Ambient temperature']
 x_label='SOC [-]'
 y_label='Ambient Temperature [°C]'
 z_label='Efficiency'
-label_size = 30
-size = [20,15]
+label_size = 60
+size = [40,30]
 fig = plt.figure(figsize=size)
-tick_size = 15    
+tick_size = 50    
 mpl.rcParams['xtick.labelsize'] = tick_size 
 mpl.rcParams['ytick.labelsize'] = tick_size 
 pylab.rcParams['ytick.major.pad']='80'
+
 ax = fig.add_subplot(111, projection='3d')
 ax.view_init(30,-110)
 ax.scatter(x, y, z, marker=marker)
 
-ax.set_xlabel(x_label,size=label_size, labelpad =22)
-ax.xaxis.label.set_fontsize(16)
-ax.set_ylabel(y_label,size=label_size, labelpad =22)
-ax.yaxis.label.set_fontsize(16)
-ax.set_zlabel(z_label,size=label_size, labelpad =22)
-ax.zaxis.label.set_fontsize(16)
+ax.set_xlabel(x_label,size=label_size, labelpad =120)
+#ax.xaxis.label.set_fontsize(16)
+ax.set_ylabel(y_label,size=label_size, labelpad =120)
+#ax.yaxis.label.set_fontsize(16)
+ax.set_zlabel(z_label,size=label_size, labelpad =120)
+#ax.zaxis.label.set_fontsize(16)
+
+ax.tick_params(axis='x', which='major', pad=40)
+ax.tick_params(axis='y', which='major', pad=50)
+ax.tick_params(axis='z', which='major', pad=50)
+
 #plt.title(title,fontsize=16)
 plt.savefig('Plots/Efficiency_3D.png')
 plt.show()

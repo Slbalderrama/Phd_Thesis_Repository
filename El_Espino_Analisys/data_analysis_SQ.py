@@ -9,6 +9,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.ticker import FormatStrFormatter
+import numpy as np
+import matplotlib.lines as mlines
 def plot3D(x,y,z,type='scatter',title='Title',x_label='X',y_label='Y',z_label='Z',marker='+'):
     '''
     Function that generates 3D scatter plot of z vs x,y
@@ -71,7 +74,21 @@ data_rel = data.loc[:,('Efficiency','SOC','PV Temperature 2','Hour')]
 df = data.loc[:,('Efficiency','SOC','PV Temperature 2','Hour','Demand','Ambient temperature','Solar Irradiation')]
 covariance_matrix = df.cov()
 
-pd.plotting.scatter_matrix(df, alpha=0.2)
+df['Efficiency'] = round(df['Efficiency'],3)
+ax = pd.plotting.scatter_matrix(df, alpha=0.2, figsize=[20,15])
+
+labels = ax[0,0].get_yticklabels()
+
+new_labels = []
+for i in labels:
+    i = round(float(i.get_text()),2)
+    new_labels.append(i)
+    
+    
+ax[0,0].set_yticklabels(new_labels)
+
+
+#ax[0,0].yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
 plt.savefig('Plots/scatter_plot_matrices.png')
 
@@ -162,9 +179,14 @@ data['G_rel'] = data['Solar Irradiation']/1000
 xdata = data.loc[:,('G_rel','AM_rel','T_rel')].values
 ydata = data['Efficiency'].values
 
+print('Total data points: ' + str(len(ydata)))
+
 p0=[23.62, -0.3,   0.1912,   -0.093, -1, 1]
 test = PV_efficiency(xdata,*p0)
 popt, pcov = curve_fit(PV_efficiency, xdata, ydata, p0=p0)
+
+print('The values for p, q, r, m, s, u are:')
+print(np.round(popt,4))
     
 coef = list(popt)
 
@@ -172,7 +194,7 @@ data['eta_pred'] = PV_efficiency(xdata,*coef)
 
 
 #%% plotting regression
-import numpy as np
+#import numpy as np
 
 xx = xdata.copy()
 xx[:,1] = 1.5
@@ -210,6 +232,282 @@ ax.set_ylabel('T [°C]')
 ax.set_zlabel('Efficiency [-]')
 
 
+plt.savefig('Plots/Predicted_Efficiency_3D.png')
+
+
+#%%
+
+X = pd.DataFrame()
+
+X['G_rel'] = data_raw['Solar Irradiation']/1000
+
+solar_position2 = site_location.get_solarposition(times=data_raw.index)
+X['AM_rel'] = pvlib.atmosphere.get_relative_airmass(90 - solar_position2['zenith'])
+X['T_rel'] = (data_raw['Ambient temperature'] - 25)/(273+25)
+
+XX = np.array(X)
+efficiency = PV_efficiency(XX,*coef)
+
+data_raw['Optimal Efficiency'] = efficiency
+
+data_raw['Optimal PV Power'] = (data_raw['Optimal Efficiency']*data_raw['Solar Irradiation']*Area)/1000
+data_raw['Optimal PV Power'] = np.where(data_raw['Optimal PV Power'] >51, 51, 
+                                    data_raw['Optimal PV Power'])
+
+#%%
+
+# Calculations
+
+start = '2016-01-01 00:00:00'
+end =   '2017-07-31 23:55:00'
+
+Energy_Real     = round(data_raw['PV Power'][start:end].sum()/(12*1000),1)
+Energy_Optimal  = round(data_raw['Optimal PV Power'][start:end].sum()/(12*1000),1)
+Lost_Percentage =  1 - Energy_Real/Energy_Optimal 
+Lost_Percentage = round(Lost_Percentage*100,1)
+
+print('Total energy with curtailment is ' + str(Energy_Real) + ' MWh')
+print('Total energy without curtailment is ' + str(Energy_Optimal) + ' MWh')
+print('Extra energy in optimal conditions ' + str(Lost_Percentage) + ' %')
+
+Optimal_Power_Espino = pd.DataFrame()
+Optimal_Power_Espino['Optimal PV Power'] = data_raw['Optimal PV Power']
+
+
+Optimal_Power_Espino.to_csv('Results/Renewable_Energy_Optimal_Espino.csv')
+
+
+#%%
+
+data_raw['year'] = data_raw.index.year
+data_raw['day']  = data_raw.index.dayofyear
+data_raw['hour'] = data_raw.index.hour
+
+
+
+#%%
+
+daily_plot = data_raw.groupby(['hour']).mean()
+
+size = [25,20]
+plt.figure(figsize=size)
+
+
+ax  = daily_plot['Optimal PV Power'].plot(style = '--',linewidth=5,  color='blue')
+#ax  = PV_Energy_1['PV Power Gutierrez'].plot(style = '--',linewidth=5,  color='red')  
+ax  = daily_plot['PV Power'].plot(style = ':',linewidth=5, color='green')
+ax1 = daily_plot['Solar Irradiation'].plot(c='y', secondary_y=True,linewidth=5)
+
+Espino_regression = mlines.Line2D([], [], color='blue',
+                                  label='PV Power without curtailment', 
+                                  linestyle='--',linewidth=5)
+
+Espino_measurement = mlines.Line2D([], [], color='green',
+                                  label='PV power with curtailment', 
+                                  linestyle=':',linewidth=5)
+
+
+Radiation = mlines.Line2D([], [], color='yellow',
+                                  label='Solar irradiation', 
+                                  linestyle='-',linewidth=5)
+
+ax.tick_params(axis='x', which='major', labelsize=50)
+ax.tick_params(axis='y', which='major', labelsize=50)
+ax1.tick_params(axis='y', which='major', labelsize=50)
+
+ax.set_xlabel('hours', labelpad=20, size=60 )
+ax.set_ylabel('Power (kW)', labelpad=20, size=60)
+
+ax1.set_ylabel('Irradiation (W/m$^{2}$)', labelpad=20, size=60)
+
+
+##plt.legend(bbox_to_anchor=(1, -0.1),fontsize = 12,frameon=False, ncol=2)
+plt.legend(handles=[Espino_regression, Espino_measurement, Radiation],
+           bbox_to_anchor=(0.95,-0.10),
+           frameon=False, ncol=2
+           ,fontsize = 40)
+plt.tight_layout()
+plt.show()
+
+plt.savefig('Plots/Daily_PV_Power.png')
+
+
+
+#%%
+
+# Hourly data transformation
+
+
+start = '2016-03-21 00:00:00' # '2017-01-01 00:00:00' '2016-01-01 00:00:00' 
+end   = '2017-03-20 23:55:00' # '2017-07-31 23:55:00' '2016-12-31 23:55:00' 
+data_hourly = data_raw[start:end] 
+data_hourly = data_hourly.groupby(['year','day', 'hour']).mean()
+
+data_hourly_describe = data_hourly.describe()
+
+
+#%%
+# Second PV radiation
+Data_2 = pd.read_csv('Results/Gutierrez_Data.csv', index_col=0)            
+
+
+index2 = pd.DatetimeIndex(start='2013-01-01 00:00:00', periods=8760, 
+                                    freq=('H'))
+
+start = index2.get_loc('2013-03-21 00:00:00')
+
+Gut_Data_1  = Data_2[start:]
+    
+end = index2.get_loc('2013-03-21 00:00:00')
+
+Gut_Data_2  = Data_2[:end]
+
+Gut_Data =  Gut_Data_1.append(Gut_Data_2) 
+
+index_3 = pd.DatetimeIndex(start='2016-03-21 00:00:00', periods=8760, 
+                                   freq=('H'))
+
+Gut_Data.index = index_3
+
+#### Fix incoherent data
+for i in Gut_Data.index:
+    a = i.hour
+    if any([a==0,a==1,a==2,a==3,a==4,a==5,a==20,a==21,a==22,a==23]):
+        
+        if Gut_Data.loc[i,'Radiation tilt isotropic'] > 0:
+            #print(i)
+            Gut_Data.loc[i,'Radiation tilt isotropic'] = 0
+
+
+Gut_Data_describe = Gut_Data.describe() 
+
+
+X1 = pd.DataFrame()
+
+X1['G_rel'] = Gut_Data['Radiation tilt isotropic']/1000
+
+solar_position3 = site_location.get_solarposition(times=Gut_Data.index)
+X1['AM_rel'] = pvlib.atmosphere.get_relative_airmass(90 - solar_position3['zenith'])
+X1['T_rel'] =  (Gut_Data['Temperature'] - 25)/(273+25)
+
+XX1 = np.array(X1)
+efficiency1 = PV_efficiency(XX1,*coef)
+
+
+Gut_Data['Optimal Efficiency'] = efficiency1
+Gut_Data['Optimal PV Power'] = (Gut_Data['Optimal Efficiency']*Gut_Data['Radiation tilt isotropic']*Area)/1000
+
+
+
+#%%
+data_hourly.index = index_3
+PV_Energy = pd.DataFrame(index=index_3)
+
+PV_Energy['PV Power Without Curtailment'] = data_hourly['Optimal PV Power']
+PV_Energy['PV Power Gutierrez']           = Gut_Data['Optimal PV Power']
+PV_Energy['PV Power With Curtailment']    = data_hourly['PV Power']
+PV_Energy['Irradiation Gutierrez']        = Gut_Data['Radiation tilt isotropic']
+PV_Energy['Irradiation Espino']           = data_hourly['Solar Irradiation']
+PV_Energy['hour'] = PV_Energy.index.hour 
+
+    
+PV_Energy_1 = PV_Energy.groupby(['hour']).mean()   
+
+
+Data_Optimization = pd.DataFrame()
+Data_Optimization['PV Power Without Curtailment'] = list((PV_Energy['PV Power Without Curtailment']/240)*1000)
+Data_Optimization['PV Power Gutierrez'] = list((PV_Energy['PV Power Gutierrez']/240)*1000)
+
+
+
+Data_Optimization.index = range(1,8761)
+Data_Optimization.columns = [1,2]
+
+Data_Expected_Solar = pd.DataFrame()
+Data_Expected_Solar[1] = (Data_Optimization[1]+Data_Optimization[2])/2
+Data_Expected_Solar.to_excel('Results/Renewable_Energy_Expected.xlsx')
+
+
+Data_Optimization[3] = Data_Optimization[1]
+Data_Optimization[4] = Data_Optimization[2]
+Data_Optimization[5] = Data_Optimization[1]
+Data_Optimization[6] = Data_Optimization[2]
+Data_Optimization[7] = Data_Optimization[1]
+Data_Optimization[8] = Data_Optimization[2]
+Data_Optimization[9] = Data_Optimization[1]
+Data_Optimization[10] = Data_Optimization[2]
+
+Data_Optimization.to_excel('Results/Renewable_Energy_Multy_Scenarios.xlsx')
+
+
+# data_hourly_2
+
+
+#%%
+#### paper figure
+size = [20,15]
+plt.figure(figsize=size)
+
+
+ax  = PV_Energy_1['PV Power Without Curtailment'].plot(style = '--',linewidth=5,  color='blue')
+ax  = PV_Energy_1['PV Power Gutierrez'].plot(style = '--',linewidth=5,  color='red')  
+ax  = PV_Energy_1['PV Power With Curtailment'].plot(style = ':',linewidth=5, color='green')
+ax1 = PV_Energy_1['Irradiation Espino'].plot(c='y', secondary_y=True,linewidth=5)
+
+Espino_regression = mlines.Line2D([], [], color='blue',
+                                  label='Espino regression', 
+                                  linestyle='--',linewidth=5)
+
+Espino_measurement = mlines.Line2D([], [], color='green',
+                                  label='Espino measurement', 
+                                  linestyle=':',linewidth=5)
+
+
+Radiation = mlines.Line2D([], [], color='yellow',
+                                  label='Radiation Espino', 
+                                  linestyle='-',linewidth=5)
+
+Gutierrez = mlines.Line2D([], [], color='yellow',
+                                  label='Radiation Espino', 
+                                  linestyle='-',linewidth=5)
+
+ax.tick_params(axis='x', which='major', labelsize=30)
+ax.tick_params(axis='y', which='major', labelsize=30)
+ax1.tick_params(axis='y', which='major', labelsize=30)
+ax.set_xlabel('hours', labelpad=20, size=40 )
+ax.set_ylabel('Power (kW)', labelpad=20, size=40)
+ax1.set_ylabel('Irradiation (W/m$^{2}$)', labelpad=20, size=40)
+
+
+##plt.legend(bbox_to_anchor=(1, -0.1),fontsize = 12,frameon=False, ncol=2)
+plt.legend(handles=[Espino_regression, Espino_measurement, Radiation, Gutierrez],
+           bbox_to_anchor=(1.1, -0.1),frameon=False, ncol=3
+           ,fontsize = 30)
+
+
+#%%
+
+# Demand and renewable energy for the dispatch model
+
+start = '2017-01-01 00:00:00' # '2017-01-01 00:00:00' '2016-01-01 00:00:00' 
+end   = '2017-06-30 23:55:00' # '2017-07-31 23:55:00' '2016-12-31 23:55:00' 
+
+data_hourly_2 = data[start:end] 
+data_hourly_2 = data_hourly_2.groupby(['year','day', 'hour']).mean()
+
+
+Demand_Dispatch = pd.DataFrame()
+Demand_Dispatch[1] = data_hourly_2['Demand']*1000
+Demand_Dispatch.index = range(1,len(Demand_Dispatch)+1)
+Demand_Dispatch.to_excel('Results/Demand_Dispatch.xlsx')
+
+PV_Power = pd.DataFrame()
+PV_Power[1] = data_hourly_2['Optimal PV Power']*1000
+PV_Power.index = range(1,len(PV_Power)+1)
+PV_Power.to_excel('Results/Renewable_Energy_Dispatch.xlsx')
+
+
+SOC_Initial = data_hourly['SOC']['2016-12-31 23:00:00']
 
 
 

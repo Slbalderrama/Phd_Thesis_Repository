@@ -9,12 +9,12 @@ Created on Mon Jun 14 15:51:51 2021
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#import matplotlib.patches as mpatches
+import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 #import matplotlib.ticker as mtick
 import matplotlib.pylab as pylab
 #from scipy.stats import pearsonr
-#from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d import Axes3D
 from sklearn import linear_model
 #from sklearn.metrics import r2_score
 #import statsmodels.api as sm
@@ -326,12 +326,12 @@ plt.savefig('Plots/Daily_PV_Power.png')
 #%%
 Data_2 = pd.read_csv('Results/Gutierrez_Data.csv', index_col=0)            
 
-<<<<<<< HEAD:El_Espino_Analisys/PV_Curtailment_Scenarios.py
+#<<<<<<< HEAD:El_Espino_Analisys/PV_Curtailment_Scenarios.py
 index2 = pd.DatetimeIndex(start='2013-01-01 00:00:00', periods=8760, 
-=======
-index2 = pd.date_range(start='2013-01-01 01:00:00', periods=8760, 
->>>>>>> e3452061e8e39e7c7e1b376ee8ca256ae51116e5:El_Espino_Analisis/PV_Curtailment_Scenarios.py
-                                   freq=('H'))
+# =======
+# index2 = pd.date_range(start='2013-01-01 01:00:00', periods=8760, 
+# >>>>>>> e3452061e8e39e7c7e1b376ee8ca256ae51116e5:El_Espino_Analisis/PV_Curtailment_Scenarios.py
+                                    freq=('H'))
 
 start = index2.get_loc('2013-03-21 00:00:00')
 
@@ -343,11 +343,11 @@ Gut_Data_2  = Data_2[:end]
 
 Gut_Data =  Gut_Data_1.append(Gut_Data_2) 
 
-<<<<<<< HEAD:El_Espino_Analisys/PV_Curtailment_Scenarios.py
+#<<<<<<< HEAD:El_Espino_Analisys/PV_Curtailment_Scenarios.py
 index_3 = pd.DatetimeIndex(start='2016-03-21 00:00:00', periods=8760, 
-=======
-index_3 = pd.date_range(start='2016-03-21 01:00:00', periods=8760, 
->>>>>>> e3452061e8e39e7c7e1b376ee8ca256ae51116e5:El_Espino_Analisis/PV_Curtailment_Scenarios.py
+# =======
+# index_3 = pd.date_range(start='2016-03-21 01:00:00', periods=8760, 
+# >>>>>>> e3452061e8e39e7c7e1b376ee8ca256ae51116e5:El_Espino_Analisis/PV_Curtailment_Scenarios.py
                                    freq=('H'))
 
 Gut_Data.index = index_3

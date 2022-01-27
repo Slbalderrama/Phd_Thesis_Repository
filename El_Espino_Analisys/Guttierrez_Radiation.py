@@ -15,6 +15,13 @@ from pvlib import irradiance
 import pandas as pd
 from matplotlib import pyplot as plt
 
+''' 
+
+Gutierrez radiation transformation to tilted radiation
+
+'''
+
+
 Radiation_12 = pd.read_excel('Data/GUTIERREZ RAD SOLAR  2013.xlsx')
 Temperature_12 = pd.read_excel('Data/GUTIERREZ TEMP  2013.xlsx')
 
