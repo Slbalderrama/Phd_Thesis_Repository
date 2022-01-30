@@ -12,6 +12,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.ticker import FormatStrFormatter
 import numpy as np
 import matplotlib.lines as mlines
+
 def plot3D(x,y,z,type='scatter',title='Title',x_label='X',y_label='Y',z_label='Z',marker='+'):
     '''
     Function that generates 3D scatter plot of z vs x,y
@@ -425,7 +426,7 @@ Data_Optimization.columns = [1,2]
 
 Data_Expected_Solar = pd.DataFrame()
 Data_Expected_Solar[1] = (Data_Optimization[1]+Data_Optimization[2])/2
-Data_Expected_Solar.to_excel('Results/Renewable_Energy_Expected.xlsx')
+Data_Expected_Solar.to_excel('Results/Renewable_Energy_Expected.xls')
 
 
 Data_Optimization[3] = Data_Optimization[1]
@@ -437,7 +438,7 @@ Data_Optimization[8] = Data_Optimization[2]
 Data_Optimization[9] = Data_Optimization[1]
 Data_Optimization[10] = Data_Optimization[2]
 
-Data_Optimization.to_excel('Results/Renewable_Energy_Multy_Scenarios.xlsx')
+Data_Optimization.to_excel('Results/Renewable_Energy_Multy_Scenarios.xls')
 
 
 # data_hourly_2
@@ -492,19 +493,19 @@ plt.legend(handles=[Espino_regression, Espino_measurement, Radiation, Gutierrez]
 start = '2017-01-01 00:00:00' # '2017-01-01 00:00:00' '2016-01-01 00:00:00' 
 end   = '2017-06-30 23:55:00' # '2017-07-31 23:55:00' '2016-12-31 23:55:00' 
 
-data_hourly_2 = data[start:end] 
+data_hourly_2 = data_raw[start:end] 
 data_hourly_2 = data_hourly_2.groupby(['year','day', 'hour']).mean()
 
 
 Demand_Dispatch = pd.DataFrame()
 Demand_Dispatch[1] = data_hourly_2['Demand']*1000
 Demand_Dispatch.index = range(1,len(Demand_Dispatch)+1)
-Demand_Dispatch.to_excel('Results/Demand_Dispatch.xlsx')
+Demand_Dispatch.to_excel('Results/Demand_Dispatch.xls')
 
 PV_Power = pd.DataFrame()
 PV_Power[1] = data_hourly_2['Optimal PV Power']*1000
 PV_Power.index = range(1,len(PV_Power)+1)
-PV_Power.to_excel('Results/Renewable_Energy_Dispatch.xlsx')
+PV_Power.to_excel('Results/Renewable_Energy_Dispatch.xls')
 
 
 SOC_Initial = data_hourly['SOC']['2016-12-31 23:00:00']

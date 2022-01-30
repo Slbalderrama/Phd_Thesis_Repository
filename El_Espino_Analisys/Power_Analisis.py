@@ -128,7 +128,7 @@ ax6= Plot_Data['State_Of_Charge_Battery'].plot(style='k--', secondary_y=True,
 ax1.set_ylabel('Power (kW)',size=30)
 ax1.set_xlabel('Time (hours)',size=30)
 ax1.set_xlim([start,end])
-ax6.set_ylabel('Battery State of charge (kWh)',size=30)
+ax6.set_ylabel('Battery State of charge (%)',size=30)
     
 #    ax1.tick_params(axis='x', which='major', labelsize=20)
     

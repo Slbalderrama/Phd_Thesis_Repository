@@ -2,6 +2,9 @@
 """
 Created on Wed Jun 16 17:47:45 2021
 
+Average dispatch plot
+
+
 @author: Dell
 """
 
@@ -129,7 +132,7 @@ ax7.fill_between(Plot_Data.index, Vec2.values,
 ax1.set_ylabel('Power (kW)',size=30)
 ax1.set_xlabel('Time (hours)',size=30)
 ax1.set_xlim([0,23])
-ax6.set_ylabel('Battery State of charge (kWh)',size=30)
+ax6.set_ylabel('Battery State of charge (%)',size=30)
     
 #    ax1.tick_params(axis='x', which='major', labelsize=20)
     

@@ -2,6 +2,8 @@
 """
 Created on Mon Jun 21 14:55:33 2021
 
+Energy distribution and Sankey plot
+
 @author: Dell
 """
 
@@ -24,34 +26,57 @@ from plotly.offline import plot
 # load data
 
 data = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
+data2 = pd.read_csv('Data/Data_Espino_Thesis_2.csv', header=0,index_col=0)
+pv_curtailment = pd.read_csv('Results/Renewable_Energy_Optimal_Espino.csv', header=0,index_col=0)
+
 index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
-pv_curtailment = pd.read_csv('Results/Renewable_Energy_Optimal_Espino.csv', header=0,index_col=0)
+data2.index = index
 pv_curtailment.index = index
+
+#%%
+
+# take out the added values in the filling process
+
+fill = data2.loc[data2['Bat Soc 1']==0]
+
+data = data.drop(fill.index)
+pv_curtailment = pv_curtailment.drop(fill.index)
+
+
 #%%
 
 data['Bat Power'] = data['Bat Power out'] - data['Bat Power in']  
 data['Curtail Energy'] = pv_curtailment['Optimal PV Power'] - data['PV Power']
+
+test_pv = pd.DataFrame()
+
+test_pv['Optimal PV Power'] = pv_curtailment['Optimal PV Power']
+test_pv['PV Power'] = data['PV Power']
+test_pv['Curtail Power'] = pv_curtailment['Optimal PV Power'] - data['PV Power']
+
+negative_curtail = test_pv.loc[test_pv['Curtail Power']<0]
+
+# ther is a big difference, the only good comparision is in absolute numbers
+
 #%%
 
 Label_Distribution = ['From PV to Bat','From Gen to Bat','From PV to Grid', 
                       'From Gen to Grid', 'From Bat to Grid']
 
-Energy_Distribution = pd.DataFrame(index=index, columns=Label_Distribution)
-Rate_PV_Gen = pd.DataFrame(index = index, columns=['Rate','Rate PV','Rate Gen']) 
+Energy_Distribution = pd.DataFrame(index=data.index, columns=Label_Distribution)
+Rate_PV_Gen = pd.DataFrame(index = data.index, columns=['Rate','Rate PV','Rate Gen']) 
 
 
-for i in Rate_PV_Gen.index:
-#        print(i)
-        Rate_PV_Gen.loc[i,'Rate'] = (data.loc[i,'PV Power']/ data.loc[i,'GenSet Power'])
-        Rate_PV_Gen.loc[i,'Rate PV'] = (data.loc[i,'PV Power']/
-                                    (data.loc[i,'PV Power']+ data.loc[i,'GenSet Power']))
-        Rate_PV_Gen.loc[i,'Rate Gen'] = (1 - Rate_PV_Gen.loc[i,'Rate PV'])
+
+Rate_PV_Gen['Rate'] = (data['PV Power']/ data['GenSet Power'])
+Rate_PV_Gen['Rate PV'] = (data['PV Power']/(data['PV Power']+ data['GenSet Power']))
+Rate_PV_Gen['Rate Gen'] = (1 - Rate_PV_Gen['Rate PV'])
         
         
        
 for i in data.index:
-#    print(i)
+    print(i)
     if data['Bat Power'][i] > 0:
         
         Energy_Distribution['From Bat to Grid'][i] = data['Bat Power'][i]/12
@@ -90,8 +115,8 @@ for i in data.index:
         
                 Energy_Distribution['From PV to Bat'][i] = 0                                  
                 Energy_Distribution['From Gen to Bat'][i] = 0  
-                Energy_Distribution['From PV to Grid'][i] =  Rate_PV_Gen['Rate PV'][i]*data['Demand'][i]  
-                Energy_Distribution['From Gen to Grid'][i] = Rate_PV_Gen['Rate Gen'][i]*data['Demand'][i]
+                Energy_Distribution['From PV to Grid'][i] =  Rate_PV_Gen['Rate PV'][i]*data['Demand'][i]/12  
+                Energy_Distribution['From Gen to Grid'][i] = Rate_PV_Gen['Rate Gen'][i]*data['Demand'][i]/12
                 Energy_Distribution['From Bat to Grid'][i] = 0   
                 
 Energy_Distribution['To Grid'] =  (Energy_Distribution['From PV to Grid'] +
@@ -103,10 +128,33 @@ Energy_Distribution['To Bat'] = (Energy_Distribution['From PV to Bat'] +
                                  Energy_Distribution['From Gen to Bat']) 
 
 
+Energy_Distribution_Describe = Energy_Distribution.describe()
+
+
+#
 #Energy_Distribution.to_csv('Energy Distribution.csv')
 
                 
-#Total_Energy_Distribution  = Energy_Distribution.sum()
+Total_Energy_Distribution  = Energy_Distribution.sum()
+
+
+test = pd.DataFrame()
+test['To Grid'] = Energy_Distribution['To Grid']
+test['Demand'] = data['Demand']/12
+test['dif'] = abs(test['To Grid'] - test['Demand'])
+print('Summation of the values of the demand')
+print(test.sum())
+print('Nan values')
+print(test.isna().sum())
+
+test1 = pd.DataFrame()
+test1['To Bat'] = Energy_Distribution['To Bat']
+test1['Bat Power in'] = data['Bat Power in']/12
+test1['dif'] = abs(test1['To Bat'] - test1['Bat Power in'])
+print('Summation of the values of the Battery')
+print(test1.sum())
+print('Nan values')
+print(test1.isna().sum())
 
 #%%
 
@@ -177,6 +225,21 @@ Total_PV_Energy = (Energy_Distribution['From PV to Bat'].sum()
                     + Energy_Distribution['From PV to Grid'].sum() 
                     + (data['Curtail Energy'].sum()/12))
 
+
+test2 = pd.DataFrame()
+test2['PV 1'] = (Energy_Distribution['From PV to Bat']
+                    + Energy_Distribution['From PV to Grid'] 
+                    + data['Curtail Energy']/12)
+test2['PV'] = pv_curtailment ['Optimal PV Power']/12
+test2['dif'] = abs(test2['PV 1'] - test2['PV'])
+print('Summation of the values of the PV')
+print(test2.sum())
+print('Nan values')
+print(test2.isna().sum())
+
+
+
+
 From_PV.loc['To Battery' ,'Share'] = Energy_Distribution['From PV to Bat'].sum()/Total_PV_Energy
 From_PV.loc['To Battery' ,'Share'] = round(From_PV.loc['To Battery' ,'Share']*100, 0)
 
@@ -213,10 +276,18 @@ print('The percentage of energy going to the grid from the battery ' + str(To_Gr
 
 #%%
 
+# Diesel compsuption load data
+
+Diesel_Comsuption = pd.read_excel('Data/Diesel_Comsuption.xls',index_col=0)
+Diesel_Comsuption = Diesel_Comsuption.fillna(0)
+Diesel_Comsuption = Diesel_Comsuption[:-1]
+Diesel_Comsuption.index =  pd.to_datetime(Diesel_Comsuption.index)
+LHV = 9.9
 
 
-Start = '2016-01-01 05:00:00'
-end = '2017-07-31 23:55:00'
+#%%
+Start = '2017-01-01 00:05:00'
+end = '2017-06-30 23:55:00'
 
 Sankey_Data = pd.Series()
 Sankey_Data['Solar energy'] = data['Solar Irradiation'][Start:end].sum()
@@ -244,8 +315,8 @@ Sankey_Data['From Gen to Grid'] = round(Sankey_Data['From Gen to Grid'],1)/1000
 Sankey_Data['Gen generation'] = (Sankey_Data['From Gen to Grid'] 
                                 + Sankey_Data['From Gen to Bat'])
 
-Sankey_Data['Diesel'] = Sankey_Data['Gen generation']/0.314
-Sankey_Data['Diesel'] = round(Sankey_Data['Diesel'],1)
+Sankey_Data['Diesel'] = Diesel_Comsuption['Diesel'].sum()*LHV
+Sankey_Data['Diesel'] = round(Sankey_Data['Diesel']/1000,1)
 
 Sankey_Data['Gen Losses'] = Sankey_Data['Diesel'] - Sankey_Data['Gen generation']
 
@@ -258,6 +329,8 @@ Sankey_Data['Battery Losses'] = Sankey_Data['Battery In'] - Sankey_Data['From Ba
 
 TITLE =  'Energy Flow'
 ############################# Sankey Draw #####################################
+
+
 #%%
 Sankey_Data_2 = pd.DataFrame()
 
@@ -279,16 +352,16 @@ Sankey_Data_2['Color'] = ['rgba(31, 119, 180, 0.8)',
 Sankey_Data_3 = pd.DataFrame()
 
 Sankey_Data_3['Source'] = [0,0,
-#                           1,
+                           1,
                            3,3,3,2,2,0]
 
 Sankey_Data_3['Target'] = [2,4,
-#                           3,
+                           3,
                            2,6,4,4,5,7]
 
 Sankey_Data_3['Values']=[Sankey_Data['From PV to Bat'], # 0 2
                          Sankey_Data['From PV to Grid'], # 0 4
-#                         Sankey_Data['Diesel'], # 1 3 
+                         Sankey_Data['Diesel'], # 1 3 
                          Sankey_Data['From Gen to Bat'], # 3 2
                          Sankey_Data['Gen Losses'] , # 3 6
                          Sankey_Data['From Gen to Grid'], # 3 4
@@ -299,7 +372,7 @@ Sankey_Data_3['Values']=[Sankey_Data['From PV to Bat'], # 0 2
 
 Sankey_Data_3['Label'] = ['40',
                           '',
-#                          '',
+                          '',
                           '',
                           '',
                           '',
@@ -309,7 +382,7 @@ Sankey_Data_3['Label'] = ['40',
 
 Sankey_Data_3['Color'] = ['rgba(44, 160, 44, 0.8)',
                           'rgba(148, 103, 189, 0.8)',
-#                          'rgba(214, 39, 40, 0.8)',
+                          'rgba(214, 39, 40, 0.8)',
                           'rgba(44, 160, 44, 0.8)',
                           'rgba(227, 119, 194, 0.8)',
                           'rgba(148, 103, 189, 0.8)',
