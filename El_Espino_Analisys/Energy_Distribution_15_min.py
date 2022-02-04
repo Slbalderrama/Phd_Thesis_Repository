@@ -370,15 +370,15 @@ Sankey_Data_3['Values']=[Sankey_Data['From PV to Bat'], # 0 2
                          Sankey_Data['Curtailment']] # 0 7
 
 
-Sankey_Data_3['Label'] = ['40',
-                          '',
-                          '',
-                          '',
-                          '',
-                          '',
-                          '',
-                          '',
-                          '']
+Sankey_Data_3['Label'] = ['400',
+                          '400',
+                          '400',
+                          '400',
+                          '400',
+                          '400',
+                          '400',
+                          '400',
+                          '400']
 
 Sankey_Data_3['Color'] = ['rgba(44, 160, 44, 0.8)',
                           'rgba(148, 103, 189, 0.8)',
@@ -390,6 +390,7 @@ Sankey_Data_3['Color'] = ['rgba(44, 160, 44, 0.8)',
                           'rgba(140, 86, 75, 0.8)',
                           'rgba(200, 119, 194, 0.8)']
 
+
 data_trace = dict(
     type='sankey',
     domain = dict(
@@ -398,13 +399,13 @@ data_trace = dict(
     ),
     orientation = "h",
     valueformat = ".0f",
-    size = 100,
+    size = 1000,
     valuesuffix = "MWh",
     node = dict(
-      pad = 100,
+      pad = 1000,
       thickness = 10,
       line = dict(
-        color = "White",
+        color = "Black",
         width = 0.5
       ),
       label =  Sankey_Data_2['Labels'],
@@ -416,12 +417,15 @@ data_trace = dict(
       value =  Sankey_Data_3['Values'],
       label =  Sankey_Data_3['Label'],
       color =  Sankey_Data_3['Color']
-  ))
+  ),
+    
+    textfont = dict(color='black',
+        size=25
+        )
+    )
 
 
 fig = dict(data=[data_trace])
-plot(fig, validate = False)
 
-
-
+plot(fig,validate = False)
 

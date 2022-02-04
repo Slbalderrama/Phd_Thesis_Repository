@@ -30,8 +30,8 @@ df['LLP'] = data['LLP']/100
 df['LCOE'] = data['LCOE']
 
 # Adding last point
-# df.loc[20,'LLP'] = 100
-# df.loc[20,'LCOE 2'] = 0
+df.loc[20,'LLP'] = 1
+df.loc[20,'LCOE'] = 0
 
 #%%
 
@@ -66,14 +66,14 @@ print(r_2)
 # Secant
 
 
-slop1 = (df['LCOE'][0] -df['LCOE'][19])/(df['LLP'][0]- df['LLP'][19])
+slop1 = (df['LCOE'][0] -df['LCOE'][20])/(df['LLP'][0]- df['LLP'][20])
 interceptor1 = df['LCOE'][0] - slop1*df['LLP'][0]
 
 def func1(x,slop1, interceptor1):
         
     return slop1*x + interceptor1
 
-xsecant = pd.DataFrame([xdata[0],xdata[19]])
+xsecant = pd.DataFrame([xdata[0],xdata[20]])
 ysecant = func1(xsecant,slop1, interceptor1)
 
 
@@ -82,7 +82,7 @@ ysecant = func1(xsecant,slop1, interceptor1)
 
 # iteration process
 
-iteration_range = np.arange(xdata[0], xdata[19], 0.001) 
+iteration_range = np.arange(xdata[0], xdata[20], 0.001) 
 iteration_range = np.round(iteration_range,3)
 
 
@@ -217,7 +217,7 @@ plt.savefig('Pareto_Front_Optimization.png')
 
 # Results
 
-iteration_range_2 = np.arange(xdata[0], xdata[19], 0.005) 
+iteration_range_2 = np.arange(xdata[0], xdata[20], 0.005) 
 iteration_range_2 = np.round(iteration_range_2,3)
 
 s = 200
@@ -249,7 +249,8 @@ for i in iteration_range_2:
 
 ax.set_xlabel("LLP (%)",size=30)
 ax.set_ylabel("kWh/USD",size=30)        
-#ax.set_xlim(0, 100)
+ax.set_xlim(-5, 120)
+ax.set_ylim(-0.05, 1.2)
 tick_size = 25   
 #mpl.rcParams['xtick.labelsize'] = tick_size     
 ax.tick_params(axis='x', which='major', labelsize = tick_size )
@@ -280,6 +281,7 @@ results['LCOE (USD/kWh)'] = data['LCOE']
 results['Battery capacity (kWh)'] = data['Battery Nominal Capacity']
 results['PV Capacity (kW)'] = data['PV Nominal Capacity']
 
+results.loc[20,:] =0 
 
 results_table = results.describe()
 
@@ -298,22 +300,24 @@ Project_Data =pd.read_excel(path_1,sheet_name='Project Data'
 Energy_Flows = pd.read_excel(path_1,sheet_name='Time Series'
                                   ,index_col=0,Header=None)     
 
-data_llp=pd.DataFrame()
-expected_demand = 0
-for j in range(1,17):
+# data_llp=pd.DataFrame()
+# expected_demand = 0
+# for j in range(1,17):
         
-    llE = 'Lost Load '+str(j) + ' (kWh)'
-    de = 'Energy Demand '+str(j) + ' (kWh)'
-    CRF = Project_Data[0]['Capital Recovery Factor']
+#     llE = 'Lost Load '+str(j) + ' (kWh)'
+#     de = 'Energy Demand '+str(j) + ' (kWh)'
+#     CRF = Project_Data[0]['Capital Recovery Factor']
  
-    demand = (Energy_Flows[de].sum() - Energy_Flows[llE].sum())/CRF
-    data_llp.loc[j,'Knee point'] = Energy_Flows[llE].sum()/Energy_Flows[de].sum()
+#     demand = (Energy_Flows[de].sum() - Energy_Flows[llE].sum())/CRF
+#     data_llp.loc[j,'Knee point'] = Energy_Flows[llE].sum()/Energy_Flows[de].sum()
         
         
-    demand = demand*0.0625
-    expected_demand += demand
+#     demand = demand*0.0625
+#     expected_demand += demand
      
-results_table.loc['Knee point', 'LCOE (USD/kWh)'] =  results_table.loc['Knee point', 'NPC (USD)']/expected_demand
+#results_table.loc['Knee point', 'LCOE (USD/kWh)'] =  results_table.loc['Knee point', 'NPC (USD)']/expected_demand
+
+results_table.loc['Knee point', 'LCOE (USD/kWh)'] =  knee_point_results['Data']['LCOE (USD/kWh)']
 
      
 battery =pd.read_excel(path_1,sheet_name='Battery Data'
@@ -334,39 +338,39 @@ print(round(results_table['PV Capacity (kW)'],2))
     
 #%%
 
-# 3d plot
-s = 100
+# Capacities vs LLP plot
+# s_pv  = 100
+# s_bat = 
 
-size = [20,20]
-fig = plt.figure(figsize=size)
-ax3 = fig.add_subplot(111, projection='3d')
+# size = [20,20]
+# fig = plt.figure(figsize=size)
+# ax3 = fig.add_subplot(111)
 
-ax3.scatter(xdata*100, results['PV Capacity (kW)'],
-                results['LCOE (USD/kWh)'], c='b', alpha=1, s=s)  
-ax3.scatter(xdata*100, results['Battery capacity (kWh)'] ,
-                results['LCOE (USD/kWh)'], c='r', alpha=1, s=s)  
+# ax3.scatter(xdata*100, results['PV Capacity (kW)'], c='b', alpha=1, s=s)  
+# ax3.scatter(xdata*100, results['Battery capacity (kWh)'] ,
+#                 results['LCOE (USD/kWh)'], c='r', alpha=1, s=s)  
 
-ax3.set_xlabel("LLP %", size=20, labelpad=20)
-ax3.set_ylabel("kW or kWh",size=20, labelpad=20)
-ax3.set_zlabel("kWh/USD",size=20, labelpad=20)        
-ax3.set_xlim(0, 20)
-tick_size = 20  
-mpl.rcParams['xtick.labelsize'] = tick_size     
-mpl.rcParams['ytick.labelsize'] = tick_size     
-#mpl.rcParams['ztick.labelsize'] = tick_size     
+# ax3.set_xlabel("LLP %", size=20, labelpad=20)
+# ax3.set_ylabel("kW or kWh",size=20, labelpad=20)
+# ax3.set_zlabel("kWh/USD",size=20, labelpad=20)        
+# ax3.set_xlim(0, 20)
+# tick_size = 20  
+# mpl.rcParams['xtick.labelsize'] = tick_size     
+# mpl.rcParams['ytick.labelsize'] = tick_size     
+# #mpl.rcParams['ztick.labelsize'] = tick_size     
 
-ax3.view_init(55,45)
-ax3.tick_params(axis='x', which='major', labelsize = tick_size )
-ax3.tick_params(axis='y', which='major', labelsize = tick_size )    
-ax3.tick_params(axis='z', which='major', labelsize = tick_size )    
+# ax3.view_init(55,45)
+# ax3.tick_params(axis='x', which='major', labelsize = tick_size )
+# ax3.tick_params(axis='y', which='major', labelsize = tick_size )    
+# ax3.tick_params(axis='z', which='major', labelsize = tick_size )    
 
-handle8 = mlines.Line2D([], [], color='b', label='PV Capacity (kW)', 
-                        marker = 'o', linestyle='None', markersize=20)
+# handle8 = mlines.Line2D([], [], color='b', label='PV Capacity (kW)', 
+#                         marker = 'o', linestyle='None', markersize=20)
 
-handle9 = mlines.Line2D([], [], color='r', label='Battery capacity (kWh)', 
-                        marker = 'o', linestyle='None', markersize=20)
+# handle9 = mlines.Line2D([], [], color='r', label='Battery capacity (kWh)', 
+#                         marker = 'o', linestyle='None', markersize=20)
 
-plt.legend(handles=[handle8, handle9], fontsize = 20)        
+# plt.legend(handles=[handle8, handle9], fontsize = 20)        
 
        
-plt.savefig('PV_Battery_LCOE.png')
+# plt.savefig('PV_Battery_LCOE.png')

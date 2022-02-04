@@ -1,3 +1,7 @@
+
+
+
+
 # -*- coding: utf-8 -*-
 
 from pyomo.environ import  AbstractModel
@@ -82,13 +86,13 @@ print('The optimization taok ' + str(round(end - start,0)) + ' seconds')
 
 # energy_check(instance)
 
-#Renewable 1 nominal capacity is 56.8 kW
+#Renewable 1 nominal capacity is 57.4 kW
 #Generator 1 nominal capacity is 15.0 kW
 #Generator 2 nominal capacity is 0.0 kW
-#Battery nominal capacity is 356.8 kWh
+#Battery nominal capacity is 356.9 kWh
 #NPC is 425.0 Thousand USD
 #The LCOE is 0.546 USD/kWh
-#70.7 % Renewable Penetration
-#1.0 % of energy curtail
-#39.0 % Battery usage
-#The optimization taok 89411.0 seconds
+#71.5 % Renewable Penetration
+#1.1 % of energy curtail
+#39.8 % Battery usage
+#The optimization taok 67187.0 seconds

@@ -1214,7 +1214,7 @@ def Plot_Energy_Total(instance, Time_Series, plot, Plot_Date, PlotTime):
         ax3.fill_between(Fill.index, Fill[g].values, Fill[b].values,   
                          alpha=alpha_bat, color =C_Bat,edgecolor=C_Bat, hatch =hatch_b)
         # Demand
-        ax4 = Plot_Data[d].plot(style='k', linewidth=2, marker= 'o')
+        ax4 = Plot_Data[d].plot(style='k', linewidth=2)
         # Battery Charge        
         ax5= Fill[ch].plot(style='m', linewidth=0.5) # Plot the line of the energy flowing into the battery
         ax5.fill_between(Fill.index, 0, 

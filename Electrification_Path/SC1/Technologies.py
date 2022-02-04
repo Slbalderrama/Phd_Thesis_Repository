@@ -9,7 +9,7 @@ from onsset import Technology
 import pandas as pd
 
 def technology_creation(start_year, end_year, grid_price, specs_data, diesel_price, pv_capital_cost_adjust):
-    Base_To_Peak_Grid  = pd.read_csv('Bolivia/Base_to_Peak_Grid.csv', index_col=0)  
+#    Base_To_Peak_Grid  = pd.read_csv('Bolivia/Base_to_Peak_Grid.csv', index_col=0)  
     technologies = []
 
     Technology.set_default_values(base_year=start_year,

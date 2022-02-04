@@ -20,11 +20,11 @@ formulation = 'LP'
 
 Renewable_Penetration  =  1 # a number from 0 to 1
 Battery_Independency   =  0    # number of days of battery independency
-Lost_Load_Probability  =  0.1249 # Allowed percentage of unmed demand in the system
+Lost_Load_Probability  =  0.1374 # Allowed percentage of unmed demand in the system
 Curtailment_Unitary_Cost =  0 # probando curtailment cost 0
 
 S = 1 # Plot scenario
-Plot_Date = '01/06/2016 00:00:00' # Day-Month-Year
+Plot_Date = '06/08/2016 00:00:00' # Day-Month-Year
 PlotTime = 3# Days of the plot
 plot = 'No Average' # 'No Average' or 'Average'
 

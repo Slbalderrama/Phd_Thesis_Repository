@@ -1250,7 +1250,7 @@ def Plot_Energy_Total(instance, Time_Series, plot, Plot_Date, PlotTime):
         ax7.fill_between(Fill.index, Fill[c2].values , Fill[c].values, 
                          alpha=alpha_cu, color=C_Cur,edgecolor= C_Cur, 
                          hatch =hatch_cu,
-                         where=Fill[c].values<Fill[d]) 
+                         where=Fill[c].values>Fill[d]) 
         # Lost load
         
         if instance.Lost_Load_Probability > 0:
