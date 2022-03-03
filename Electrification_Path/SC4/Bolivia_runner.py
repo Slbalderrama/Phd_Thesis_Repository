@@ -169,3 +169,9 @@ print('The average investment per household for new connected  people is ' +str(
 Results.to_csv('Bolivia/OnSSET_Results.csv')
 
 microgrids_solution.to_csv('Bolivia/Microgrids_results.csv')
+
+Number_microgrids = len(microgrids_solution)
+print('The number of microgrids is ' + str(Number_microgrids) + '.')
+
+Number_microgrids = len(microgrids_solution)
+print('The number of microgrids is ' + str(Number_microgrids) + '.')

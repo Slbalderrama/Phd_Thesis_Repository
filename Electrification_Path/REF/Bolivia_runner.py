@@ -39,6 +39,8 @@ df['NPC2025'] = data['NPC2025']
 df['InvestmentCapita2025'] = data['InvestmentCapita2025']
 df['InvestmentCost2025'] = data['InvestmentCost2025']
 df['MinGridDist2025'] = data['MinGridDist2025']
+df['Pop2025'] = data['Pop2025']
+df['ElecPopCalib'] = data['ElecPopCalib']
 df['X_deg'] = data['X_deg']
 df['Y_deg'] = data['Y_deg']
 #%%
@@ -48,6 +50,12 @@ df_2012 = df.loc[df['FinalElecCode2012'] !='Grid2012']
 Grid_Unconnected = len(df_2012)
 
 print('The number of Unconnected communities in Bolivia is ' + str(Grid_Unconnected))
+
+grid_2012 = df.loc[df['FinalElecCode2012'] =='Grid2012']
+Grid_Connected_Percentage = (grid_2012['ElecPopCalib'].sum()/data['Pop2012'].sum())*100
+
+print('The % of people connected to the grid in 2012 was ' + str(round(Grid_Connected_Percentage,0)))
+
 
 #%%
 df_lowlands = df.loc[df['Elevation']<800]
@@ -105,7 +113,7 @@ print('The total NPC of the microgrid is ' + str(Results.loc['microgrid','NPC'])
 
 Results.loc['SHS','NPC'] =  round(SHS_solution['NPC2025'].sum()/1000000,0)
 
-print('The total NPC of the microgrid is ' +str(Results.loc['SHS','NPC'])+ 
+print('The total NPC of the SHS is ' +str(Results.loc['SHS','NPC'])+ 
       ' thousands of millons of USD.')
 
 Results.loc['Total','NPC'] = (Results.loc['grid','NPC'] 
@@ -130,7 +138,7 @@ print('TThe total new installed capacity of the microgrid is ' + str(Results.loc
 
 Results.loc['SHS','Capacity'] =  round(SHS_solution['NewCapacity2025'].sum()/1000,1)
 
-print('The total new installed capacity of the microgrid is ' +str(Results.loc['SHS','Capacity'])+ 
+print('The total new installed capacity of the SHS is ' +str(Results.loc['SHS','Capacity'])+ 
       '.')
 
 Results.loc['Total','Capacity'] = (Results.loc['grid','Capacity'] 
@@ -212,4 +220,40 @@ test1 = pd.DataFrame(test1)
 print(test1[0].all())
 
 
+Number_microgrids = len(microgrids_solution)
+print('The number of microgrids is ' + str(Number_microgrids) + '.')
 
+
+isolated_solutions = len(microgrids_solution)+len(SHS_solution)
+isolated_households  = microgrids_solution['HouseHolds'].sum() + SHS_solution['HouseHolds'].sum()
+SHS_households = SHS_solution['HouseHolds'].sum()
+print('The number of communities with isolated solution is ' +str(round(isolated_solutions,0)))
+print('The number of households with isolated solution is  ' + str(round(isolated_households,0)))
+print('The number of households with SHS solution is  ' + str(round(SHS_households,0)))
+
+
+# The number of Unconnected communities in Bolivia is 8671
+# The % of people connected to the grid in 2012 was 76.0
+# New connected people with the grid is 3307228.0
+# New connected people with microgrid is 53140.0
+# New connected people with SHS is 494925.0
+# Total number of new connected  people is 3855293.0
+# The total NPC of the grid is 1635.0 thousands of millons of USD.
+# The total NPC of the microgrid is 44.0 thousands of millons of USD.
+# The total NPC of the microgrid is 230.0 thousands of millons of USD.
+# Total NPC is 1909.0 thousands of millons of USD.
+# The total new installed capacity of the grid is 279.7.
+# TThe total new installed capacity of the microgrid is 4.9.
+# The total new installed capacity of the microgrid is 217.1.
+# The total new installed capacity of new connected  people is 501.69999999999993.
+# The investment per household for the grid is 1811.0 USD.
+# The investment per household for the microgrid is 2413.0 USD.
+# The investment per household for the microgrid is 1293.0 USD.
+# The average investment per household for new connected  people is 1624.0 USD.
+# True
+# True
+# True
+# The number of microgrids is 221.
+# The number of communities with isolated solution is 7461
+# The number of households with isolated solution is  160295.0
+# The number of households with SHS solution is  144753.0

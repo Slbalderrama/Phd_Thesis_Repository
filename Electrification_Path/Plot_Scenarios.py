@@ -30,6 +30,14 @@ sc3 = pd.read_csv('SC3/Bolivia/Microgrids_results.csv', index_col=0)
 sc4 = pd.read_csv('SC4/Bolivia/Microgrids_results.csv', index_col=0)  
 
 
+print('The number of microgrids in the ref scenario is ' + str(len(Ref)) + '.')
+print('The number of microgrids in the SC1 scenario is ' + str(len(sc1)) + '.')
+print('The number of microgrids in the SC2 scenario is ' + str(len(sc2)) + '.')
+print('The number of microgrids in the SC3 scenario is ' + str(len(sc3)) + '.')
+print('The number of microgrids in the SC4 scenario is ' + str(len(sc4)) + '.')
+
+
+
 
 title_size = 70
 pad = 30

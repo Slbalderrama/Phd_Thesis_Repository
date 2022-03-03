@@ -114,7 +114,7 @@ print('The average LCOE for diesel minigrid communities is ' +str(lcoe_diesel ) 
 
 lcoe_shs = round(SHS_solution['MinimumOverallLCOE2025'].mean(),2) 
 
-print('The average LCOE for grid communities is ' +str(lcoe_shs) + ' USD/kWh')
+print('The average LCOE for SHS communities is ' +str(lcoe_shs) + ' USD/kWh')
 
 #%%
 
