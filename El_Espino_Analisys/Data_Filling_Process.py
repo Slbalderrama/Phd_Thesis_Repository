@@ -33,7 +33,7 @@ Power_Data['Solar Irradiation'] =  data['Solar Irradiation']
 
 Power_Data_Describe_1  = Power_Data.describe() 
 
-index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
+index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 Power_Data.index = index
 #%%
 
@@ -74,15 +74,15 @@ broken_PV_power_2_describe  = broken_PV_power_2.describe()
 
 for i in Power_Data.index[0:2016]:
     if Power_Data['Demand'][i] <= 0:
-        Power_Data.loc[i,'Demand 2'] = Power_Data.loc[i+288,'Demand']
+        Power_Data.loc[i,'Demand 2'] = Power_Data.loc[i+ i.freq*288,'Demand']
         
 #        print(i)
         if Power_Data['Solar Irradiation'][i] == 0:
-            Power_Data.loc[i,'Solar Irradiation 2'] = Power_Data.loc[i+288,'Solar Irradiation']
+            Power_Data.loc[i,'Solar Irradiation 2'] = Power_Data.loc[i+i.freq*288,'Solar Irradiation']
         else:
             Power_Data.loc[i, 'Solar Irradiation'] = Power_Data.loc[i, 'Solar Irradiation']
         if Power_Data['PV Temperature'][i] == 0:
-            Power_Data.loc[i, 'PV Temperature 2'] = Power_Data.loc[i+288,'PV Temperature']
+            Power_Data.loc[i, 'PV Temperature 2'] = Power_Data.loc[i+i.freq*288,'PV Temperature']
         else:
             Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i,'PV Temperature']
             
@@ -94,13 +94,13 @@ for i in Power_Data.index[0:2016]:
 for i in Power_Data.index[2016:164448]:
 #    print(i)
     if Power_Data['Demand'][i] <= 0:
-        Power_Data.loc[i,'Demand 2'] = Power_Data.loc[i-2016,'Demand']
+        Power_Data.loc[i,'Demand 2'] = Power_Data.loc[i-i.freq*2016,'Demand']
         if Power_Data['Solar Irradiation'][i] == 0:
-            Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i-2016, 'Solar Irradiation']
+            Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i-i.freq*2016, 'Solar Irradiation']
         else:
             Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i, 'Solar Irradiation']
         if Power_Data['PV Temperature'][i] == 0:
-            Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i-2016,'PV Temperature']
+            Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i-i.freq*2016,'PV Temperature']
         else:
             Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i,'PV Temperature']
 
@@ -112,13 +112,13 @@ for i in Power_Data.index[2016:164448]:
 for i in Power_Data.index[164448:]:
 #    print(i)
     if Power_Data['Demand'][i] <= 0:
-        Power_Data.loc[i, 'Demand 2'] = Power_Data.loc[i-288, 'Demand']
+        Power_Data.loc[i, 'Demand 2'] = Power_Data.loc[i-i.freq*288, 'Demand']
         if Power_Data['Solar Irradiation'][i] == 0:
-            Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i-288, 'Solar Irradiation']
+            Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i-i.freq*288, 'Solar Irradiation']
         else:
             Power_Data.loc[i, 'Solar Irradiation 2'] = Power_Data.loc[i, 'Solar Irradiation']
         if Power_Data['PV Temperature'][i] == 0:
-            Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i-288, 'PV Temperature']
+            Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i-i.freq*288, 'PV Temperature']
         else:
             Power_Data.loc[i,'PV Temperature 2'] = Power_Data.loc[i, 'PV Temperature']
 
@@ -163,8 +163,8 @@ broken_demand_describe_1  = broken_demand_1.describe()
 
 
 a = broken_demand_1.index
-b = a+1
-c = a-1
+b = a + i.freq
+c = a - i.freq
 
 Power_Data.loc[a,'Demand 2'] = (float(Power_Data.loc[b,'Demand 2']) 
                                 + float(Power_Data.loc[c,'Demand 2']))/2
@@ -203,22 +203,31 @@ for i in Power_Data_2.index:
     a = i.hour
     if a==4:
         if Power_Data_2.loc[i,'Solar Irradiation']>0:
-            print(Power_Data_2.loc[i,'Solar Irradiation'])
+ #           print(Power_Data_2.loc[i,'Solar Irradiation'])
             Power_Data_2.loc[i,'Solar Irradiation']=0
     
     if a==3:
         if Power_Data_2.loc[i,'Solar Irradiation']>0:
-            print(Power_Data_2.loc[i,'Solar Irradiation'])
+#            print(Power_Data_2.loc[i,'Solar Irradiation'])
             Power_Data_2.loc[i,'Solar Irradiation']=0
     
     if a==23:
         if Power_Data_2.loc[i,'Solar Irradiation']>0:
-             print(Power_Data_2.loc[i,'Solar Irradiation'])
+#             print(Power_Data_2.loc[i,'Solar Irradiation'])
              Power_Data_2.loc[i,'Solar Irradiation']=0
 
 # Checking if any value is null, it should be False
              
-print(Power_Data_2.isnull().any().any())
+
+test_null  = Power_Data_2.isnull()
+
+for i in test_null.columns:
+    
+    len_null = test_null.loc[test_null[i]==True]
+    
+    print(len(len_null))
+    
+
 
 Power_Data_2.to_csv('Data/Data_Espino_Thesis_Fill_2.csv')
 

@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import matplotlib.ticker as mtick
 import matplotlib.pylab as pylab
-import enlopy as el
 import matplotlib as mpl
 from datetime import datetime
 import os
@@ -29,7 +28,7 @@ from mpl_toolkits.mplot3d import Axes3D
 # load data
 
 data = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
-index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
+index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
 
 #%%
@@ -261,7 +260,7 @@ data_hourly = data.groupby(['hour']).mean()
 
 
 Power_Data_Hourly = data.groupby(['year','day', 'hour']).mean()
-index_hourly = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=13872, 
+index_hourly = pd.date_range(start='2016-01-01 00:00:00', periods=13872, 
                                    freq=('1H'))
 
 Power_Data_Hourly.index = index_hourly
@@ -490,6 +489,28 @@ plt.legend(handles=[ demand, ldr],
 plt.savefig('Plots/Battery_LDR.png')
 
 plt.show()
+#%%
+
+
+# Bat_power_LDR = data.sort_values('Bat Power', ascending=False)
+
+# Bat_power_LDR.index = index_LDR
+
+# plt.plot(Bat_power_LDR.index, Bat_power_LDR['Bat Power'])
+
+
+# size = [20,15]
+# fig=plt.figure(figsize=size)
+# tick_size = 25    
+# mpl.rcParams['xtick.labelsize'] = tick_size 
+# mpl.rcParams['ytick.labelsize'] = tick_size 
+
+
+# ax=fig.add_subplot(111, label="1")
+
+# ax.plot(Bat_power_LDR.index, Bat_power_LDR['Bat Power'])
+# ax.plot([0,100], [0,0])
+# ax.plot([57,57], [-50,25])
 
 #%%
 
@@ -618,3 +639,13 @@ ax.tick_params(axis='z', which='major', pad=50)
 #plt.title(title,fontsize=16)
 plt.savefig('Plots/Efficiency_3D.png')
 plt.show()
+
+# The energy consume in a year is 84.4 MWh
+# The real efficiency of the genset is 31.1 %
+# The percentage of time that the battery is charging is 42.6 % .
+# The percentage of time that the battery is doing nothing is 0.4 % .
+# The percentage of time that the battery is discharging is 57.0 % .
+# The round trip efficiency of the battery is 74.2 %.
+# The PV array mean power output is 13.8 kW
+# The PV array max power output is 51.0 kW
+# The PV array produce energy the 48.8 % of the time

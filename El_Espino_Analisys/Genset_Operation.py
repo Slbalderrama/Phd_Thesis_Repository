@@ -58,15 +58,25 @@ plt.show()
 LHV = 9.9
 percentage_load = 3
 
-eff = Partial_load[percentage_load]*Fuel_Cost/(Total_Fuel_Cost[percentage_load]*LHV)
+eff = Partial_load[percentage_load]/(fuel_comsuption[percentage_load]*LHV)
 eff = round(eff*100,1)
 
-print('Genset generator efficiency is '+ str(eff))
+print('Genset generator highest efficiency is '+ str(eff))
 
-penalization = lm2.intercept_[0]/Total_Fuel_Cost_2[3]
-penalization = round(penalization[0],2)
+penalization = lm2.intercept_[0]/Total_Fuel_Cost[3]
+penalization = round(penalization,2)
 print('Penalization is ' +  str(penalization*100) + ' %' )
 
 
+#%%
 
+
+fix_cost = np.array([0,Total_Fuel_Cost[3]])
+
+fix_capacity = np.array([0, Nominal_Capacity])
+
+lm3 = linear_model.LinearRegression(fit_intercept=True)
+lm3.fit(fix_capacity.reshape(-1, 1), fix_cost.reshape(-1, 1))
+
+print(lm3.intercept_,lm3.coef_)
 
