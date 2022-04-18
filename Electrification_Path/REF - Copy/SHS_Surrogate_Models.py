@@ -24,7 +24,6 @@ y['PV'] = 0.4*X['HouseHolds']
 y['Investment'] = 1293*X['HouseHolds']
 y['Genset'] = 0
 
-
 #%%
 lm_lcoe = linear_model.LinearRegression(fit_intercept=True)
 lm_lcoe.fit(X, y['LCOE'])

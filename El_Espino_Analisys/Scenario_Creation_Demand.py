@@ -23,7 +23,7 @@ import os
 
 
 Power_Data_4 = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv',index_col=0)
-index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, 
+index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, 
                                    freq=('5min'))
 
 Power_Data_4.index = index
@@ -31,7 +31,7 @@ Power_Data_4.index = index
 start = '2016-03-21 00:00:00'
 end = '2017-03-20 23:55:00'
 
-index2 = pd.DatetimeIndex(start='2016-03-21 00:00:00', periods=365, 
+index2 = pd.date_range(start='2016-03-21 00:00:00', periods=365, 
                                    freq=('1D'))
 #index3 = pd.DatetimeIndex(start='2016-01-01 00:05:00', periods=3456, 
 #                                   freq=('5min'))
@@ -141,7 +141,7 @@ Scenarios['hour'] = Scenarios.index.hour
 
 Hourly_Data = Scenarios.groupby(['year','day', 'hour']).mean()
 
-index_hourly = pd.DatetimeIndex(start='2016-03-21 01:00:00', periods=8760, 
+index_hourly = pd.date_range(start='2016-03-21 01:00:00', periods=8760, 
                                    freq=('1H'))
 Demand_Hourly = pd.DataFrame()
 Demand_Hourly['Base Scenario'] = Hourly_Data['Base Scenario']

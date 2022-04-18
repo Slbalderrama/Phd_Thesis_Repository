@@ -9,16 +9,6 @@ Energy distribution and Sankey plot
 
 
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.lines as mlines
-import matplotlib.ticker as mtick
-import matplotlib.pylab as pylab
-import enlopy as el
-import matplotlib as mpl
-from datetime import datetime
-import os
-import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 from plotly.offline import plot
 #%%

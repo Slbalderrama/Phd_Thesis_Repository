@@ -37,6 +37,10 @@ print('The number of microgrids in the SC3 scenario is ' + str(len(sc3)) + '.')
 print('The number of microgrids in the SC4 scenario is ' + str(len(sc4)) + '.')
 
 
+for i in sc3.index:
+    if sc3['PVcapacity2025'][i] <0:
+        sc3.loc[i,'PVcapacity2025'] = 0
+        
 
 
 title_size = 70
@@ -103,3 +107,8 @@ ax3.set_xticklabels(['Ref', 'SC1', 'SC2', 'SC3', 'SC4'])
 
 plt.savefig('Scenarios_Results.png', bbox_inches='tight')    
 plt.show()  
+# The number of microgrids in the ref scenario is 221.
+# The number of microgrids in the SC1 scenario is 259.
+# The number of microgrids in the SC2 scenario is 163.
+# The number of microgrids in the SC3 scenario is 345.
+# The number of microgrids in the SC4 scenario is 701.

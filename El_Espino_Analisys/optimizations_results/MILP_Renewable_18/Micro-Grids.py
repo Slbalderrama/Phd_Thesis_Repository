@@ -1,7 +1,3 @@
-
-
-
-
 # -*- coding: utf-8 -*-
 
 from pyomo.environ import  AbstractModel
@@ -27,8 +23,8 @@ Battery_Independency   =  1    # number of days of battery independency
 Lost_Load_Probability  =  0  # Allowed percentage of unmed demand in the system
 Curtailment_Unitary_Cost =  0 # probando curtailment cost 0
 
-S = 1 # Plot scenario
-Plot_Date = '31/05/2016 00:00:00' # Day-Month-Year
+S = 3 # Plot scenario
+Plot_Date = '25/12/2016 00:00:00' # Day-Month-Year
 PlotTime = 5# Days of the plot
 plot = 'No Average' # 'No Average' or 'Average'
 
@@ -86,13 +82,13 @@ print('The optimization taok ' + str(round(end - start,0)) + ' seconds')
 
 # energy_check(instance)
 
-#Renewable 1 nominal capacity is 57.4 kW
+#Renewable 1 nominal capacity is 56.5 kW
 #Generator 1 nominal capacity is 15.0 kW
 #Generator 2 nominal capacity is 0.0 kW
-#Battery nominal capacity is 356.9 kWh
-#NPC is 425.0 Thousand USD
-#The LCOE is 0.546 USD/kWh
-#71.5 % Renewable Penetration
-#1.1 % of energy curtail
-#39.8 % Battery usage
-#The optimization taok 67187.0 seconds
+#Battery nominal capacity is 357.0 kWh
+#NPC is 417.0 Thousand USD
+#The LCOE is 0.535 USD/kWh
+#70.3 % Renewable Penetration
+#0.9 % of energy curtail
+#38.7 % Battery usage
+#The optimization taok 5423.0 seconds

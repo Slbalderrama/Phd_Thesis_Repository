@@ -1,19 +1,17 @@
-Solver command line: ['/opt/gurobi911/linux64/bin/gurobi.sh']
+Solver command line: ['/opt/gurobi951/linux64/bin/gurobi.sh']
 
-Academic license - for non-commercial use only - expires 2021-12-06
-Using license file /home/cie/gurobi.lic
-Read LP format model from file /tmp/tmp77cdy2kf.pyomo.lp
-Reading time = 1.98 seconds
-x1051207: 1051205 rows, 700807 columns, 2755587 nonzeros
-Read MIP start from file /tmp/tmpsr6nctpt.gurobi.mst
-Changed value of parameter timelimit to 300000.0
-   Prev: inf  Min: 0.0  Max: inf  Default: inf
-Changed value of parameter mipgap to 0.005
-   Prev: 0.0001  Min: 0.0  Max: inf  Default: 0.0001
-Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2022-05-23
+Read LP format model from file /tmp/tmpgrn1ntny.pyomo.lp
+Reading time = 2.00 seconds
+x1051207: 1051205 rows, 700807 columns, 2755742 nonzeros
+Read MIP start from file /tmp/tmp6fg04j65.gurobi.mst
+Set parameter TimeLimit to value 300000
+Set parameter MIPGap to value 0.008
+Gurobi Optimizer version 9.5.1 build v9.5.1rc2 (linux64)
 Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
-Optimize a model with 1051205 rows, 700807 columns and 2755587 nonzeros
-Model fingerprint: 0x038a03fd
+Optimize a model with 1051205 rows, 700807 columns and 2755742 nonzeros
+Model fingerprint: 0xb5be8bdb
 Variable types: 525605 continuous, 175202 integer (0 binary)
 Coefficient statistics:
   Matrix range     [1e-02, 1e+02]
@@ -22,15 +20,399 @@ Coefficient statistics:
   RHS range        [1e+00, 4e+02]
 
 Warning: Completing partial solution with 175200 unfixed non-continuous variables out of 175202
-User MIP start produced solution with objective 450845 (1323.82s)
-User MIP start produced solution with objective 450845 (2428.27s)
-Loaded user MIP start with objective 450845
-Processed MIP start in 2461.82 seconds
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 5s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 11s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 17s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 20s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 25s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 31s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 36s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 41s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 46s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 50s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 57s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 62s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 66s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 71s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 76s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 81s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 86s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 91s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 97s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 101s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 107s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 112s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 116s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 121s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 126s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 131s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 136s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 140s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 146s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 151s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 155s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 161s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 165s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 171s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 177s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 180s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 186s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 191s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 195s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 201s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 206s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 211s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 216s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 220s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 226s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 231s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 236s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 241s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 246s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 252s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 257s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 260s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 265s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 270s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 275s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 282s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 286s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 291s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 296s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 300s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 305s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 311s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 315s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 322s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 328s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 331s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 337s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 344s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 347s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 354s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 357s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 361s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 368s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 371s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 378s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 382s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 385s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 392s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 396s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 404s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 407s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 411s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 415s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 423s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 426s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 430s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 438s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 441s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 445s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 453s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 456s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 464s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 468s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 472s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 475s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 499s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 511s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 519s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 521s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 526s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 535s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 536s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 541s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 545s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 550s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 555s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 560s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 565s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 570s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 575s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 580s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 585s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 590s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 595s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 600s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 605s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 610s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 615s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 620s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 625s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 630s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 635s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 640s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 645s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 650s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 655s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 660s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 665s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 670s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 675s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 680s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 685s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 690s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 695s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 700s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 705s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 710s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 715s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 720s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 725s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 730s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 735s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 740s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 745s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 750s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 755s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 760s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 765s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 770s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 775s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 780s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 785s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 790s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 795s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 800s
+User MIP start produced solution with objective 416948 (803.82s)
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 805s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 815s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 820s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 827s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 834s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 840s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 850s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 858s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 864s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 872s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 876s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 883s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 887s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 897s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 902s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 906s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 911s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 915s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 923s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 926s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 930s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 935s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 940s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 945s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 950s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 955s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 960s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 965s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 970s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 975s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 980s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 985s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 990s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 995s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1000s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1005s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1010s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1015s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1020s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1025s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1030s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1035s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1040s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1045s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1050s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1055s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1060s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1065s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1070s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1075s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1080s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1085s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1090s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1095s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1100s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1105s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1110s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1115s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1120s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1125s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1130s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1135s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1142s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1146s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1152s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1155s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1160s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1165s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1176s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1180s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1186s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1191s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1197s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1202s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1207s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1210s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1216s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1223s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1227s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1231s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1236s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1240s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1245s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1250s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1255s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1260s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1265s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1273s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1279s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1283s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1287s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1290s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1297s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1300s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1308s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1313s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1318s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1323s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1325s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1330s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1336s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1340s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1345s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1352s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1355s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1361s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1368s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1370s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1375s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1380s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1386s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1390s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1395s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1400s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1405s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1410s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1416s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1421s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1425s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1431s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1435s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1441s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1447s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1450s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1455s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1460s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1465s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1473s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1476s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1480s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1485s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1490s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1495s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1500s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1505s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1510s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1515s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1522s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1525s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1530s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1536s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1551s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1561s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1586s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1593s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1595s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1601s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1607s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1610s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1616s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1620s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1625s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1630s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1635s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1640s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1645s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1652s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1664s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1666s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1671s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1675s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1680s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1685s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1694s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1695s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1701s
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 1705s
+Processing user MIP start: 25 nodes explored in subMIP, total elapsed time 1710s
+Processing user MIP start: 26 nodes explored in subMIP, total elapsed time 1715s
+Processing user MIP start: 26 nodes explored in subMIP, total elapsed time 1720s
+Processing user MIP start: 46 nodes explored in subMIP, total elapsed time 1725s
+Processing user MIP start: 52 nodes explored in subMIP, total elapsed time 1730s
+Processing user MIP start: 53 nodes explored in subMIP, total elapsed time 1735s
+Processing user MIP start: 60 nodes explored in subMIP, total elapsed time 1740s
+Processing user MIP start: 74 nodes explored in subMIP, total elapsed time 1745s
+Processing user MIP start: 80 nodes explored in subMIP, total elapsed time 1750s
+Processing user MIP start: 80 nodes explored in subMIP, total elapsed time 1755s
+Processing user MIP start: 80 nodes explored in subMIP, total elapsed time 1760s
+Processing user MIP start: 102 nodes explored in subMIP, total elapsed time 1765s
+Processing user MIP start: 107 nodes explored in subMIP, total elapsed time 1770s
+Processing user MIP start: 107 nodes explored in subMIP, total elapsed time 1775s
+Processing user MIP start: 107 nodes explored in subMIP, total elapsed time 1780s
+Processing user MIP start: 131 nodes explored in subMIP, total elapsed time 1785s
+Processing user MIP start: 134 nodes explored in subMIP, total elapsed time 1790s
+Processing user MIP start: 134 nodes explored in subMIP, total elapsed time 1795s
+Processing user MIP start: 156 nodes explored in subMIP, total elapsed time 1800s
+Processing user MIP start: 161 nodes explored in subMIP, total elapsed time 1805s
+Processing user MIP start: 161 nodes explored in subMIP, total elapsed time 1810s
+Processing user MIP start: 174 nodes explored in subMIP, total elapsed time 1815s
+Processing user MIP start: 188 nodes explored in subMIP, total elapsed time 1820s
+Processing user MIP start: 188 nodes explored in subMIP, total elapsed time 1825s
+Processing user MIP start: 188 nodes explored in subMIP, total elapsed time 1830s
+Processing user MIP start: 209 nodes explored in subMIP, total elapsed time 1835s
+Processing user MIP start: 215 nodes explored in subMIP, total elapsed time 1840s
+Processing user MIP start: 215 nodes explored in subMIP, total elapsed time 1845s
+Processing user MIP start: 231 nodes explored in subMIP, total elapsed time 1850s
+Processing user MIP start: 237 nodes explored in subMIP, total elapsed time 1855s
+Processing user MIP start: 242 nodes explored in subMIP, total elapsed time 1860s
+Processing user MIP start: 242 nodes explored in subMIP, total elapsed time 1865s
+Processing user MIP start: 243 nodes explored in subMIP, total elapsed time 1870s
+Processing user MIP start: 253 nodes explored in subMIP, total elapsed time 1875s
+Processing user MIP start: 266 nodes explored in subMIP, total elapsed time 1880s
+Processing user MIP start: 269 nodes explored in subMIP, total elapsed time 1885s
+Processing user MIP start: 269 nodes explored in subMIP, total elapsed time 1890s
+Processing user MIP start: 283 nodes explored in subMIP, total elapsed time 1895s
+Processing user MIP start: 303 nodes explored in subMIP, total elapsed time 1900s
+Processing user MIP start: 319 nodes explored in subMIP, total elapsed time 1905s
+Processing user MIP start: 323 nodes explored in subMIP, total elapsed time 1910s
+Processing user MIP start: 323 nodes explored in subMIP, total elapsed time 1915s
+Processing user MIP start: 329 nodes explored in subMIP, total elapsed time 1921s
+Processing user MIP start: 337 nodes explored in subMIP, total elapsed time 1925s
+Processing user MIP start: 356 nodes explored in subMIP, total elapsed time 1931s
+Processing user MIP start: 367 nodes explored in subMIP, total elapsed time 1935s
+Processing user MIP start: 373 nodes explored in subMIP, total elapsed time 1940s
+Processing user MIP start: 377 nodes explored in subMIP, total elapsed time 1945s
+Processing user MIP start: 377 nodes explored in subMIP, total elapsed time 1950s
+Processing user MIP start: 390 nodes explored in subMIP, total elapsed time 1955s
+Processing user MIP start: 403 nodes explored in subMIP, total elapsed time 1960s
+Processing user MIP start: 404 nodes explored in subMIP, total elapsed time 1965s
+Processing user MIP start: 404 nodes explored in subMIP, total elapsed time 1970s
+Processing user MIP start: 407 nodes explored in subMIP, total elapsed time 1975s
+Processing user MIP start: 430 nodes explored in subMIP, total elapsed time 1980s
+Processing user MIP start: 431 nodes explored in subMIP, total elapsed time 1985s
+Processing user MIP start: 431 nodes explored in subMIP, total elapsed time 1990s
+Processing user MIP start: 438 nodes explored in subMIP, total elapsed time 1995s
+Processing user MIP start: 453 nodes explored in subMIP, total elapsed time 2000s
+Processing user MIP start: 470 nodes explored in subMIP, total elapsed time 2005s
+Processing user MIP start: 485 nodes explored in subMIP, total elapsed time 2010s
+Processing user MIP start: 485 nodes explored in subMIP, total elapsed time 2015s
+Processing user MIP start: 485 nodes explored in subMIP, total elapsed time 2020s
+Loaded user MIP start with objective 416948
+Processed MIP start in 2024.85 seconds (5031.35 work units)
 
-Presolve removed 14 rows and 82666 columns
-Presolve time: 1.91s
-Presolved: 1051191 rows, 618141 columns, 2672928 nonzeros
-Variable types: 442939 continuous, 175202 integer (0 binary)
+Presolve removed 14 rows and 81466 columns
+Presolve time: 1.86s
+Presolved: 1051191 rows, 619341 columns, 2674283 nonzeros
+Variable types: 444139 continuous, 175202 integer (0 binary)
 
 Deterministic concurrent LP optimizer: primal simplex, dual simplex, and barrier
 Showing barrier log only...
@@ -42,221 +424,117 @@ Ordering time: 0.08s
 Barrier statistics:
  Dense cols : 4
  AA' NZ     : 1.967e+06
- Factor NZ  : 7.358e+06 (roughly 500 MBytes of memory)
- Factor Ops : 8.094e+07 (less than 1 second per iteration)
+ Factor NZ  : 7.388e+06 (roughly 500 MB of memory)
+ Factor Ops : 1.122e+08 (less than 1 second per iteration)
  Threads    : 14
 
                   Objective                Residual
 Iter       Primal          Dual         Primal    Dual     Compl     Time
-   0   3.40376921e+08 -3.02400752e+10  1.75e+06 8.09e+01  2.49e+06  2466s
-   1   3.36031019e+08 -3.62126786e+10  1.72e+06 8.50e+02  2.08e+06  2467s
-   2   2.06165360e+08 -4.12787438e+10  9.25e+05 1.37e+01  1.03e+06  2468s
-   3   1.45037427e+08 -4.14935029e+10  6.56e+05 6.22e-07  8.03e+05  2470s
-   4   3.14780229e+06 -3.60496788e+10  8.13e+03 2.38e-04  3.32e+04  2471s
-   5   1.72919722e+06 -6.66495874e+09  1.72e+03 3.40e-12  5.26e+03  2471s
-   6   1.36858986e+06 -1.00891638e+09  1.78e+02 2.28e-12  7.07e+02  2472s
-   7   1.32234570e+06 -2.81746597e+07  1.94e-12 1.42e-12  1.98e+01  2473s
-   8   1.28092031e+06 -6.38659955e+06  4.16e-12 3.62e-13  5.15e+00  2474s
-   9   1.15974068e+06 -5.27035586e+06  3.74e-12 3.10e-13  4.32e+00  2475s
-  10   1.01030556e+06 -1.48478758e+06  2.42e-12 9.86e-14  1.68e+00  2476s
-  11   8.52675654e+05 -4.52664384e+05  1.82e-12 4.93e-14  8.77e-01  2477s
-  12   7.50838236e+05 -2.54721709e+05  1.39e-12 3.82e-14  6.75e-01  2478s
-  13   7.21610469e+05 -2.36986521e+05  1.36e-12 3.64e-14  6.44e-01  2479s
-  14   6.73697147e+05 -4.13763622e+04  1.19e-12 2.18e-14  4.80e-01  2480s
-  15   5.94562037e+05  1.38041060e+05  1.16e-12 1.15e-14  3.07e-01  2481s
-  16   5.46152643e+05  2.31341401e+05  1.06e-12 6.66e-15  2.11e-01  2483s
-  17   4.90713051e+05  3.02327635e+05  3.31e-12 4.44e-15  1.27e-01  2484s
-  18   4.63111057e+05  3.60503067e+05  5.02e-12 2.22e-15  6.89e-02  2485s
-  19   4.49012063e+05  3.74434368e+05  6.09e-12 1.78e-15  5.01e-02  2486s
-  20   4.44889279e+05  3.87782724e+05  2.24e-11 1.33e-15  3.83e-02  2487s
-  21   4.39407230e+05  3.98415488e+05  1.15e-10 7.74e-15  2.75e-02  2488s
-  22   4.31955030e+05  4.04360981e+05  8.43e-10 1.19e-12  1.85e-02  2488s
-  23   4.27126989e+05  4.13261026e+05  7.66e-10 2.66e-14  9.31e-03  2489s
-  24   4.23355986e+05  4.16770659e+05  1.42e-09 3.17e-14  4.42e-03  2491s
-  25   4.21671091e+05  4.18520835e+05  1.13e-09 2.73e-11  2.12e-03  2492s
-  26   4.21105893e+05  4.19287330e+05  1.11e-09 5.09e-11  1.22e-03  2493s
-  27   4.20442324e+05  4.19688966e+05  9.84e-10 6.25e-13  5.06e-04  2494s
-  28   4.20110761e+05  4.19859338e+05  3.91e-10 3.51e-14  1.69e-04  2495s
-  29   4.20025887e+05  4.19960788e+05  1.81e-09 1.42e-10  4.37e-05  2495s
-  30   4.19998058e+05  4.19981739e+05  1.21e-09 1.35e-10  1.10e-05  2496s
-  31   4.19987137e+05  4.19986091e+05  7.78e-11 4.37e-11  7.03e-07  2498s
-  32   4.19986386e+05  4.19986322e+05  8.51e-10 3.93e-09  4.31e-08  2499s
-  33   4.19986386e+05  4.19986322e+05  2.37e-06 3.80e-09  4.31e-08  2500s
-  34   4.19986386e+05  4.19986322e+05  1.21e-06 3.81e-09  4.31e-08  2502s
-  35   4.19986386e+05  4.19986322e+05  1.39e-06 2.36e-11  4.31e-08  2503s
-  36   4.19986386e+05  4.19986322e+05  3.54e-06 2.36e-11  4.31e-08  2505s
-  37   4.19986386e+05  4.19986322e+05  3.54e-06 2.46e-11  4.31e-08  2507s
-  38   4.19986386e+05  4.19986322e+05  1.82e-06 2.46e-11  4.31e-08  2509s
-  39   4.19986386e+05  4.19986322e+05  5.19e-06 2.46e-11  4.31e-08  2510s
-  40   4.19986386e+05  4.19986322e+05  5.19e-06 2.55e-11  4.31e-08  2512s
-  41   4.19986386e+05  4.19986322e+05  6.55e-06 2.46e-11  4.31e-08  2514s
-  42   4.19986386e+05  4.19986322e+05  6.55e-06 2.55e-11  4.31e-08  2516s
+   0   3.03685792e+08 -2.63554953e+10  1.77e+06 6.47e+01  2.36e+06  2030s
+   1   3.00083541e+08 -3.22530105e+10  1.74e+06 6.48e+02  1.94e+06  2030s
+   2   1.87521637e+08 -3.61301199e+10  9.37e+05 1.20e+01  9.82e+05  2031s
+   3   1.25614138e+08 -3.66047716e+10  7.49e+05 9.69e-06  8.59e+05  2031s
+   4   6.77773100e+06 -3.25889180e+10  3.28e+04 3.31e-12  5.65e+04  2032s
+   5   2.26707935e+06 -8.75596711e+09  6.30e+03 5.69e-06  9.47e+03  2032s
+   6   1.44593721e+06 -2.41617740e+09  1.64e+03 6.80e-06  2.15e+03  2032s
+   7   1.19297511e+06 -5.41489113e+08  3.56e+02 1.15e-06  4.16e+02  2033s
+   8   1.11054638e+06 -2.62070740e+07  4.60e-12 2.45e-07  1.83e+01  2033s
+   9   1.06877074e+06 -4.10858400e+06  2.28e-11 4.26e-08  3.48e+00  2033s
+  10   9.61680881e+05 -3.84387327e+06  1.91e-11 4.05e-08  3.23e+00  2034s
+  11   8.51521823e+05 -2.21261658e+06  1.80e-11 2.53e-08  2.06e+00  2034s
+  12   7.89742558e+05 -1.35132739e+06  1.41e-11 1.76e-08  1.44e+00  2034s
+  13   7.30791343e+05 -7.35156247e+05  8.96e-12 1.18e-08  9.84e-01  2035s
+  14   6.58876085e+05 -3.26552256e+05  7.92e-12 7.87e-09  6.62e-01  2035s
+  15   6.54685554e+05 -1.28704575e+05  7.76e-12 5.91e-09  5.26e-01  2036s
+  16   6.02092583e+05  8.50526313e+04  1.14e-11 4.15e-09  3.47e-01  2036s
+  17   5.62771742e+05  1.41372707e+04  9.31e-12 3.94e-09  3.68e-01  2037s
+  18   5.37887285e+05  2.05924437e+05  6.86e-12 2.30e-09  2.23e-01  2037s
+  19   5.05452307e+05  2.64404554e+05  5.55e-12 8.82e-11  1.62e-01  2037s
+  20   4.81188337e+05  3.17330203e+05  9.25e-12 6.18e-11  1.10e-01  2038s
+  21   4.58334012e+05  3.50393123e+05  2.35e-11 1.04e-10  7.25e-02  2038s
+  22   4.49156197e+05  3.73381793e+05  3.89e-11 2.47e-10  5.09e-02  2039s
+  23   4.36405599e+05  3.88484250e+05  1.14e-10 1.29e-10  3.22e-02  2039s
+  24   4.26776109e+05  3.98480771e+05  3.52e-10 5.55e-11  1.90e-02  2040s
+  25   4.22554254e+05  4.03551130e+05  7.20e-10 2.51e-10  1.28e-02  2040s
+  26   4.20344040e+05  4.07200842e+05  7.47e-10 1.64e-11  8.83e-03  2040s
+  27   4.18072616e+05  4.09111308e+05  7.25e-10 2.84e-10  6.02e-03  2041s
+  28   4.16582967e+05  4.09934296e+05  5.39e-10 1.29e-10  4.46e-03  2041s
+  29   4.15675259e+05  4.10782613e+05  4.24e-10 2.24e-10  3.29e-03  2042s
+  30   4.14109734e+05  4.11377092e+05  2.33e-10 1.60e-10  1.83e-03  2042s
+  31   4.13093608e+05  4.12159924e+05  8.74e-10 5.68e-10  6.27e-04  2042s
+  32   4.12473554e+05  4.12300080e+05  1.39e-09 3.38e-10  1.16e-04  2043s
+  33   4.12424070e+05  4.12340050e+05  7.27e-10 9.09e-13  5.64e-05  2043s
+  34   4.12402459e+05  4.12353792e+05  4.44e-10 2.36e-11  3.27e-05  2044s
+  35   4.12388889e+05  4.12360611e+05  2.69e-10 6.55e-11  1.90e-05  2044s
+  36   4.12381774e+05  4.12363655e+05  1.78e-10 9.09e-13  1.22e-05  2045s
+  37   4.12377482e+05  4.12365256e+05  1.24e-10 3.60e-10  8.21e-06  2045s
+  38   4.12374292e+05  4.12366139e+05  8.34e-11 7.39e-13  5.47e-06  2046s
+  39   4.12371789e+05  4.12366610e+05  5.18e-11 9.09e-13  3.48e-06  2046s
+  40   4.12370500e+05  4.12366836e+05  3.55e-11 3.52e-12  2.46e-06  2047s
+  41   4.12369409e+05  4.12367055e+05  2.15e-11 2.34e-14  1.58e-06  2047s
+  42   4.12369057e+05  4.12367226e+05  1.71e-11 9.09e-13  1.23e-06  2048s
+  43   4.12368689e+05  4.12367347e+05  1.25e-11 1.82e-12  9.01e-07  2048s
+  44   4.12368300e+05  4.12367462e+05  8.14e-12 1.36e-12  5.63e-07  2049s
+  45   4.12368125e+05  4.12367522e+05  5.91e-12 7.93e-10  4.05e-07  2050s
+  46   4.12367953e+05  4.12367573e+05  2.55e-11 3.02e-10  2.55e-07  2051s
+  47   4.12367869e+05  4.12367606e+05  1.78e-11 2.69e-10  1.76e-07  2051s
+  48   4.12367806e+05  4.12367616e+05  2.00e-11 1.82e-10  1.28e-07  2052s
+  49   4.12367784e+05  4.12367619e+05  1.97e-11 3.20e-10  1.11e-07  2052s
+  50   4.12367743e+05  4.12367635e+05  1.75e-10 9.09e-13  7.27e-08  2053s
+  51   4.12367718e+05  4.12367650e+05  3.11e-08 2.56e-08  4.59e-08  2053s
+  52   4.12367688e+05  4.12367651e+05  1.86e-08 1.57e-08  2.47e-08  2054s
+  53   4.12367658e+05  4.12367656e+05  5.07e-08 5.81e-08  1.11e-09  2055s
 
-Barrier performed 42 iterations in 2515.64 seconds
-Sub-optimal termination - objective 4.19986386e+05
+Barrier solved model in 53 iterations and 2054.98 seconds (5052.36 work units)
+Optimal objective 4.12367658e+05
 
 
 Root crossover log...
 
-     690 DPushes remaining with DInf 0.0000000e+00              2517s
-       0 DPushes remaining with DInf 0.0000000e+00              2518s
+   87957 DPushes remaining with DInf 0.0000000e+00              2056s
+    1152 DPushes remaining with DInf 0.0000000e+00              2060s
+       0 DPushes remaining with DInf 0.0000000e+00              2063s
 
-  126652 PPushes remaining with PInf 2.8131991e-04              2518s
-  118475 PPushes remaining with PInf 2.8315975e-04              2531s
-   92032 PPushes remaining with PInf 6.7462123e-05              2687s
-   55581 PPushes remaining with PInf 6.7462123e-05              2691s
-   30880 PPushes remaining with PInf 6.7462123e-05              2695s
-       0 PPushes remaining with PInf 0.0000000e+00              2702s
+  106134 PPushes remaining with PInf 0.0000000e+00              2063s
+   51316 PPushes remaining with PInf 0.0000000e+00              2067s
+   46509 PPushes remaining with PInf 0.0000000e+00              2070s
+   16774 PPushes remaining with PInf 0.0000000e+00              2076s
+       0 PPushes remaining with PInf 0.0000000e+00              2078s
 
-  Push phase complete: Pinf 0.0000000e+00, Dinf 4.5945948e-10   2702s
+  Push phase complete: Pinf 0.0000000e+00, Dinf 3.2296151e-09   2078s
 
 
 Root simplex log...
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
-  127147    4.1998633e+05   0.000000e+00   0.000000e+00   2703s
-  127147    4.1998633e+05   0.000000e+00   0.000000e+00   2705s
-Concurrent spin time: 0.00s
+  112413    4.1236766e+05   0.000000e+00   0.000000e+00   2078s
+  112413    4.1236766e+05   0.000000e+00   0.000000e+00   2080s
+Concurrent spin time: 0.01s
 
 Solved with barrier
 
-Root relaxation: objective 4.199863e+05, 127147 iterations, 240.74 seconds
-Total elapsed time = 3738.84s
-Total elapsed time = 3837.42s
-Total elapsed time = 3935.86s
-Total elapsed time = 4031.84s
+Root relaxation: objective 4.123677e+05, 112413 iterations, 52.38 seconds (180.10 work units)
+Total elapsed time = 2252.50s
+Total elapsed time = 2330.80s
+Total elapsed time = 2406.37s
+Total elapsed time = 2486.34s
 
     Nodes    |    Current Node    |     Objective Bounds      |     Work
  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 
-     0     0 419986.330    0 35186 450844.589 419986.330  6.84%     - 4139s
-     0     0 419986.330    0 36299 450844.589 419986.330  6.84%     - 4820s
-H    0     0                    426944.34308 419986.330  1.63%     - 5158s
-     0     0 419986.330    0 36279 426944.343 419986.330  1.63%     - 5604s
-     0     0 420172.452    0 67458 426944.343 420172.452  1.59%     - 6741s
-     0     0 420195.635    0 33203 426944.343 420195.635  1.58%     - 7153s
-     0     0 420275.467    0 32937 426944.343 420275.467  1.56%     - 7679s
-     0     0 420277.445    0 33018 426944.343 420277.445  1.56%     - 7764s
-     0     0 420277.674    0 33026 426944.343 420277.674  1.56%     - 7790s
-     0     0 420277.695    0 33024 426944.343 420277.695  1.56%     - 7813s
-     0     0 420408.222    0 33946 426944.343 420408.222  1.53%     - 8566s
-     0     0 420431.554    0 34697 426944.343 420431.554  1.53%     - 10961s
-     0     0 420432.480    0 34818 426944.343 420432.480  1.53%     - 10981s
-     0     0 420432.565    0 34834 426944.343 420432.565  1.53%     - 10992s
-     0     0 420449.936    0 34850 426944.343 420449.936  1.52%     - 11285s
-     0     0 420452.542    0 35006 426944.343 420452.542  1.52%     - 12121s
-     0     0 420452.698    0 35040 426944.343 420452.698  1.52%     - 12131s
-     0     0 420452.795    0 35041 426944.343 420452.795  1.52%     - 12138s
-     0     0 420456.700    0 35073 426944.343 420456.700  1.52%     - 12193s
-     0     0 420456.872    0 35081 426944.343 420456.872  1.52%     - 12205s
-     0     0 420457.005    0 35083 426944.343 420457.005  1.52%     - 12214s
-     0     0 420457.110    0 35083 426944.343 420457.110  1.52%     - 12221s
-     0     0 420458.292    0 35065 426944.343 420458.292  1.52%     - 12251s
-     0     0 420458.488    0 35067 426944.343 420458.488  1.52%     - 12263s
-     0     0 420458.570    0 35071 426944.343 420458.570  1.52%     - 12271s
-     0     0 420459.526    0 35071 426944.343 420459.526  1.52%     - 12307s
-     0     0 420459.526    0 34608 426944.343 420459.526  1.52%     - 12502s
-     0     2 420459.526    0 34530 426944.343 420459.526  1.52%     - 12670s
-     1     3 423110.740    1 38802 426944.343 421863.719  1.19% 536741 25276s
-     3     4     cutoff    2      426944.343 423361.014  0.84% 187704 25283s
-     6     8 423364.564    3 7067 426944.343 423361.185  0.84% 94202 25326s
-    10    16 423366.506    4 6973 426944.343 423364.710  0.84% 57270 25367s
-    18    32 423366.549    5 6969 426944.343 423366.441  0.84% 32337 25431s
-    34    48 423366.552    6 6965 426944.343 423366.485  0.84% 17769 25440s
-    50    64 423366.562    6 6971 426944.343 423366.485  0.84% 12091 25445s
-    66    80 423366.744    7 6969 426944.343 423366.507  0.84%  9167 25453s
-H   82    96                    426944.10406 423366.507  0.84%  7390 25487s
-H   84    96                    426944.03950 423366.507  0.84%  7217 25487s
-H   87    96                    426943.87354 423366.507  0.84%  6971 25487s
-H   90    96                    426943.41780 423366.507  0.84%  6741 25487s
-    98   125 423366.936    9 6968 426943.418 423366.507  0.84%  6194 25494s
-H  127   141                    426883.98003 423366.507  0.82%  4784 26866s
-H  128   141                    426878.53508 423366.507  0.82%  4747 26866s
-H  129   141                    425624.17311 423366.507  0.53%  4710 26866s
-   143   365 423366.945   12 6965 425624.173 423366.507  0.53%  4254 26928s
-   367   667 423367.642   24 6949 425624.173 423366.507  0.53%  1680 27002s
-   669   965 423369.259   43 6935 425624.173 423366.507  0.53%   933 27068s
-   967  1257 423369.997   60 6929 425624.173 423366.507  0.53%   653 27114s
-  1259  1555 423369.997   79 6927 425624.173 423366.507  0.53%   505 27162s
-  1557  1837 423369.997   93 6926 425624.173 423366.507  0.53%   411 27208s
-  1839  2111 423370.445  112 6921 425624.173 423366.507  0.53%   350 27257s
-  2113  2402 423371.335  130 6910 425624.173 423366.507  0.53%   307 27297s
-  2404  2439 423372.245  149 6902 425624.173 423366.507  0.53%   271 28336s
-  2441  2687 423372.248  150 6902 425624.173 423366.507  0.53%   267 28388s
-  2689  2958 423372.513  169 6894 425624.173 423366.507  0.53%   245 28435s
-  2960  3253 423372.532  188 6894 425624.173 423366.507  0.53%   224 28478s
-  3255  3539 423373.624  207 6884 425624.173 423366.507  0.53%   205 28520s
-  3541  3826 423374.051  224 6876 425624.173 423366.507  0.53%   189 28559s
-  3828  4106 423374.693  242 6868 425624.173 423366.507  0.53%   176 28603s
-  4108  4378 423374.755  259 6861 425624.173 423366.507  0.53%   164 28652s
-  4380  4631 423374.942  278 6861 425624.173 423366.507  0.53%   155 28698s
-  4633  4903 423375.039  297 6864 425624.173 423366.507  0.53%   148 28738s
-  4905  5172 423375.069  316 6864 425624.173 423366.507  0.53%   140 28779s
-  5174  5455 423375.728  333 6850 425624.173 423366.507  0.53%   133 28817s
-  5457  5744 423375.769  352 6851 425624.173 423366.507  0.53%   127 28856s
-  5746  6021 423375.874  369 6849 425624.173 423366.507  0.53%   121 28892s
-  6023  6298 423375.958  383 6849 425624.173 423366.507  0.53%   116 28934s
-  6300  6582 423376.203  399 6842 425624.173 423366.507  0.53%   112 28969s
-  6584  6866 423376.513  418 6839 425624.173 423366.507  0.53%   107 29002s
-  6868  7142 423376.514  437 6838 425624.173 423366.507  0.53%   103 29040s
-  7144  7418 423376.670  456 6831 425624.173 423366.507  0.53%   100 29073s
-  7420  7694 423376.676  475 6831 425624.173 423366.507  0.53%  96.1 29107s
-  7696  7970 423376.676  494 6831 425624.173 423366.507  0.53%  93.0 29142s
-  7972  8250 423376.703  509 6826 425624.173 423366.507  0.53%  90.1 29179s
-  8252  8510 423376.972  528 6822 425624.173 423366.507  0.53%  87.4 29212s
-  8512  8775 423376.981  538 6821 425624.173 423366.507  0.53%  85.0 29244s
-  8777  9043 423377.674  553 6812 425624.173 423366.507  0.53%  82.7 29279s
-  9045  9320 423377.995  567 6811 425624.173 423366.507  0.53%  80.6 29312s
-  9322  9596 423377.787  582 6811 425624.173 423366.507  0.53%  78.4 29342s
-  9598  9875 423377.821  601 6806 425624.173 423366.507  0.53%  76.4 29376s
-  9877 10162 423378.031  619 6805 425624.173 423366.507  0.53%  74.5 29408s
- 10164 10420 423378.090  637 6803 425624.173 423366.507  0.53%  72.6 29441s
-H10422 10420                    425615.06327 423366.507  0.53%  71.0 30669s
- 10423 10421 423378.853  653 34608 425615.063 423366.507  0.53%  71.0 39299s
-H10424  9900                    425614.93451 423366.507  0.53%  71.0 39822s
-H10425  9405                    425614.90621 423366.507  0.53%  71.0 40865s
- 10426  9406 423376.708  305 35865 425614.906 423366.507  0.53%  71.0 41255s
-H10426  8936                    425614.71976 423366.507  0.53%  71.0 42254s
-H10426  8489                    425614.70579 423366.507  0.53%  71.0 42254s
-H10426  8065                    425614.70080 423366.507  0.53%  71.0 42254s
- 10427  8066 423377.984  455 64804 425614.701 423366.507  0.53%  71.0 42261s
- 10428  8066 423379.919  639 34423 425614.701 423366.507  0.53%  71.0 42814s
- 10429  8067 423374.815  289 35051 425614.701 423366.507  0.53%  71.0 43393s
- 10430  8068 423377.734  494 35304 425614.701 423366.507  0.53%  71.0 43541s
- 10431  8068 423379.719  562 35338 425614.701 423366.507  0.53%  71.0 43738s
-H10431  7664                    425602.25596 423366.507  0.53%  71.0 43751s
- 10432  7665 423377.926  453 35337 425602.256 423366.507  0.53%  71.0 43764s
- 10433  7666 423376.519  219 35339 425602.256 423366.507  0.53%  71.0 43948s
- 10434  7666 423381.449  343 35343 425602.256 423366.507  0.53%  71.0 43967s
- 10435  7667 423379.630  531 35344 425602.256 423366.507  0.53%  71.0 44407s
- 10436  7668 423376.767  358 34663 425602.256 423366.507  0.53%  70.9 44603s
-H10436  7284                    425601.80915 423366.507  0.53%  70.9 46265s
-H10437  6922                    425601.71059 423366.507  0.53%   105 46423s
- 10438  6923 423366.507   11 38790 425601.711 423366.507  0.53%   160 60235s
- 10440  6923     cutoff   12      425601.711 423366.507  0.53%   162 60311s
- 10443  6926 423366.507   13 7317 425601.711 423366.507  0.53%   162 60397s
- 10447  6933 423366.507   14 7316 425601.711 423366.507  0.53%   162 60509s
- 10455  6946 423366.507   15 7315 425601.711 423366.507  0.53%   162 60778s
-H10471  6611                    425601.34726 423366.507  0.53%   162 64988s
-H10473  6281                    425601.31178 423366.507  0.53%   162 64988s
-H10476  5967                    425600.87557 423366.507  0.52%   162 64988s
- 10487  5980 423366.507   17 7313 425600.876 423366.507  0.52%   162 64994s
- 10503  5990 423366.507   18 7312 425600.876 423366.507  0.52%   161 64997s
- 10519  6001 423366.507   19 7312 425600.876 423366.507  0.52%   161 65003s
- 10535  6028 423366.507   20 7311 425600.876 423366.507  0.52%   161 65007s
-H10567  5736                    425570.83081 423366.507  0.52%   160 67026s
-H10568  5454                    425562.41789 423366.507  0.52%   160 67027s
-H10569  5185                    425132.46082 423366.507  0.42%   160 67027s
+     0     0 412367.657    0 35468 416947.550 412367.657  1.10%     - 2490s
+     0     0 412375.820    0 34504 416947.550 412375.820  1.10%     - 3076s
+     0     0 412375.820    0 34251 416947.550 412375.820  1.10%     - 4818s
+     0     0 415713.074    0 14869 416947.550 415713.074  0.30%     - 5264s
 
 Cutting planes:
-  Gomory: 60
-  MIR: 55871
+  MIR: 17952
 
-Explored 10583 nodes (2330636 simplex iterations) in 67027.23 seconds
+Explored 1 nodes (579744 simplex iterations) in 5264.99 seconds (11295.04 work units)
 Thread count was 32 (of 32 available processors)
 
-Solution count 10: 425132 425562 425571 ... 425615
+Solution count 1: 416948 
 
-Optimal solution found (tolerance 5.00e-03)
-Best objective 4.251324608193e+05, best bound 4.233665068347e+05, gap 0.4154%
+Optimal solution found (tolerance 8.00e-03)
+Best objective 4.169475501049e+05, best bound 4.157130743083e+05, gap 0.2961%
 

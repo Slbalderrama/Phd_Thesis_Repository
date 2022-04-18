@@ -24,7 +24,7 @@ import matplotlib.lines as mlines
 # load data
 
 data = pd.read_csv('Data/Data_Espino_Thesis_Fill_2.csv', header=0,index_col=0)
-index = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
+index = pd.date_range(start='2016-01-01 00:00:00', periods=166464, freq=('5min'))
 data.index = index
 
 pv_curtailment = pd.read_csv('Results/Renewable_Energy_Optimal_Espino.csv', header=0,index_col=0)
@@ -41,7 +41,7 @@ data['year'] = data.index.year
 data['month'] = data.index.month
 
 data_hourly = data.groupby(['year','day', 'hour']).mean()
-index_hourly = pd.DatetimeIndex(start='2016-01-01 00:00:00', periods=13872, 
+index_hourly = pd.date_range(start='2016-01-01 00:00:00', periods=13872, 
                                    freq=('1H'))
 
 data_hourly.index = index_hourly

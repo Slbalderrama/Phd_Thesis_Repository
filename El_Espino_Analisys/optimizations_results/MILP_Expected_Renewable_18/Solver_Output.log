@@ -1,0 +1,79 @@
+Solver command line: ['/opt/gurobi951/linux64/bin/gurobi.sh']
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2022-05-23
+Read LP format model from file /tmp/tmpwnt6ckgv.pyomo.lp
+Reading time = 0.19 seconds
+x105127: 105125 rows, 70087 columns, 275653 nonzeros
+Read MIP start from file /tmp/tmp_jcbwlq6.gurobi.mst
+Set parameter TimeLimit to value 300000
+Set parameter MIPGap to value 0.008
+Gurobi Optimizer version 9.5.1 build v9.5.1rc2 (linux64)
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+Optimize a model with 105125 rows, 70087 columns and 275653 nonzeros
+Model fingerprint: 0xb343ccdb
+Variable types: 52565 continuous, 17522 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e-02, 1e+02]
+  Objective range  [3e-01, 5e+04]
+  Bounds range     [2e+00, 1e+03]
+  RHS range        [1e+00, 4e+02]
+
+Warning: Completing partial solution with 17520 unfixed non-continuous variables out of 17522
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 5s
+User MIP start produced solution with objective 573673 (8.04s)
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 10s
+User MIP start produced solution with objective 433908 (11.74s)
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 15s
+User MIP start produced solution with objective 414235 (17.59s)
+Processing user MIP start: 0 nodes explored in subMIP, total elapsed time 20s
+User MIP start produced solution with objective 414215 (20.72s)
+Processing user MIP start: 171 nodes explored in subMIP, total elapsed time 25s
+Processing user MIP start: 448 nodes explored in subMIP, total elapsed time 30s
+Loaded user MIP start with objective 414215
+Processed MIP start in 30.44 seconds (69.18 work units)
+
+Presolve removed 5 rows and 8353 columns
+Presolve time: 0.13s
+Presolved: 105120 rows, 61734 columns, 267298 nonzeros
+Variable types: 44212 continuous, 17522 integer (0 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex (primal and dual model)
+Showing first log only...
+
+Root relaxation presolve removed 35040 rows and 17931 columns
+Root relaxation presolved: 70080 rows, 43803 columns, 196807 nonzeros
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    3.1195572e+05   7.570640e+03   2.905267e+09     31s
+   25478    4.2658622e+05   0.000000e+00   2.192437e+05     35s
+   32408    4.0495051e+05   0.000000e+00   5.080699e+04     40s
+Concurrent spin time: 4.63s
+
+Solved with primal simplex (dual model)
+
+Root relaxation: objective 4.005669e+05, 78787 iterations, 17.67 seconds (57.51 work units)
+Total elapsed time = 50.73s
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 400566.917    0 4992 414214.880 400566.917  3.29%     -   51s
+     0     0 400575.004    0 4983 414214.880 400575.004  3.29%     -   66s
+     0     0 400575.004    0 4999 414214.880 400575.004  3.29%     -   81s
+     0     0 413461.645    0 1496 414214.880 413461.645  0.18%     -   91s
+
+Cutting planes:
+  MIR: 3108
+
+Explored 1 nodes (153216 simplex iterations) in 91.29 seconds (244.89 work units)
+Thread count was 32 (of 32 available processors)
+
+Solution count 4: 414215 414235 433908 573673 
+
+Optimal solution found (tolerance 8.00e-03)
+Best objective 4.142148801044e+05, best bound 4.134616449719e+05, gap 0.1818%
+

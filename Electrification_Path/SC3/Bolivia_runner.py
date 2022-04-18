@@ -169,3 +169,22 @@ print('The average investment per household for new connected  people is ' +str(
 Results.to_csv('Bolivia/OnSSET_Results.csv')
 
 microgrids_solution.to_csv('Bolivia/Microgrids_results.csv')
+
+
+# The number of Unconnected communities in Bolivia is 8671
+# New connected people with the grid is 3277004.0
+# New connected people with microgrid is 83364.0
+# New connected people with SHS is 494925.0
+# Total number of new connected  people is 3855293.0
+# The total NPC of the grid is 1612.0 thousands of millons of USD.
+# The total NPC of the microgrid is 60.0 thousands of millons of USD.
+# The total NPC of the microgrid is 230.0 thousands of millons of USD.
+# Total NPC is 1902.0 thousands of millons of USD.
+# The total new installed capacity of the grid is 278.1.
+# TThe total new installed capacity of the microgrid is 7.6.
+# The total new installed capacity of the microgrid is 217.1.
+# The total new installed capacity of new connected  people is 502.80000000000007.
+# The investment per household for the grid is 1807.0 USD.
+# The investment per household for the microgrid is 2056.0 USD.
+# The investment per household for the microgrid is 1293.0 USD.
+# The average investment per household for new connected  people is 1618.0 USD.

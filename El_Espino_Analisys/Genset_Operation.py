@@ -71,12 +71,12 @@ print('Penalization is ' +  str(penalization*100) + ' %' )
 #%%
 
 
-fix_cost = np.array([0,Total_Fuel_Cost[3]])
+# fix_cost = np.array([0,Total_Fuel_Cost[3]])
 
-fix_capacity = np.array([0, Nominal_Capacity])
+# fix_capacity = np.array([0, Nominal_Capacity])
 
-lm3 = linear_model.LinearRegression(fit_intercept=True)
-lm3.fit(fix_capacity.reshape(-1, 1), fix_cost.reshape(-1, 1))
+# lm3 = linear_model.LinearRegression(fit_intercept=True)
+# lm3.fit(fix_capacity.reshape(-1, 1), fix_cost.reshape(-1, 1))
 
-print(lm3.intercept_,lm3.coef_)
+# print(lm3.intercept_,lm3.coef_)
 

@@ -17,13 +17,12 @@ X['HouseHolds'] =  list(range(1,51,1))
 y = pd.DataFrame(index=range(50))
 
 
-y['LCOE'] = 0.35
-y['NPC'] = 1591*X['HouseHolds']
-y['Battery'] = 1.1*X['HouseHolds']
-y['PV'] = 0.4*X['HouseHolds']
-y['Investment'] = 1293*X['HouseHolds']
+y['LCOE'] = 0.36
+y['NPC'] = 1633*X['HouseHolds']
+y['Battery'] = 1.2*X['HouseHolds']
+y['PV'] = 0.46*X['HouseHolds']
+y['Investment'] = 1326*X['HouseHolds']
 y['Genset'] = 0
-
 
 #%%
 lm_lcoe = linear_model.LinearRegression(fit_intercept=True)

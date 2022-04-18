@@ -55,6 +55,8 @@ grid_2012 = df.loc[df['FinalElecCode2012'] =='Grid2012']
 Grid_Connected_Percentage = (grid_2012['ElecPopCalib'].sum()/data['Pop2012'].sum())*100
 
 print('The % of people connected to the grid in 2012 was ' + str(round(Grid_Connected_Percentage,0)))
+#%%
+
 
 
 #%%
@@ -82,6 +84,13 @@ Results = pd.DataFrame()
 #%%
 Results.loc['grid','people'] =  round(grid_solution['NewConnections2025'].sum(),0)
 
+Total_Grid_People = round(grid_solution['Pop2025'].sum(),0)
+Total_people =   round(df['Pop2025'].sum(),0)    
+rate_grid = Total_Grid_People/Total_people
+rate_grid = round(rate_grid*100,0)
+print('The number of Unconnected communities in Bolivia is ' + str(rate_grid) + ' %')
+
+
 print('New connected people with the grid is ' +str(Results.loc['grid','people']))
 
 Results.loc['microgrid','people'] =  round(microgrids_solution['NewConnections2025'].sum(),0)
@@ -97,7 +106,15 @@ Results.loc['Total','people'] = (Results.loc['grid','people']
                                  + Results.loc['SHS','people']) 
 
 print('Total number of new connected  people is ' +str(Results.loc['Total','people']))
-
+rate_grid_2025 = Results.loc['grid','people']/Results.loc['Total','people']
+rate_grid_2025 = round(rate_grid_2025*100,1)
+print(rate_grid_2025)
+rate_microgrid_2025 = Results.loc['microgrid','people']/Results.loc['Total','people']
+rate_microgrid_2025 = round(rate_microgrid_2025*100,1)
+print(rate_microgrid_2025)
+rate_shs_2025 = Results.loc['SHS','people']/Results.loc['Total','people']
+rate_shs_2025 = round(rate_shs_2025*100,1)
+print(rate_shs_2025)
 #%%
 
 
@@ -131,12 +148,13 @@ Results.loc['grid','Capacity'] =  round(grid_solution['NewCapacity2025'].sum()/1
 print('The total new installed capacity of the grid is ' + str(Results.loc['grid','Capacity'])+ 
       '.')
 
-Results.loc['microgrid','Capacity'] =  round(microgrids_solution['NewCapacity2025'].sum()/1000,1)
+Results.loc['microgrid','Capacity'] =  round((microgrids_solution['PVcapacity2025'].sum()
+                                              + microgrids_solution['GenSetcapacity2025'].sum())/1000,1)
 
 print('TThe total new installed capacity of the microgrid is ' + str(Results.loc['microgrid','Capacity']) + 
       '.')
 
-Results.loc['SHS','Capacity'] =  round(SHS_solution['NewCapacity2025'].sum()/1000,1)
+Results.loc['SHS','Capacity'] =  round(SHS_solution['PVcapacity2025'].sum()/1000,1)
 
 print('The total new installed capacity of the SHS is ' +str(Results.loc['SHS','Capacity'])+ 
       '.')
@@ -147,7 +165,6 @@ Results.loc['Total','Capacity'] = (Results.loc['grid','Capacity']
 
 print('The total new installed capacity of new connected  people is ' +str(Results.loc['Total','Capacity'])+ 
       '.')
-
 
 #%%
 
@@ -234,26 +251,26 @@ print('The number of households with SHS solution is  ' + str(round(SHS_househol
 
 # The number of Unconnected communities in Bolivia is 8671
 # The % of people connected to the grid in 2012 was 76.0
-# New connected people with the grid is 3307228.0
+# New connected people with the grid is 3308928.0
 # New connected people with microgrid is 53140.0
-# New connected people with SHS is 494925.0
+# New connected people with SHS is 493225.0
 # Total number of new connected  people is 3855293.0
 # The total NPC of the grid is 1635.0 thousands of millons of USD.
 # The total NPC of the microgrid is 44.0 thousands of millons of USD.
-# The total NPC of the microgrid is 230.0 thousands of millons of USD.
-# Total NPC is 1909.0 thousands of millons of USD.
-# The total new installed capacity of the grid is 279.7.
-# TThe total new installed capacity of the microgrid is 4.9.
-# The total new installed capacity of the microgrid is 217.1.
-# The total new installed capacity of new connected  people is 501.69999999999993.
+# The total NPC of the SHS is 236.0 thousands of millons of USD.
+# Total NPC is 1915.0 thousands of millons of USD.
+# The total new installed capacity of the grid is 279.8.
+# TThe total new installed capacity of the microgrid is 2.8.
+# The total new installed capacity of the SHS is 66.4.
+# The total new installed capacity of new connected  people is 349.0.
 # The investment per household for the grid is 1811.0 USD.
 # The investment per household for the microgrid is 2413.0 USD.
-# The investment per household for the microgrid is 1293.0 USD.
-# The average investment per household for new connected  people is 1624.0 USD.
+# The investment per household for the microgrid is 1326.0 USD.
+# The average investment per household for new connected  people is 1636.0 USD.
 # True
 # True
 # True
 # The number of microgrids is 221.
-# The number of communities with isolated solution is 7461
-# The number of households with isolated solution is  160295.0
-# The number of households with SHS solution is  144753.0
+# The number of communities with isolated solution is 7446
+# The number of households with isolated solution is  159798.0
+# The number of households with SHS solution is  144256.0
