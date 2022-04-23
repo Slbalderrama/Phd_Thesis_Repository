@@ -32,7 +32,7 @@ param: Scenarios :=10;
 
 param: Battery_Cycles := 5500; # 3
 
-param: Battery_Initial_SOC := 0.5;
+param: Battery_Initial_SOC := 0.8;
 
 param: Scenario_Weight :=
 

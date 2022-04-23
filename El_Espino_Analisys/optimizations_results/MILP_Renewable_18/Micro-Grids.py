@@ -88,7 +88,7 @@ print('The optimization taok ' + str(round(end - start,0)) + ' seconds')
 #Battery nominal capacity is 357.0 kWh
 #NPC is 417.0 Thousand USD
 #The LCOE is 0.535 USD/kWh
-#70.3 % Renewable Penetration
+#70.4 % Renewable Penetration
 #0.9 % of energy curtail
-#38.7 % Battery usage
-#The optimization taok 5423.0 seconds
+#38.8 % Battery usage
+#The optimization taok 5007.0 seconds

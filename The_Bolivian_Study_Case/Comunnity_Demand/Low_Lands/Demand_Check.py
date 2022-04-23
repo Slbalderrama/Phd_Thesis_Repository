@@ -6,18 +6,12 @@ Created on Thu Feb  7 15:33:58 2019
 @author: sergio
 """
 import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
+
 import matplotlib.lines as mlines
-import matplotlib.ticker as mtick
-import matplotlib.pylab as pylab
-from scipy.stats import pearsonr
-from matplotlib.sankey import Sankey
-import pylab
-import enlopy as el
-import matplotlib as mpl
-from pandas import ExcelWriter
+
+
 
 # summer 183 and winter 182
 Village_Population =  list(range(50,570,50))

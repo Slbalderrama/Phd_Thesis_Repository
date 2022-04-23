@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import matplotlib.ticker as mtick
 import matplotlib.pylab as pylab
-import enlopy as el
+#import enlopy as el
 import matplotlib as mpl
 from datetime import datetime
 import os

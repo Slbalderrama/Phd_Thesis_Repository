@@ -45,15 +45,15 @@ for i in sc3.index:
 
 title_size = 70
 pad = 30
-tick_size = 20
+tick_size = 40
 fontsize = '30'
 mpl.rcParams['xtick.labelsize'] = tick_size
 mpl.rcParams['ytick.labelsize'] = tick_size
 
 fig = plt.figure(figsize=(40,30))
 size = [40,40]
-label_size = 25
-tick_size = 25 
+label_size = 40
+tick_size = 35 
 
 
 # LCOE plot

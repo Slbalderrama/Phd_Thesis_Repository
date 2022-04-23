@@ -38,3 +38,27 @@ test3 = result_old['HouseHolds'] - (microgrids_solution['HouseHolds']
                                            + Grid_Unconnected_solution['HouseHolds'])
 
 print(test3.sum())
+
+
+#%%
+
+results_ref = pd.read_csv('REF/Bolivia/Unconected_2012_Ref.csv', index_col=0)
+
+test4 = result_old.index == results_ref.index
+print(test4.any())
+
+test5 = results_ref['HouseHolds'] -  result_old['HouseHolds']
+print(test5.sum())
+
+test6 = results_ref['HouseHolds'] - (microgrids_solution['HouseHolds']
+                                           + SHS_solution['HouseHolds'] 
+                                           + Grid_Unconnected_solution['HouseHolds'])
+print(test6.sum())
+
+
+#%%
+
+# results_ref = 
+
+
+

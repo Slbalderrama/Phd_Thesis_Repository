@@ -46,8 +46,9 @@ df['Y_deg'] = data['Y_deg']
 #%%
 
 df_2012 = df.loc[df['FinalElecCode2012'] !='Grid2012']
-
+df_2012.to_csv('Bolivia/Unconected_2012_Ref.csv')
 Grid_Unconnected = len(df_2012)
+
 
 print('The number of Unconnected communities in Bolivia is ' + str(Grid_Unconnected))
 
