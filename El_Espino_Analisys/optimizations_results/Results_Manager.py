@@ -16,7 +16,7 @@ bat_12 = battery_renewable_12['Battery']['Nominal Capacity (kWh)']
 bat_18 = battery_renewable_18['Battery']['Nominal Capacity (kWh)']
 Rate_bat_18_12 = (bat_18-bat_12)/bat_18
 Rate_bat_18_12 = round(Rate_bat_18_12*100,0)
-print('Increase in capacpaci from 18 to 12 is ' + str(Rate_bat_18_12) + ' %.')
+print('Increase in battery capacity from 18 to 12 is ' + str(Rate_bat_18_12) + ' %.')
                                 
 
 #%%

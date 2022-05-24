@@ -74,7 +74,7 @@ def Model_Resolution(model,Renewable_Penetration, Battery_Independency,datapath=
 #        opt.options['StartNodeLimit'] = 10 # 500 Default
 #       opt.options['emphasis_mip'] = 2
 #        opt.options['Presolve'] = 2
-        results = opt.solve(instance, tee=True, options_string="mipgap=0.005",
+        results = opt.solve(instance, tee=True, options_string="mipgap=0.008",
                             warmstart=True,keepfiles=False,
                             load_solutions=False, logfile="Solver_Output.log") # Solving a model instance 
 

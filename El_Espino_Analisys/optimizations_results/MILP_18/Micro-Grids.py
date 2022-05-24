@@ -82,3 +82,28 @@ print('The optimization taok ' + str(round(end - start,0)) + ' seconds')
 
 # energy_check(instance)
 
+#Renewable 1 nominal capacity is 15.7 kW
+#Generator 1 nominal capacity is 30.0 kW
+#Generator 2 nominal capacity is -0.0 kW
+#Battery nominal capacity is 44.4 kWh
+#NPC is 226.0 Thousand USD
+#The LCOE is 0.29 USD/kWh
+#20.4 % Renewable Penetration
+#0.0 % of energy curtail
+#4.8 % Battery usage
+#The optimization taok 7630.0 seconds
+
+#Renewable 1 nominal capacity is 17.0 kW
+#Generator 1 nominal capacity is 30.0 kW
+#Generator 2 nominal capacity is 0.0 kW
+#Battery nominal capacity is 44.4 kWh
+#NPC is 226.0 Thousand USD
+#The LCOE is 0.29 USD/kWh
+#22.2 % Renewable Penetration
+#0.0 % of energy curtail
+#4.7 % Battery usage
+#The optimization taok 300169.0 seconds
+#
+
+
+
