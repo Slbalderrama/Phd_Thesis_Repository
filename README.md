@@ -1,7 +1,7 @@
 Optimal design and deployment of isolated energy systems: The Bolivian pathway to 100% rural electrification
 ========================
 
-### Description
+## Description
 
 The purpose of this page is to serve as a permanent repository for the PhD thesis entitled:
 
@@ -13,24 +13,24 @@ piece, in order to completely understand the theory and practical implementation
 the Author with the emails provided or through github.
 
 
-### Author
+## Author
 
 Sergio Balderrama
 University of Liege, Belgium - Universidad Mayor de San Simon, Bolivia,
 E-mail: slbalderrama@doct.ulg.be / sergiob44_47@hotmail.com
 
 
-### Requirements
+## Requirements
 
 This repository has been tested in Linux or windows and needs different programs and phyton libraries in order to work. 
 
-Python
--------
+### Python
+
 
 First of all, Python 3.7 should be installed on the computer. The easiest way to obtain it, is download anaconda in order to have all the tools needed to run python scripts.
 
-Python libraries
-----------------
+### Python libraries
+
  
 The most important python libraries needed to run this repository are the following:
 
@@ -47,16 +47,15 @@ The most important python libraries needed to run this repository are the follow
 *   openpyxl 3.0.3
 
 
-Solver
-------
+### Solver
+
 
 Any of the following solvents can be used during the optimization  process:
 
 * Gurobi
 
+## Repository Composition
 
-Repository Composition
-======================
 
 Each of the folders represent one of the chapters of the PhD thesis, the correspondence is:
 
@@ -70,8 +69,8 @@ Each of the folders represent one of the chapters of the PhD thesis, the corresp
 
 Inside of each folder, you can find a README that gives further information of the data and scripts.
 
-Licence
-=======
+## Licence
+
 This is a free software licensed under the “European Union Public License" EUPL v1.1. It 
 can be redistributed and/or modified under the terms of this license.
 
