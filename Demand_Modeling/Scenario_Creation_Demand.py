@@ -89,45 +89,6 @@ for i in range(1, scenarios+1):
 
     Scenarios[name] = load_psd
 
-#Scenarios.index = range(len(Scenarios))
-#%%
-size = [20,15]
-fig=plt.figure(figsize=size)
-ax=fig.add_subplot(111, label="1")
-alpha= 0.1
-
-start = 228*50
-end = 228*60
-ax.plot(Scenarios.index[start:end], Scenarios['Base Scenario'][start:end]/1000, c='k')
-
-for i in range(1, scenarios+1): 
-    
-    name= 'Scenario ' + str(i)
-    ax.plot(Scenarios.index[start:end], Scenarios[name][start:end]/1000, c='b', alpha=alpha)
-
-date_form = DateFormatter("%H:%M")
-ax.xaxis.set_major_formatter(date_form)
-
-ax.set_xlabel("Time (hours)",size=30)
-ax.set_ylabel("kW",size=30)
-ax.set_xlim(Scenarios.index[start], Scenarios.index[end-1])
-tick_size = 25   
-#mpl.rcParams['xtick.labelsize'] = tick_size     
-ax.tick_params(axis='x', which='major', labelsize = tick_size )
-ax.tick_params(axis='y', which='major', labelsize = tick_size )    
-
-handle1 = mlines.Line2D([], [], color='b',
-                                  label='Stochastic Scenarios')
-handle2 = mlines.Line2D([], [], color='k',
-                                  label='Base scenarios')
-
-
-plt.legend(handles=[handle2, handle1], bbox_to_anchor=(0.85, -0.05), 
-           fontsize = 30, frameon=False,  ncol=2)        
-        
-#plt.savefig('Top_Down_Demand_Modeling.png')
-plt.show()        
-
 
 #%%
 
@@ -137,7 +98,7 @@ Scenarios['hour'] = Scenarios.index.hour
 
 
 hourly_scenarios = Scenarios.groupby(['year','day', 'hour']).mean()
-index_hourly = pd.DatetimeIndex(start='2016-03-21 01:00:00', periods=8760, 
+index_hourly = pd.date_range(start='2016-03-21 01:00:00', periods=8760, 
                                    freq=('1H'))
 hourly_scenarios.index = index_hourly
 #%%
